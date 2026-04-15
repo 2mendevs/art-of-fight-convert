@@ -7,14 +7,13 @@ const indicators = [
 ];
 
 const TrustIndicators = () => (
-  <section className="py-10 bg-secondary">
-    <div className="container">
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+  <section className="py-2 bg-primary">
+    <div className="container max-w-3xl">
+      <div className="grid grid-cols-3 gap-4 text-center">
         {indicators.map((item) => (
-          <div key={item.title} className="flex flex-col items-center gap-3 py-4">
-            <item.icon className="w-10 h-10 text-secondary-foreground" />
-            <h3 className="font-display text-xl text-secondary-foreground">{item.title}</h3>
-            <p className="text-secondary-foreground/70 text-sm">{item.desc}</p>
+          <div key={item.title} className="flex items-center justify-center gap-2">
+            <item.icon className="w-4 h-4 text-primary-foreground" />
+            <span className="font-display text-sm text-primary-foreground tracking-wider">{item.title}</span>
           </div>
         ))}
       </div>
