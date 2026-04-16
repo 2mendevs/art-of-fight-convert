@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import TrustIndicators from "@/components/TrustIndicators";
 
 const HeroSection = () => (
-  <section id="home" className="relative h-screen flex flex-col">
+  <section id="home" className="relative h-screen flex flex-col overflow-hidden">
     <div className="absolute inset-0 z-0">
       <img
         src="/images/hero-fighter.jpg"
@@ -37,17 +37,11 @@ const HeroSection = () => (
       </div>
     </div>
 
-    {/* Trust indicators strip — extends to the right edge */}
-    <div className="relative z-10">
-      <div className="container">
-        <div className="ml-0 mr-[calc(-50vw+50%)] bg-primary py-3 pl-6 pr-8 rounded-l-md">
-          <div className="flex items-center gap-8 max-w-xl">
-            <TrustIndicators />
-          </div>
-        </div>
-      </div>
+    {/* Trust indicators full-width strip */}
+    <div className="relative z-10 w-full bg-primary py-3 px-6 md:px-10">
+      <TrustIndicators />
     </div>
-    <div className="h-6" />
+    <div className="h-4" />
   </section>
 );
 
