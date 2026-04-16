@@ -7,7 +7,6 @@ import CoachSection from "@/components/CoachSection";
 import SocialProofSection from "@/components/SocialProofSection";
 import TestimonialsSection from "@/components/TestimonialsSection";
 import ContactSection from "@/components/ContactSection";
-import FAQSection from "@/components/FAQSection";
 import Footer from "@/components/Footer";
 
 const Index = () => (
@@ -21,7 +20,6 @@ const Index = () => (
     <SocialProofSection />
     <TestimonialsSection />
     <ContactSection />
-    <FAQSection />
     <Footer />
   </div>
 );
