@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import TrustIndicators from "@/components/TrustIndicators";
 
 const HeroSection = () => (
   <section id="home" className="relative min-h-screen flex items-center pt-16">
@@ -33,6 +34,8 @@ const HeroSection = () => (
             1 on 1 Coaching
           </Button>
         </div>
+
+        <TrustIndicators />
       </div>
     </div>
   </section>

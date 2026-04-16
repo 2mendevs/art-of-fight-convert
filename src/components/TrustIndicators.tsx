@@ -7,8 +7,8 @@ const indicators = [
 ];
 
 const TrustIndicators = () => (
-  <section className="py-2 bg-primary">
-    <div className="container max-w-3xl">
+<div className="py-3 bg-primary rounded-md mt-6">
+    <div className="px-4">
       <div className="grid grid-cols-3 gap-4 text-center">
         {indicators.map((item) => (
           <div key={item.title} className="flex items-center justify-center gap-2">
@@ -18,7 +18,7 @@ const TrustIndicators = () => (
         ))}
       </div>
     </div>
-  </section>
+  </div>
 );
 
 export default TrustIndicators;
