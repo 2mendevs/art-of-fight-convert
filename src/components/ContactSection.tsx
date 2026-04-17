@@ -2,10 +2,10 @@ import { Button } from "@/components/ui/button";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 
 const faqs = [
-  { q: "What age do I need to start?", a: "Lorem ipsum dolor sit amet, consectetur adipiscing elit." },
-  { q: "Are there any requirements?", a: "Lorem ipsum dolor sit amet, consectetur adipiscing elit." },
-  { q: "Can I try a class for free?", a: "Lorem ipsum dolor sit amet, consectetur adipiscing elit." },
-  { q: "What equipment do I need?", a: "Lorem ipsum dolor sit amet, consectetur adipiscing elit." },
+  { q: "What age do I need to start?", a: "We welcome students from age 8 and up. Programs are tailored to your level." },
+  { q: "Are there any requirements?", a: "No prior experience required — just commitment and the willingness to learn." },
+  { q: "Can I try a class for free?", a: "Yes, your first trial class is on us. Book through the enquiry form." },
+  { q: "What equipment do I need?", a: "Just comfortable training gear to start. We'll guide you on gloves and gear later." },
 ];
 
 const ContactSection = () => (
@@ -41,6 +41,16 @@ const ContactSection = () => (
           <textarea placeholder="Message" rows={4} className="w-full bg-muted border border-border rounded px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-primary resize-none" />
           <Button className="w-full font-semibold uppercase tracking-wide">Submit</Button>
         </div>
+      </div>
+
+      {/* CTA pair under the section */}
+      <div className="flex flex-col sm:flex-row gap-3 justify-center mt-12">
+        <Button size="lg" className="font-semibold text-sm uppercase tracking-wide">
+          AOF 30 Days Program
+        </Button>
+        <Button size="lg" variant="outline" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground font-semibold text-sm uppercase tracking-wide">
+          1 on 1 Coaching
+        </Button>
       </div>
     </div>
   </section>
