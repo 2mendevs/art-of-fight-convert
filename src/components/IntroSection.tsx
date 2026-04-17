@@ -1,5 +1,5 @@
 const IntroSection = () => (
-  <section id="about" className="pt-16 pb-6 md:pt-24 md:pb-8 bg-card/50">
+  <section id="about" className="pt-6 pb-6 md:pt-8 md:pb-8 bg-card/50">
     <div className="container">
       <p className="text-primary text-xs font-semibold uppercase tracking-widest mb-6">
         AOF Intro Section
