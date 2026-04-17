@@ -1,10 +1,10 @@
 const IntroSection = () => (
   <section id="about" className="pt-6 pb-6 md:pt-8 md:pb-8 bg-card/50">
-    <div className="container">
+    <div className="container max-w-4xl">
       <p className="text-primary text-xs font-semibold uppercase tracking-widest mb-6">
         AOF Intro Section
       </p>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
         {/* Left: intro wordings */}
         <div className="space-y-4">
           <h2 className="font-display text-3xl md:text-5xl text-foreground leading-tight">
