@@ -1,76 +1,92 @@
-import { Play } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { useState } from "react";
+import { Play, ChevronLeft, ChevronRight } from "lucide-react";
 
-const portraits = [1, 2, 3];
-const landscapes = [1, 2, 3, 4, 5];
+const shorts = [1, 2, 3];
+const thumbs = [1, 2, 3, 4, 5, 6];
+const VISIBLE = 3;
 
-const SocialProofSection = () => (
-  <section className="py-16 md:py-24 bg-card/50">
-    <div className="container">
-      {/* Header block (matches reference) */}
-      <div className="text-center max-w-2xl mx-auto mb-10 space-y-3">
-        <h2 className="font-display text-3xl md:text-5xl text-foreground">
-          Watch <span className="text-primary">AOF in Action</span>
-        </h2>
-        <p className="text-muted-foreground text-sm md:text-base">
-          Subscribe on YouTube and join 5,000+ MMA enthusiasts on Instagram for weekly tips, training, and pad work.
-        </p>
-        <div className="pt-1">
-          <Button variant="outline" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground rounded-full">
-            Follow AOF
-          </Button>
+const SocialProofSection = () => {
+  const [start, setStart] = useState(0);
+
+  const next = () => setStart((s) => (s + 1) % thumbs.length);
+  const prev = () => setStart((s) => (s - 1 + thumbs.length) % thumbs.length);
+
+  // build a rotated array so we can show 3 in loop
+  const visible = Array.from({ length: VISIBLE }, (_, i) => thumbs[(start + i) % thumbs.length]);
+
+  return (
+    <section className="py-16 md:py-24 bg-card/50">
+      <div className="container">
+        <div className="text-center max-w-2xl mx-auto mb-10 space-y-3">
+          <h2 className="font-display text-3xl md:text-5xl text-foreground">
+            See Us in <span className="text-primary">Action</span>
+          </h2>
+          <p className="text-muted-foreground text-sm md:text-base">
+            Subscribe on YouTube and join 5,000+ MMA enthusiasts on Instagram for weekly tips, training, and pad work.
+          </p>
         </div>
-      </div>
 
-      {/* 3 portrait autoplay videos */}
-      <div className="flex flex-wrap justify-center gap-4 mb-8">
-        {portraits.map((v) => (
-          <div
-            key={v}
-            className="relative bg-muted rounded-lg overflow-hidden group"
-            style={{ width: '180px', aspectRatio: '9/16' }}
-          >
-            <video
-              autoPlay
-              muted
-              loop
-              playsInline
-              className="absolute inset-0 w-full h-full object-cover"
+        {/* Row 1: 3 portrait shorts (autoplay) */}
+        <div className="grid grid-cols-3 gap-4 md:gap-8 max-w-3xl mx-auto mb-10">
+          {shorts.map((v) => (
+            <div
+              key={v}
+              className="relative bg-muted rounded-xl overflow-hidden group aspect-[9/16]"
             >
-              {/* placeholder – no source yet */}
-            </video>
-            <div className="absolute inset-0 bg-gradient-to-br from-muted to-card" />
-            <div className="absolute bottom-2 left-2 right-2 text-[10px] text-foreground/80 uppercase tracking-wider">
-              Reel {v}
-            </div>
-          </div>
-        ))}
-      </div>
-
-      {/* 5 landscape photos as YouTube buttons */}
-      <div className="max-w-4xl mx-auto grid grid-cols-2 sm:grid-cols-3 gap-3">
-        {landscapes.map((v, i) => (
-          <a
-            key={v}
-            href="https://youtube.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={`relative aspect-video bg-muted rounded-lg overflow-hidden group cursor-pointer block ${
-              i === 3 ? 'sm:col-start-1' : ''
-            }`}
-          >
-            <div className="absolute inset-0 bg-gradient-to-br from-muted to-card" />
-            <div className="absolute inset-0 bg-background/30 group-hover:bg-background/10 transition-colors z-10" />
-            <div className="absolute inset-0 flex items-center justify-center z-20">
-              <div className="w-10 h-10 rounded-full bg-primary/90 flex items-center justify-center group-hover:scale-110 transition-transform">
-                <Play className="w-4 h-4 text-primary-foreground ml-0.5" fill="currentColor" />
+              <video autoPlay muted loop playsInline className="absolute inset-0 w-full h-full object-cover" />
+              <div className="absolute inset-0 bg-gradient-to-br from-muted to-card" />
+              <div className="absolute bottom-2 left-2 right-2 text-[10px] text-foreground/80 uppercase tracking-wider">
+                Short {v}
               </div>
             </div>
-          </a>
-        ))}
+          ))}
+        </div>
+
+        {/* Row 2: thumbnail carousel — 6 total, only 3 visible, loop */}
+        <div className="max-w-3xl mx-auto">
+          <div className="grid grid-cols-3 gap-4 md:gap-8">
+            {visible.map((v) => (
+              <a
+                key={`${v}-${start}`}
+                href="https://youtube.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="relative aspect-video bg-muted rounded-xl overflow-hidden group block"
+              >
+                <div className="absolute inset-0 bg-gradient-to-br from-muted to-card" />
+                <div className="absolute inset-0 bg-background/30 group-hover:bg-background/10 transition-colors z-10" />
+                <div className="absolute inset-0 flex items-center justify-center z-20">
+                  <div className="w-10 h-10 rounded-full bg-primary/90 flex items-center justify-center group-hover:scale-110 transition-transform">
+                    <Play className="w-4 h-4 text-primary-foreground ml-0.5" fill="currentColor" />
+                  </div>
+                </div>
+                <div className="absolute bottom-2 left-2 text-[10px] text-foreground/80 uppercase tracking-wider z-20">
+                  Thumb {v}
+                </div>
+              </a>
+            ))}
+          </div>
+
+          <div className="flex justify-center gap-4 mt-6">
+            <button
+              onClick={prev}
+              aria-label="Previous"
+              className="w-10 h-10 rounded-full border border-border flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary transition-colors"
+            >
+              <ChevronLeft size={20} />
+            </button>
+            <button
+              onClick={next}
+              aria-label="Next"
+              className="w-10 h-10 rounded-full border border-border flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary transition-colors"
+            >
+              <ChevronRight size={20} />
+            </button>
+          </div>
+        </div>
       </div>
-    </div>
-  </section>
-);
+    </section>
+  );
+};
 
 export default SocialProofSection;

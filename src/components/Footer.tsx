@@ -3,7 +3,6 @@ import { Phone, Mail, MapPin, Instagram, Youtube, Facebook } from "lucide-react"
 const Footer = () => (
   <footer className="bg-background border-t border-border">
     <div className="container py-12 grid grid-cols-1 md:grid-cols-4 gap-8">
-      {/* Brand */}
       <div className="space-y-3">
         <p className="font-display text-2xl text-primary">AOF</p>
         <p className="text-muted-foreground text-xs leading-relaxed">
@@ -22,18 +21,16 @@ const Footer = () => (
         </div>
       </div>
 
-      {/* Quick Links */}
       <div>
         <h4 className="font-display text-sm text-foreground uppercase tracking-wider mb-4">Quick Links</h4>
         <ul className="space-y-2 text-sm text-muted-foreground">
           <li><a href="#home" className="hover:text-primary transition-colors">Home</a></li>
           <li><a href="#about" className="hover:text-primary transition-colors">About</a></li>
-          <li><a href="#services" className="hover:text-primary transition-colors">Services</a></li>
+          <li><a href="#programs" className="hover:text-primary transition-colors">Services</a></li>
           <li><a href="#contact" className="hover:text-primary transition-colors">Contact</a></li>
         </ul>
       </div>
 
-      {/* Programs */}
       <div>
         <h4 className="font-display text-sm text-foreground uppercase tracking-wider mb-4">Programs</h4>
         <ul className="space-y-2 text-sm text-muted-foreground">
@@ -44,7 +41,6 @@ const Footer = () => (
         </ul>
       </div>
 
-      {/* Contact */}
       <div>
         <h4 className="font-display text-sm text-foreground uppercase tracking-wider mb-4">Contact</h4>
         <ul className="space-y-2 text-sm text-muted-foreground">

@@ -1,64 +1,107 @@
 import { Star, ChevronLeft, ChevronRight, User } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const testimonials = [
-  { name: "Syde", role: "Member", text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Excepteur sint occaecat cupidatat." },
-  { name: "Seity", role: "Member", text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut enim ad minim veniam." },
-  { name: "Rolen", role: "Member", text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis aute irure dolor." },
+  { name: "Syde", role: "Member", text: "AOF transformed how I train — discipline, technique, and family vibe all in one." },
+  { name: "Seity", role: "Member", text: "The coaches actually care. I've gained real skill and real confidence." },
+  { name: "Rolen", role: "Member", text: "Best decision I made this year. The 30-day program is no joke — results are real." },
+  { name: "Karthik", role: "Fighter", text: "From beginner to ring-ready in months. The system works." },
+  { name: "Arjun", role: "Member", text: "Pad work, sparring, conditioning — every session pushes you to level up." },
 ];
 
+const VISIBLE = 3;
+
 const TestimonialsSection = () => {
-  const [active, setActive] = useState(0);
+  const [start, setStart] = useState(0);
+  const [paused, setPaused] = useState(false);
+
+  // autoplay loop
+  useEffect(() => {
+    if (paused) return;
+    const id = setInterval(() => setStart((s) => (s + 1) % testimonials.length), 3500);
+    return () => clearInterval(id);
+  }, [paused]);
+
+  const next = () => setStart((s) => (s + 1) % testimonials.length);
+  const prev = () => setStart((s) => (s - 1 + testimonials.length) % testimonials.length);
+
+  const visible = Array.from({ length: VISIBLE }, (_, i) => testimonials[(start + i) % testimonials.length]);
 
   return (
     <section id="testimonials" className="py-16 md:py-24">
       <div className="container">
-        <p className="text-primary text-sm font-semibold uppercase tracking-widest mb-2 text-center">Testimonials</p>
-        <h2 className="font-display text-4xl md:text-5xl text-foreground text-center mb-10">
-          What People Say
-        </h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+          {/* Left: Video */}
+          <div className="relative aspect-video rounded-xl overflow-hidden bg-muted max-w-md w-full mx-auto md:mx-0">
+            <div className="absolute inset-0 bg-gradient-to-br from-muted to-card" />
+            <div className="absolute inset-0 flex items-center justify-center z-10">
+              <div className="w-14 h-14 rounded-full bg-primary/90 flex items-center justify-center cursor-pointer hover:bg-primary transition-colors">
+                <div
+                  className="w-0 h-0 border-t-[8px] border-b-[8px] border-t-transparent border-b-transparent ml-1"
+                  style={{ borderLeftWidth: '14px', borderLeftColor: 'hsl(var(--primary-foreground))' }}
+                />
+              </div>
+            </div>
+          </div>
 
-        {/* Mobile: carousel, Desktop: grid */}
-        <div className="hidden md:grid grid-cols-3 gap-6 max-w-5xl mx-auto">
-          {testimonials.map((t) => (
-            <TestimonialCard key={t.name} {...t} />
-          ))}
-        </div>
+          {/* Right: heading + tilted feedback loop */}
+          <div
+            className="space-y-6"
+            onMouseEnter={() => setPaused(true)}
+            onMouseLeave={() => setPaused(false)}
+          >
+            <div>
+              <p className="text-primary text-sm font-semibold uppercase tracking-widest mb-2">
+                Testimonials
+              </p>
+              <h2 className="font-display text-3xl md:text-5xl text-foreground leading-tight">
+                What People Say
+              </h2>
+            </div>
 
-        <div className="md:hidden max-w-sm mx-auto">
-          <TestimonialCard {...testimonials[active]} />
-          <div className="flex justify-center gap-4 mt-6">
-            <button onClick={() => setActive((p) => (p - 1 + testimonials.length) % testimonials.length)} className="w-10 h-10 rounded-full border border-border flex items-center justify-center text-muted-foreground hover:text-primary">
-              <ChevronLeft size={20} />
-            </button>
-            <button onClick={() => setActive((p) => (p + 1) % testimonials.length)} className="w-10 h-10 rounded-full border border-border flex items-center justify-center text-muted-foreground hover:text-primary">
-              <ChevronRight size={20} />
-            </button>
+            <div className="relative space-y-3 py-2">
+              {visible.map((t, i) => (
+                <div
+                  key={`${t.name}-${start}-${i}`}
+                  className="bg-card border border-border rounded-lg p-4 shadow-lg transition-transform"
+                  style={{
+                    transform: `rotate(-6deg) translateX(${i * 18}px)`,
+                  }}
+                >
+                  <div className="flex gap-1 mb-2">
+                    {[...Array(5)].map((_, s) => (
+                      <Star key={s} className="w-3 h-3 text-primary fill-primary" />
+                    ))}
+                  </div>
+                  <p className="text-muted-foreground text-xs md:text-sm leading-relaxed italic mb-2">
+                    "{t.text}"
+                  </p>
+                  <div className="flex items-center gap-2">
+                    <div className="w-7 h-7 rounded-full bg-muted flex items-center justify-center">
+                      <User className="w-3.5 h-3.5 text-muted-foreground" />
+                    </div>
+                    <div>
+                      <p className="text-foreground font-semibold text-xs">{t.name}</p>
+                      <p className="text-muted-foreground text-[10px]">{t.role}</p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <div className="flex gap-3 pt-2">
+              <button onClick={prev} aria-label="Previous" className="w-10 h-10 rounded-full border border-border flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary transition-colors">
+                <ChevronLeft size={18} />
+              </button>
+              <button onClick={next} aria-label="Next" className="w-10 h-10 rounded-full border border-border flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary transition-colors">
+                <ChevronRight size={18} />
+              </button>
+            </div>
           </div>
         </div>
       </div>
     </section>
   );
 };
-
-const TestimonialCard = ({ name, role, text }: { name: string; role: string; text: string }) => (
-  <div className="bg-card border border-border rounded-lg p-6 space-y-4">
-    <div className="flex gap-1">
-      {[...Array(5)].map((_, i) => (
-        <Star key={i} className="w-4 h-4 text-primary fill-primary" />
-      ))}
-    </div>
-    <p className="text-muted-foreground text-sm leading-relaxed italic">"{text}"</p>
-    <div className="flex items-center gap-3 pt-2">
-      <div className="w-10 h-10 rounded-full bg-muted flex items-center justify-center">
-        <User className="w-5 h-5 text-muted-foreground" />
-      </div>
-      <div>
-        <p className="text-foreground font-semibold text-sm">{name}</p>
-        <p className="text-muted-foreground text-xs">{role}</p>
-      </div>
-    </div>
-  </div>
-);
 
 export default TestimonialsSection;
