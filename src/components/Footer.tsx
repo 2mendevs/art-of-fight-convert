@@ -1,4 +1,4 @@
-import { Phone, Mail, MapPin, Instagram, Youtube as YoutubeIcon, Facebook as FacebookIcon } from "lucide-react";
+import { Phone, Mail, MapPin, Camera, Video, Users } from "lucide-react";
 
 const Footer = () => (
   <footer className="bg-background border-t border-border">
@@ -10,13 +10,13 @@ const Footer = () => (
         </p>
         <div className="flex items-center gap-3 pt-2">
           <a href="#" aria-label="Instagram" className="w-9 h-9 rounded-full border border-border flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary transition-colors">
-            <Instagram size={16} />
+            <Camera size={16} />
           </a>
           <a href="#" aria-label="YouTube" className="w-9 h-9 rounded-full border border-border flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary transition-colors">
-            <Youtube size={16} />
+            <Video size={16} />
           </a>
           <a href="#" aria-label="Facebook" className="w-9 h-9 rounded-full border border-border flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary transition-colors">
-            <Facebook size={16} />
+            <Users size={16} />
           </a>
         </div>
       </div>
