@@ -1,4 +1,4 @@
-import { Phone, Mail, MapPin, Instagram, Youtube, Facebook } from "lucide-react";
+import { Phone, Mail, MapPin, Instagram, Youtube as YoutubeIcon, Facebook as FacebookIcon } from "lucide-react";
 
 const Footer = () => (
   <footer className="bg-background border-t border-border">
