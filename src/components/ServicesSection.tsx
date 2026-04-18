@@ -1,15 +1,32 @@
 import { Button } from "@/components/ui/button";
+import { Check } from "lucide-react";
 
 const services = [
   {
     title: "AOF 30 Days Program",
-    desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt.",
-    cta: "Apply Due — Limited Availability",
+    desc: "Intensive group training designed to transform your fitness and fighting skills in just 30 days.",
+    bullets: [
+      "Structured daily training plan",
+      "Group motivation & accountability",
+      "Learn fundamental MMA techniques",
+      "Nutrition guidance included",
+      "Progress tracking & assessments",
+    ],
+    cta: "Book a Session",
+    popular: false,
   },
   {
     title: "1-on-1 Coaching",
-    desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Personalized training sessions.",
-    cta: "Book a Session",
+    desc: "Personalized training sessions tailored to your goals with direct attention from your coach.",
+    bullets: [
+      "Fully customized training plan",
+      "One-on-one coach attention",
+      "Flexible scheduling",
+      "Tailored nutrition advice",
+      "Faster, measurable progress",
+    ],
+    cta: "Apply Due — Limited Availability",
+    popular: true,
   },
 ];
 
@@ -26,11 +43,26 @@ const ServicesSection = () => (
         {services.map((s) => (
           <div
             key={s.title}
-            className="bg-card border border-border rounded-lg p-8 flex flex-col items-center text-center gap-5 hover:border-primary/50 transition-colors"
+            className="relative bg-card border border-border rounded-lg p-8 flex flex-col items-start text-left gap-5 hover:border-primary/50 transition-colors"
           >
+            {s.popular && (
+              <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-primary text-primary-foreground text-xs font-semibold uppercase tracking-wide px-4 py-1 rounded-full">
+                Most Popular
+              </span>
+            )}
             <h3 className="font-display text-3xl text-foreground">{s.title}</h3>
             <p className="text-muted-foreground text-sm leading-relaxed">{s.desc}</p>
-            <Button className="font-semibold uppercase text-xs tracking-wide mt-auto">{s.cta}</Button>
+            <ul className="flex flex-col gap-3 w-full">
+              {s.bullets.map((b) => (
+                <li key={b} className="flex items-start gap-3 text-sm text-foreground">
+                  <Check className="text-primary mt-0.5 shrink-0" />
+                  <span>{b}</span>
+                </li>
+              ))}
+            </ul>
+            <Button className="font-semibold uppercase text-xs tracking-wide mt-auto w-full">
+              {s.cta}
+            </Button>
           </div>
         ))}
       </div>
