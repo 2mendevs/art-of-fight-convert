@@ -7,11 +7,11 @@ const indicators = [
 ];
 
 const TrustIndicators = () => (
-  <div className="flex items-center justify-between w-full">
+  <div className="flex items-center justify-between w-full gap-4">
     {indicators.map((item) => (
-      <div key={item.title} className="flex items-center gap-2">
-        <item.icon className="w-4 h-4 text-primary-foreground shrink-0" />
-        <span className="font-display text-xs md:text-sm text-primary-foreground tracking-wider">{item.title}</span>
+      <div key={item.title} className="flex items-center gap-3">
+        <item.icon className="w-6 h-6 md:w-7 md:h-7 text-primary-foreground shrink-0" />
+        <span className="font-display text-sm md:text-lg text-primary-foreground tracking-wider">{item.title}</span>
       </div>
     ))}
   </div>
