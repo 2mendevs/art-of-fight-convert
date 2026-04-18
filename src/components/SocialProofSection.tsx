@@ -16,7 +16,7 @@ const SocialProofSection = () => {
 
   return (
     <section className="py-12 md:py-16 bg-card/50 w-full">
-      <div className="w-full px-6 md:px-10">
+      <div className="w-[60%] mx-auto px-4">
         <div className="text-center max-w-xl mx-auto mb-8 space-y-2">
           <h2 className="font-display text-2xl md:text-4xl text-foreground">
             See Us in <span className="text-primary">Action</span>
