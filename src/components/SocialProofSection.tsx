@@ -27,11 +27,11 @@ const SocialProofSection = () => {
         </div>
 
         {/* Row 1: 3 portrait shorts (autoplay) */}
-        <div className="grid grid-cols-3 gap-3 md:gap-5 max-w-xl mx-auto mb-8">
+        <div className="flex justify-between items-center w-full mb-8">
           {shorts.map((v) => (
             <div
               key={v}
-              className="relative bg-muted rounded-lg overflow-hidden group aspect-[9/16]"
+              className="relative bg-muted rounded-lg overflow-hidden group aspect-[9/16] w-[28%] max-w-[260px]"
             >
               <video autoPlay muted loop playsInline className="absolute inset-0 w-full h-full object-cover" />
               <div className="absolute inset-0 bg-gradient-to-br from-muted to-card" />
@@ -43,15 +43,15 @@ const SocialProofSection = () => {
         </div>
 
         {/* Row 2: thumbnail carousel — 6 total, only 3 visible, loop */}
-        <div className="max-w-xl mx-auto">
-          <div className="grid grid-cols-3 gap-3 md:gap-5">
+        <div className="w-full">
+          <div className="flex justify-between items-center w-full">
             {visible.map((v) => (
               <a
                 key={`${v}-${start}`}
                 href="https://youtube.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="relative aspect-video bg-muted rounded-xl overflow-hidden group block"
+                className="relative aspect-video bg-muted rounded-xl overflow-hidden group block w-[31%] max-w-[420px]"
               >
                 <div className="absolute inset-0 bg-gradient-to-br from-muted to-card" />
                 <div className="absolute inset-0 bg-background/30 group-hover:bg-background/10 transition-colors z-10" />
