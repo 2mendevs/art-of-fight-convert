@@ -1,11 +1,13 @@
 import { Button } from "@/components/ui/button";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { MessageCircle } from "lucide-react";
 
 const faqs = [
   { q: "What age do I need to start?", a: "We welcome students from age 8 and up. Programs are tailored to your level." },
   { q: "Are there any requirements?", a: "No prior experience required — just commitment and the willingness to learn." },
   { q: "Can I try a class for free?", a: "Yes, your first trial class is on us. Book through the enquiry form." },
   { q: "What equipment do I need?", a: "Just comfortable training gear to start. We'll guide you on gloves and gear later." },
+  { q: "Where is the academy located?", a: "We're based in Chennai, Tamil Nadu. Full address shared on enquiry." },
 ];
 
 const ContactSection = () => (
@@ -15,8 +17,29 @@ const ContactSection = () => (
       <h2 className="font-display text-4xl md:text-5xl text-foreground text-center mb-10">
         Get in Touch
       </h2>
+
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-        {/* FAQ */}
+        {/* LEFT: WhatsApp button + Enquiry Form */}
+        <div className="space-y-4">
+          <a
+            href="https://wa.me/910000000000"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center justify-center gap-2 w-full bg-[hsl(142,70%,40%)] hover:bg-[hsl(142,70%,35%)] text-white font-semibold uppercase tracking-wide text-sm rounded-md py-3 transition-colors"
+          >
+            <MessageCircle size={18} /> Chat on WhatsApp
+          </a>
+
+          <div className="bg-card border border-border rounded-lg p-6 space-y-4">
+            <h3 className="font-display text-2xl text-foreground">Enquiry Form</h3>
+            <input type="text" placeholder="Name" className="w-full bg-muted border border-border rounded px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-primary" />
+            <input type="tel" placeholder="Phone Number" className="w-full bg-muted border border-border rounded px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-primary" />
+            <textarea placeholder="Message" rows={4} className="w-full bg-muted border border-border rounded px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-primary resize-none" />
+            <Button className="w-full font-semibold uppercase tracking-wide">Submit</Button>
+          </div>
+        </div>
+
+        {/* RIGHT: FAQ */}
         <div className="space-y-4">
           <h3 className="font-display text-2xl text-foreground">Frequently Asked Questions</h3>
           <Accordion type="single" collapsible className="space-y-3">
@@ -31,15 +54,6 @@ const ContactSection = () => (
               </AccordionItem>
             ))}
           </Accordion>
-        </div>
-
-        {/* Enquiry Form */}
-        <div className="bg-card border border-border rounded-lg p-6 space-y-4">
-          <h3 className="font-display text-2xl text-foreground">Enquiry Form</h3>
-          <input type="text" placeholder="Name" className="w-full bg-muted border border-border rounded px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-primary" />
-          <input type="tel" placeholder="Phone Number" className="w-full bg-muted border border-border rounded px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-primary" />
-          <textarea placeholder="Message" rows={4} className="w-full bg-muted border border-border rounded px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-primary resize-none" />
-          <Button className="w-full font-semibold uppercase tracking-wide">Submit</Button>
         </div>
       </div>
 
