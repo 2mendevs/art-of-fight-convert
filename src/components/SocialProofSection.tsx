@@ -15,23 +15,23 @@ const SocialProofSection = () => {
   const visible = Array.from({ length: VISIBLE }, (_, i) => thumbs[(start + i) % thumbs.length]);
 
   return (
-    <section className="py-16 md:py-24 bg-card/50">
-      <div className="container">
-        <div className="text-center max-w-2xl mx-auto mb-10 space-y-3">
-          <h2 className="font-display text-3xl md:text-5xl text-foreground">
+    <section className="py-12 md:py-16 bg-card/50">
+      <div className="container max-w-4xl">
+        <div className="text-center max-w-xl mx-auto mb-8 space-y-2">
+          <h2 className="font-display text-2xl md:text-4xl text-foreground">
             See Us in <span className="text-primary">Action</span>
           </h2>
-          <p className="text-muted-foreground text-sm md:text-base">
+          <p className="text-muted-foreground text-xs md:text-sm">
             Subscribe on YouTube and join 5,000+ MMA enthusiasts on Instagram for weekly tips, training, and pad work.
           </p>
         </div>
 
         {/* Row 1: 3 portrait shorts (autoplay) */}
-        <div className="grid grid-cols-3 gap-4 md:gap-8 max-w-3xl mx-auto mb-10">
+        <div className="grid grid-cols-3 gap-3 md:gap-5 max-w-xl mx-auto mb-8">
           {shorts.map((v) => (
             <div
               key={v}
-              className="relative bg-muted rounded-xl overflow-hidden group aspect-[9/16]"
+              className="relative bg-muted rounded-lg overflow-hidden group aspect-[9/16]"
             >
               <video autoPlay muted loop playsInline className="absolute inset-0 w-full h-full object-cover" />
               <div className="absolute inset-0 bg-gradient-to-br from-muted to-card" />
