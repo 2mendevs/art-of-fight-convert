@@ -43,8 +43,8 @@ const SocialProofSection = () => {
         </div>
 
         {/* Row 2: thumbnail carousel — 6 total, only 3 visible, loop */}
-        <div className="max-w-3xl mx-auto">
-          <div className="grid grid-cols-3 gap-4 md:gap-8">
+        <div className="max-w-xl mx-auto">
+          <div className="grid grid-cols-3 gap-3 md:gap-5">
             {visible.map((v) => (
               <a
                 key={`${v}-${start}`}
