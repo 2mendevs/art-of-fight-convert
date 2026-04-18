@@ -9,10 +9,8 @@ const services = [
       "Structured daily training plan",
       "Group motivation & accountability",
       "Learn fundamental MMA techniques",
-      "Nutrition guidance included",
-      "Progress tracking & assessments",
     ],
-    cta: "Book a Session",
+    cta: "Apply Due — Limited Availability",
     popular: false,
   },
   {
@@ -22,10 +20,8 @@ const services = [
       "Fully customized training plan",
       "One-on-one coach attention",
       "Flexible scheduling",
-      "Tailored nutrition advice",
-      "Faster, measurable progress",
     ],
-    cta: "Apply Due — Limited Availability",
+    cta: "Book a Session",
     popular: true,
   },
 ];
