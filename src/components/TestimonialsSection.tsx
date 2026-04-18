@@ -29,7 +29,7 @@ const TestimonialsSection = () => {
 
   return (
     <section id="testimonials" className="py-16 md:py-24">
-      <div className="container">
+      <div className="container max-w-5xl">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
           {/* Left: Video */}
           <div className="relative aspect-video rounded-xl overflow-hidden bg-muted max-w-md w-full mx-auto md:mx-0">
@@ -65,7 +65,7 @@ const TestimonialsSection = () => {
                   key={`${t.name}-${start}-${i}`}
                   className="bg-card border border-border rounded-lg p-4 shadow-lg transition-transform"
                   style={{
-                    transform: `rotate(-6deg) translateX(${i * 18}px)`,
+                    transform: `rotate(-6deg) translateX(${i * 18 - 40}px)`,
                   }}
                 >
                   <div className="flex gap-1 mb-2">
