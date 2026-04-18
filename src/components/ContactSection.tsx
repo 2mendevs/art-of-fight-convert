@@ -57,15 +57,6 @@ const ContactSection = () => (
         </div>
       </div>
 
-      {/* CTA pair under the section */}
-      <div className="flex flex-col sm:flex-row gap-3 justify-center mt-12">
-        <Button size="lg" className="font-semibold text-sm uppercase tracking-wide">
-          AOF 30 Days Program
-        </Button>
-        <Button size="lg" variant="outline" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground font-semibold text-sm uppercase tracking-wide">
-          1 on 1 Coaching
-        </Button>
-      </div>
     </div>
   </section>
 );
