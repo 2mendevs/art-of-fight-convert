@@ -38,10 +38,9 @@ const HeroSection = () => (
     </div>
 
     {/* Trust indicators full-width strip */}
-    <div className="relative z-10 w-full bg-primary py-3 px-6 md:px-10">
+    <div className="relative z-10 w-full bg-primary py-5 px-4 md:px-8">
       <TrustIndicators />
     </div>
-    <div className="h-4" />
   </section>
 );
 
