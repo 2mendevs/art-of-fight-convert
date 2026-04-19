@@ -55,6 +55,17 @@ const TestimonialsSection = () => {
             </div>
           </div>
 
+            {/* CTA buttons under the video */}
+            <div className="flex flex-col sm:flex-row gap-3 justify-center md:justify-start max-w-md mx-auto md:mx-0">
+              <button className="border border-primary text-primary hover:bg-primary hover:text-primary-foreground font-semibold text-sm uppercase tracking-wide rounded-md px-6 h-11 transition-colors">
+                1 on 1 Coaching
+              </button>
+              <button className="bg-primary text-primary-foreground hover:bg-primary/90 font-semibold text-sm uppercase tracking-wide rounded-md px-6 h-11 transition-colors">
+                AOF 30 Days Program
+              </button>
+            </div>
+          </div>
+
           {/* Right: tilted feedback loop — pushed slightly right */}
           <div
             className="space-y-6 md:pl-8 lg:pl-16"
