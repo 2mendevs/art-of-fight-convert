@@ -40,9 +40,10 @@ const TestimonialsSection = () => {
           </h2>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
-          {/* Left: Video — pushed slightly left */}
-          <div className="relative aspect-video rounded-xl overflow-hidden bg-muted max-w-md w-full mx-auto md:mx-0 md:-ml-4 lg:-ml-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-start">
+          {/* Left: Video + CTA buttons below */}
+          <div className="space-y-8 md:-ml-4 lg:-ml-8">
+          <div className="relative aspect-video rounded-xl overflow-hidden bg-muted max-w-md w-full mx-auto md:mx-0">
             <div className="absolute inset-0 bg-gradient-to-br from-muted to-card" />
             <div className="absolute inset-0 flex items-center justify-center z-10">
               <div className="w-14 h-14 rounded-full bg-primary/90 flex items-center justify-center cursor-pointer hover:bg-primary transition-colors">
@@ -51,6 +52,17 @@ const TestimonialsSection = () => {
                   style={{ borderLeftWidth: '14px', borderLeftColor: 'hsl(var(--primary-foreground))' }}
                 />
               </div>
+            </div>
+          </div>
+
+            {/* CTA buttons under the video */}
+            <div className="flex flex-col sm:flex-row gap-3 justify-center md:justify-start max-w-md mx-auto md:mx-0">
+              <button className="border border-primary text-primary hover:bg-primary hover:text-primary-foreground font-semibold text-sm uppercase tracking-wide rounded-md px-6 h-11 transition-colors">
+                1 on 1 Coaching
+              </button>
+              <button className="bg-primary text-primary-foreground hover:bg-primary/90 font-semibold text-sm uppercase tracking-wide rounded-md px-6 h-11 transition-colors">
+                AOF 30 Days Program
+              </button>
             </div>
           </div>
 
