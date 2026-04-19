@@ -2,7 +2,7 @@ import { Star, User, Users } from "lucide-react";
 
 const CoachSection = () => (
   <section id="coaches" className="py-16 md:py-24">
-    <div className="container max-w-3xl space-y-14">
+    <div className="container max-w-2xl space-y-14">
       {/* ---------- LED BY ---------- */}
       <div>
         <p className="text-primary text-xs md:text-sm font-semibold uppercase tracking-widest mb-4">
