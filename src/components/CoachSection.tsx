@@ -1,8 +1,8 @@
 import { Star, User, Users } from "lucide-react";
 
 const CoachSection = () => (
-  <section id="coaches" className="py-16 md:py-24">
-    <div className="container max-w-2xl space-y-14">
+  <section id="coaches" className="py-10 md:py-14">
+    <div className="container max-w-6xl space-y-8">
       {/* ---------- LED BY ---------- */}
       <div>
         <p className="text-primary text-xs md:text-sm font-semibold uppercase tracking-widest mb-4">
@@ -17,7 +17,7 @@ const CoachSection = () => (
           </div>
 
           {/* Right side: name + paragraph + bullets */}
-          <div className="flex-1 space-y-5">
+          <div className="flex-1 space-y-3">
             <div>
               <h2 className="font-display text-3xl md:text-5xl text-foreground leading-tight">
                 Coach Name
@@ -29,7 +29,7 @@ const CoachSection = () => (
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
             </p>
 
-            <ul className="space-y-3">
+            <ul className="space-y-2">
               <li className="flex items-start gap-3 text-foreground text-sm md:text-base">
                 <Star className="w-4 h-4 text-primary shrink-0 mt-1" /> 00+ Years of professional fighting experience
               </li>
@@ -52,7 +52,7 @@ const CoachSection = () => (
         <div className="flex flex-col md:flex-row gap-6 md:gap-10 items-start">
           {/* Bullets on the LEFT — pushed right, ending near team image */}
           <div className="flex-1 order-2 md:order-1 flex md:justify-end">
-            <ul className="space-y-3 max-w-md">
+            <ul className="space-y-2 max-w-md">
               <li className="flex items-start gap-3 text-foreground text-sm md:text-base">
                 <Star className="w-4 h-4 text-primary shrink-0 mt-1" /> Specialised assistant coaches across striking, grappling and conditioning
               </li>
