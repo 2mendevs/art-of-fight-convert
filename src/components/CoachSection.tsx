@@ -2,7 +2,7 @@ import { Star, User, Users } from "lucide-react";
 
 const CoachSection = () => (
   <section id="coaches" className="py-16 md:py-24">
-    <div className="container space-y-14">
+    <div className="container max-w-3xl space-y-14">
       {/* ---------- LED BY ---------- */}
       <div>
         <p className="text-primary text-xs md:text-sm font-semibold uppercase tracking-widest mb-4">
@@ -51,7 +51,7 @@ const CoachSection = () => (
         </p>
         <div className="flex flex-col md:flex-row gap-6 md:gap-10 items-start">
           {/* Bullets on the LEFT — pushed right, ending near team image */}
-          <div className="flex-1 space-y-3 order-2 md:order-1 md:pl-32 lg:pl-56">
+          <div className="flex-1 space-y-3 order-2 md:order-1 md:text-right md:flex md:flex-col md:items-end">
             <ul className="space-y-3">
               <li className="flex items-start gap-3 text-foreground text-sm md:text-base">
                 <Star className="w-4 h-4 text-primary shrink-0 mt-1" /> Specialised assistant coaches across striking, grappling and conditioning
