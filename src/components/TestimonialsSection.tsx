@@ -29,10 +29,20 @@ const TestimonialsSection = () => {
 
   return (
     <section id="testimonials" className="py-16 md:py-24">
-      <div className="container max-w-5xl">
+      <div className="container max-w-6xl">
+        {/* Centered title */}
+        <div className="text-center mb-12">
+          <p className="text-primary text-sm font-semibold uppercase tracking-widest mb-2">
+            Testimonials
+          </p>
+          <h2 className="font-display text-3xl md:text-5xl text-foreground leading-tight">
+            What People Say
+          </h2>
+        </div>
+
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
-          {/* Left: Video */}
-          <div className="relative aspect-video rounded-xl overflow-hidden bg-muted max-w-md w-full mx-auto md:mx-0">
+          {/* Left: Video — pushed slightly left */}
+          <div className="relative aspect-video rounded-xl overflow-hidden bg-muted max-w-md w-full mx-auto md:mx-0 md:-ml-4 lg:-ml-8">
             <div className="absolute inset-0 bg-gradient-to-br from-muted to-card" />
             <div className="absolute inset-0 flex items-center justify-center z-10">
               <div className="w-14 h-14 rounded-full bg-primary/90 flex items-center justify-center cursor-pointer hover:bg-primary transition-colors">
@@ -44,20 +54,12 @@ const TestimonialsSection = () => {
             </div>
           </div>
 
-          {/* Right: heading + tilted feedback loop */}
+          {/* Right: tilted feedback loop — pushed slightly right */}
           <div
-            className="space-y-6"
+            className="space-y-6 md:pl-8 lg:pl-16"
             onMouseEnter={() => setPaused(true)}
             onMouseLeave={() => setPaused(false)}
           >
-            <div>
-              <p className="text-primary text-sm font-semibold uppercase tracking-widest mb-2">
-                Testimonials
-              </p>
-              <h2 className="font-display text-3xl md:text-5xl text-foreground leading-tight">
-                What People Say
-              </h2>
-            </div>
 
             <div className="relative space-y-3 py-2">
               {visible.map((t, i) => (
