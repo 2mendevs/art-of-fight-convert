@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 
 const CtaPairSection = () => (
-  <section className="py-12 md:py-16 bg-gradient-to-b from-background via-card/30 to-card/50">
+  <section className="py-10 md:py-14 bg-gradient-to-b from-background via-card/40 to-background border-y border-border/50">
     <div className="container">
       <div className="flex flex-col sm:flex-row gap-3 justify-center">
         <Button
