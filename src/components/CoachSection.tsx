@@ -51,8 +51,8 @@ const CoachSection = () => (
         </p>
         <div className="flex flex-col md:flex-row gap-6 md:gap-10 items-start">
           {/* Bullets on the LEFT — pushed right, ending near team image */}
-          <div className="flex-1 space-y-3 order-2 md:order-1 md:text-right md:flex md:flex-col md:items-end">
-            <ul className="space-y-3">
+          <div className="flex-1 order-2 md:order-1 flex md:justify-end">
+            <ul className="space-y-3 max-w-md">
               <li className="flex items-start gap-3 text-foreground text-sm md:text-base">
                 <Star className="w-4 h-4 text-primary shrink-0 mt-1" /> Specialised assistant coaches across striking, grappling and conditioning
               </li>
