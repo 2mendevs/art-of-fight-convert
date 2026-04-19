@@ -7,7 +7,7 @@ import CoachSection from "@/components/CoachSection";
 import SocialProofSection from "@/components/SocialProofSection";
 import TestimonialsSection from "@/components/TestimonialsSection";
 import ContactSection from "@/components/ContactSection";
-
+import CtaPairSection from "@/components/CtaPairSection";
 import Footer from "@/components/Footer";
 
 const Index = () => (
@@ -20,7 +20,7 @@ const Index = () => (
     <CoachSection />
     <SocialProofSection />
     <TestimonialsSection />
-    
+    <CtaPairSection />
     <ContactSection />
     <Footer />
   </div>
