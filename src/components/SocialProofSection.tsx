@@ -3,20 +3,27 @@ import { Play, ChevronLeft, ChevronRight } from "lucide-react";
 
 const shorts = [1, 2, 3];
 const thumbs = [1, 2, 3, 4, 5, 6];
-const VISIBLE = 3;
 
 const SocialProofSection = () => {
   const [start, setStart] = useState(0);
+  // Mobile shows 1, md+ shows 3
+  const [visibleCount, setVisibleCount] = useState(typeof window !== "undefined" && window.innerWidth < 768 ? 1 : 3);
+
+  useEffect(() => {
+    const onResize = () => setVisibleCount(window.innerWidth < 768 ? 1 : 3);
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
+  }, []);
 
   const next = () => setStart((s) => (s + 1) % thumbs.length);
   const prev = () => setStart((s) => (s - 1 + thumbs.length) % thumbs.length);
 
-  // build a rotated array so we can show 3 in loop
-  const visible = Array.from({ length: VISIBLE }, (_, i) => thumbs[(start + i) % thumbs.length]);
+  const visible = Array.from({ length: visibleCount }, (_, i) => thumbs[(start + i) % thumbs.length]);
+  const visibleShorts = visibleCount === 1 ? [shorts[start % shorts.length]] : shorts;
 
   return (
     <section className="py-12 md:py-16 bg-card/50 w-full">
-      <div className="w-[60%] mx-auto px-4">
+      <div className="w-[92%] md:w-[60%] mx-auto px-4">
         <div className="text-center max-w-xl mx-auto mb-8 space-y-2">
           <h2 className="font-display text-2xl md:text-4xl text-foreground">
             See Us in <span className="text-primary">Action</span>
