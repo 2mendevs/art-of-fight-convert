@@ -36,10 +36,11 @@ const ServicesSection = () => (
         Choose Your Path
       </h2>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-        {services.map((s) => (
+        {services.map((s, idx) => (
           <div
             key={s.title}
-            className="relative bg-card border border-border rounded-lg p-8 flex flex-col items-start text-left gap-5 hover:border-primary/50 transition-colors"
+            style={{ animationDelay: `${idx * 150}ms` }}
+            className="relative bg-card border border-border rounded-lg p-8 flex flex-col items-start text-left gap-5 hover:border-primary/50 hover:-translate-y-1 hover:shadow-lg hover:shadow-primary/10 transition-all duration-300 animate-fade-up"
           >
             {s.popular && (
               <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-primary text-primary-foreground text-xs font-semibold uppercase tracking-wide px-4 py-1 rounded-full">
@@ -56,7 +57,7 @@ const ServicesSection = () => (
                 </li>
               ))}
             </ul>
-            <Button className="font-semibold uppercase text-xs tracking-wide mt-auto w-full">
+            <Button className="font-semibold uppercase text-xs tracking-wide mt-auto w-full transition-transform hover:scale-[1.02]">
               {s.cta}
             </Button>
           </div>
