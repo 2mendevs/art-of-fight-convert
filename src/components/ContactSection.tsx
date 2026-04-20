@@ -16,7 +16,7 @@ const faqs = [
 ];
 
 const ContactSection = () => (
-  <section id="contact" className="py-16 md:py-24 texture-stone">
+  <section id="contact" className="py-16 md:py-24">
     <div className="container">
       <p className="text-primary text-sm font-semibold uppercase tracking-widest mb-2 text-center">Contact</p>
       <h2 className="font-display text-4xl md:text-5xl text-foreground text-center mb-10">
