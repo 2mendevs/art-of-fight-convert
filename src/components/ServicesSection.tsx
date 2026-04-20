@@ -3,17 +3,6 @@ import { Check } from "lucide-react";
 
 const services = [
   {
-    title: "AOF 30 Days Program",
-    desc: "Intensive group training designed to transform your fitness and fighting skills in just 30 days.",
-    bullets: [
-      "Structured daily training plan",
-      "Group motivation & accountability",
-      "Learn fundamental MMA techniques",
-    ],
-    cta: "Apply Due — Limited Availability",
-    popular: false,
-  },
-  {
     title: "1-on-1 Coaching",
     desc: "Personalized training sessions tailored to your goals with direct attention from your coach.",
     bullets: [
@@ -23,6 +12,17 @@ const services = [
     ],
     cta: "Book a Session",
     popular: true,
+  },
+  {
+    title: "AOF 30 Days Program",
+    desc: "Intensive group training designed to transform your fitness and fighting skills in just 30 days.",
+    bullets: [
+      "Structured daily training plan",
+      "Group motivation & accountability",
+      "Learn fundamental MMA techniques",
+    ],
+    cta: "Apply Due — Limited Availability",
+    popular: false,
   },
 ];
 
