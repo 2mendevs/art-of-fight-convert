@@ -7,8 +7,8 @@ import CoachSection from "@/components/CoachSection";
 import SocialProofSection from "@/components/SocialProofSection";
 import TestimonialsSection from "@/components/TestimonialsSection";
 import ContactSection from "@/components/ContactSection";
-import CtaPairSection from "@/components/CtaPairSection";
 import Footer from "@/components/Footer";
+import { Button } from "@/components/ui/button";
 
 const Index = () => (
   <div className="min-h-screen">
@@ -20,7 +20,20 @@ const Index = () => (
     <CoachSection />
     <SocialProofSection />
     <TestimonialsSection />
-    <CtaPairSection />
+    <div className="container py-6">
+      <div className="flex flex-col sm:flex-row gap-3 justify-center">
+        <Button
+          size="lg"
+          variant="outline"
+          className="border-primary text-primary hover:bg-primary hover:text-primary-foreground font-semibold text-sm uppercase tracking-wide"
+        >
+          1 on 1 Coaching
+        </Button>
+        <Button size="lg" className="font-semibold text-sm uppercase tracking-wide">
+          AOF 30 Days Program
+        </Button>
+      </div>
+    </div>
     <ContactSection />
     <Footer />
   </div>

@@ -27,18 +27,19 @@ const HeroSection = () => (
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Transform your body and mind.
         </p>
         <div className="flex flex-col sm:flex-row gap-3">
-          <Button size="lg" className="font-semibold text-sm uppercase tracking-wide">
-            AOF 30 Days Program
-          </Button>
           <Button size="lg" variant="outline" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground font-semibold text-sm uppercase tracking-wide">
             1 on 1 Coaching
+          </Button>
+          <Button size="lg" className="font-semibold text-sm uppercase tracking-wide">
+            AOF 30 Days Program
           </Button>
         </div>
       </div>
     </div>
 
     {/* Trust indicators — merged with background */}
-    <div className="relative z-10 w-full py-6 px-4 md:px-8">
+    {/* Trust indicators — full bleed */}
+    <div className="relative z-10 w-full">
       <TrustIndicators />
     </div>
   </section>
