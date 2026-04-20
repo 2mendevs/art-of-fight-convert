@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import TrustIndicators from "@/components/TrustIndicators";
 
 const HeroSection = () => (
-  <section id="home" className="relative h-screen flex flex-col overflow-hidden">
+  <section id="home" className="relative h-screen flex flex-col overflow-hidden texture-stone">
     <div className="absolute inset-0 z-0">
       <img
         src="/images/hero-fighter.jpg"
