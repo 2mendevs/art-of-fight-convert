@@ -67,7 +67,7 @@ const SocialProofSection = () => {
                   href="https://youtube.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="relative aspect-video bg-muted rounded-xl overflow-hidden group block w-[31%] max-w-[420px]"
+                  className="relative aspect-video bg-muted rounded-xl overflow-hidden group block w-full md:w-[31%] max-w-[420px]"
                 >
                   <div className="absolute inset-0 bg-gradient-to-br from-muted to-card" />
                   <div className="absolute inset-0 bg-background/30 group-hover:bg-background/10 transition-colors z-10" />
