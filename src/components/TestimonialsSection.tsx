@@ -61,14 +61,12 @@ const TestimonialsSection = () => {
             onMouseLeave={() => setPaused(false)}
           >
 
-            <div className="relative space-y-3 py-2">
+            <div className="relative space-y-3 py-2 max-w-sm mx-auto md:max-w-none md:mx-0">
               {visible.map((t, i) => (
                 <div
                   key={`${t.name}-${start}-${i}`}
-                  className="bg-card border border-border rounded-lg p-4 shadow-lg transition-transform"
-                  style={{
-                    transform: `rotate(-6deg) translateX(${i * 18 - 40}px)`,
-                  }}
+                  className="bg-card border border-border rounded-lg p-4 shadow-lg transition-transform md:[transform:rotate(-6deg)_translateX(var(--tx))]"
+                  style={{ ['--tx' as any]: `${i * 18 - 40}px` }}
                 >
                   <div className="flex gap-1 mb-2">
                     {[...Array(5)].map((_, s) => (
@@ -91,7 +89,7 @@ const TestimonialsSection = () => {
               ))}
             </div>
 
-            <div className="flex gap-3 pt-2">
+            <div className="flex gap-3 pt-2 justify-center md:justify-start">
               <button onClick={prev} aria-label="Previous" className="w-10 h-10 rounded-full border border-border flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary transition-colors">
                 <ChevronLeft size={18} />
               </button>
