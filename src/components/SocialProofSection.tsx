@@ -33,12 +33,12 @@ const SocialProofSection = () => {
           </p>
         </div>
 
-        {/* Row 1: 3 portrait shorts (autoplay) */}
-        <div className="flex justify-between items-center w-full mb-8">
-          {shorts.map((v) => (
+        {/* Row 1: portrait shorts (autoplay) — 1 on mobile, 3 on md+ */}
+        <div className="flex justify-center md:justify-between items-center gap-4 w-full mb-8">
+          {visibleShorts.map((v) => (
             <div
               key={v}
-              className="relative bg-muted rounded-lg overflow-hidden group aspect-[9/16] w-[28%] max-w-[260px]"
+              className="relative bg-muted rounded-lg overflow-hidden group aspect-[9/16] w-[70%] md:w-[28%] max-w-[260px]"
             >
               <video autoPlay muted loop playsInline className="absolute inset-0 w-full h-full object-cover" />
               <div className="absolute inset-0 bg-gradient-to-br from-muted to-card" />
