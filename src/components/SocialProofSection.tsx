@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Play, ChevronLeft, ChevronRight } from "lucide-react";
 
 const shorts = [1, 2, 3];
