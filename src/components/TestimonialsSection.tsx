@@ -28,7 +28,7 @@ const TestimonialsSection = () => {
   const visible = Array.from({ length: VISIBLE }, (_, i) => testimonials[(start + i) % testimonials.length]);
 
   return (
-    <section id="testimonials" className="py-16 md:py-24">
+    <section id="testimonials" className="py-16 md:py-24 texture-dots">
       <div className="container max-w-6xl">
         {/* Centered title */}
         <div className="text-center mb-12">

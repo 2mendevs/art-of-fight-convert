@@ -27,7 +27,7 @@ const services = [
 ];
 
 const ServicesSection = () => (
-  <section id="programs" className="pt-4 pb-16 md:pt-6 md:pb-24 bg-card/50">
+  <section id="programs" className="pt-4 pb-16 md:pt-6 md:pb-24 bg-card/50 texture-grid">
     <div className="container">
       <p className="text-primary text-sm font-semibold uppercase tracking-widest mb-2 text-center">
         Service Selection
