@@ -14,7 +14,7 @@ const TrustIndicators = () => (
     {indicators.map((item) => (
       <div key={item.title} className="flex items-center justify-center gap-2 text-center">
         <item.icon className="w-4 h-4 md:w-5 md:h-5 text-white shrink-0" />
-        <span className="font-display text-xs md:text-sm text-white tracking-wide whitespace-nowrap">
+        <span className="font-display text-sm md:text-base text-white tracking-wide whitespace-nowrap">
           {item.title}
         </span>
       </div>
