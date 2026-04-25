@@ -9,12 +9,12 @@ const indicators = [
 const TrustIndicators = () => (
   <div
     className="grid grid-cols-3 w-full gap-4 md:gap-6 px-4 md:px-8"
-    style={{ backgroundColor: '#07b4ba', height: '1.5cm' }}
+    style={{ backgroundColor: '#07b4ba', height: '2cm' }}
   >
     {indicators.map((item) => (
-      <div key={item.title} className="flex items-center justify-center gap-2 text-center">
-        <item.icon className="w-3 h-3 md:w-4 md:h-4 text-white shrink-0" />
-        <span className="font-display text-base md:text-lg text-white tracking-wide whitespace-nowrap">
+      <div key={item.title} className="flex items-center justify-center gap-3 text-center">
+        <item.icon className="w-6 h-6 md:w-7 md:h-7 text-white shrink-0" />
+        <span className="font-display text-lg md:text-xl text-white tracking-wide whitespace-nowrap">
           {item.title}
         </span>
       </div>
