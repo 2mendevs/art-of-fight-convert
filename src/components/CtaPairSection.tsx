@@ -2,7 +2,7 @@ const CtaPairSection = () => (
   <section
     className="relative w-full overflow-hidden"
     style={{
-      backgroundImage: 'url(/Box.png)',
+      backgroundImage: 'url(Box.png)',
       backgroundSize: 'cover',
       backgroundPosition: 'center center',
       backgroundRepeat: 'no-repeat',
