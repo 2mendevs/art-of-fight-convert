@@ -4,12 +4,13 @@ const CtaPairSection = () => (
     style={{
       backgroundImage: 'url(/Box.png)',
       backgroundSize: 'cover',
-      backgroundPosition: 'center',
-      height: '220px',
+      backgroundPosition: 'center center',
+      backgroundRepeat: 'no-repeat',
+      height: '280px',
     }}
   >
-    {/* Dark overlay */}
-    <div className="absolute inset-0 bg-black/50" />
+    {/* Dark overlay — reduced opacity so image shows through */}
+    <div className="absolute inset-0 bg-black/30" />
 
     {/* Content */}
     <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-4">
@@ -21,7 +22,6 @@ const CtaPairSection = () => (
       </h2>
       <p className="text-white/70 text-sm mb-5">Results Don't Wait</p>
 
-      {/* Buttons */}
       <div className="flex w-full max-w-2xl justify-between px-4 md:px-10 gap-4">
         <button className="flex-1 py-3 rounded-full bg-[#07b4ba] text-white font-semibold text-sm uppercase tracking-wide hover:bg-[#059a9f] transition-colors">
           1 On 1 Coaching
