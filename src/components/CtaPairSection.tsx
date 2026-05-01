@@ -1,4 +1,4 @@
-import ctaBg from '/public/CTA BG.png';
+import ctaBg from '/public/CTA_BG.png';
 
 const CtaPairSection = () => (
   <section
