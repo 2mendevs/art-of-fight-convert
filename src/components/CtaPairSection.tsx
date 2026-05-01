@@ -3,7 +3,7 @@ const CtaPairSection = () => (
     className="relative w-full overflow-hidden flex flex-col justify-center"
     style={{
       // Pointing directly to your image file
-      backgroundImage: `url('/CTA%20BG.jpg')`, 
+      backgroundImage: `url('/CTA_BG.png')`, 
       backgroundSize: 'cover',
       backgroundPosition: 'center center',
       backgroundRepeat: 'no-repeat',
