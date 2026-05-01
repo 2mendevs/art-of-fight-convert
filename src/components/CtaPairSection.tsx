@@ -1,10 +1,8 @@
-import ctaBg from '/public/CTA_BG.png';
-
 const CtaPairSection = () => (
   <section
     className="relative w-full overflow-hidden"
     style={{
-      backgroundImage: `url(${ctaBg})`,
+      backgroundImage: `url('/CTA_BG.png')`,
       backgroundSize: 'cover',
       backgroundPosition: 'center center',
       backgroundRepeat: 'no-repeat',
