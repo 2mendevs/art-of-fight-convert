@@ -6,7 +6,7 @@ const CtaPairSection = () => (
       backgroundSize: 'cover',
       backgroundPosition: 'center center',
       backgroundRepeat: 'no-repeat',
-      minHeight: '350px', 
+      minHeight: '250px', 
     }}
   >
     <div className="relative z-10 w-full max-w-6xl mx-auto px-4 h-full flex flex-col justify-center py-8">
