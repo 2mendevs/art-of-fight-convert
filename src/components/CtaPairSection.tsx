@@ -1,19 +1,13 @@
-// OPTION 1: If using Vite or Webpack, import the image directly to guarantee it loads.
-// import bgImage from '../../public/CTA_BG.png'; // Adjust this path to match your folder structure
-
 const CtaPairSection = () => (
   <section
     className="relative w-full overflow-hidden flex flex-col justify-center"
     style={{
-      // If the direct import above works, use this line instead:
-      // backgroundImage: `url(${bgImage})`,
-      
-      // Otherwise, keep your absolute path but ensure the exact spelling/case:
-      backgroundImage: `url('/CTA_BG.png')`, 
+      // The fix: exact file name, .jpg extension, and %20 for the space!
+      backgroundImage: `url('/CTA%20BG.jpg')`, 
       backgroundSize: 'cover',
       backgroundPosition: 'center center',
       backgroundRepeat: 'no-repeat',
-      minHeight: '350px', // Increased slightly so buttons and text don't overlap
+      minHeight: '350px', 
     }}
   >
     {/* Dark overlay */}
@@ -33,7 +27,7 @@ const CtaPairSection = () => (
         <p className="text-white font-semibold text-lg">Results Don't Wait</p>
       </div>
 
-      {/* Buttons Section - Spaced wide to match reference */}
+      {/* Buttons Section */}
       <div className="flex w-full justify-between px-2 md:px-16 gap-4 mt-auto">
         <button className="w-[48%] md:w-auto md:min-w-[280px] py-3 rounded-full bg-[#07b4ba] text-black font-extrabold text-sm md:text-base uppercase tracking-wide hover:bg-[#059a9f] transition-colors">
           1 On 1 Coaching
