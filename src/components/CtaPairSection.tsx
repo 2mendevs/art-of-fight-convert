@@ -1,8 +1,10 @@
+import ctaBg from '/public/CTA BG.png';
+
 const CtaPairSection = () => (
   <section
     className="relative w-full overflow-hidden"
     style={{
-      backgroundImage: 'url(Box.png)',
+      backgroundImage: `url(${ctaBg})`,
       backgroundSize: 'cover',
       backgroundPosition: 'center center',
       backgroundRepeat: 'no-repeat',
@@ -11,7 +13,6 @@ const CtaPairSection = () => (
   >
     {/* Dark overlay — reduced opacity so image shows through */}
     <div className="absolute inset-0 bg-black/30" />
-
     {/* Content */}
     <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-4">
       <p className="text-xs uppercase tracking-widest text-[#07b4ba] font-semibold mb-1">
@@ -21,7 +22,6 @@ const CtaPairSection = () => (
         Join AOF Train Like A Fighter
       </h2>
       <p className="text-white/70 text-sm mb-5">Results Don't Wait</p>
-
       <div className="flex w-full max-w-2xl justify-between px-4 md:px-10 gap-4">
         <button className="flex-1 py-3 rounded-full bg-[#07b4ba] text-white font-semibold text-sm uppercase tracking-wide hover:bg-[#059a9f] transition-colors">
           1 On 1 Coaching
@@ -33,5 +33,4 @@ const CtaPairSection = () => (
     </div>
   </section>
 );
-
 export default CtaPairSection;
