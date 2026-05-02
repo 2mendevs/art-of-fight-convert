@@ -33,8 +33,8 @@ const Reveal = ({ children, delay = 0 }: { children: React.ReactNode; delay?: nu
 };
 
 const WhatsAppIcon = () => (
-  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+    <path fillRule="evenodd" clipRule="evenodd" d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.978-1.41A9.96 9.96 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm-1.39 14.417c-1.recursive 0-2.916-.768-3.96-2.04l-.28-.351-.868.245.268-.999-.307-.383C4.895 12.114 4.5 11.1 4.5 10c0-2.485 2.015-4.5 4.5-4.5.88 0 1.703.253 2.393.69l.32.207.32-.104c.51-.166 1.05-.254 1.607-.254 2.485 0 4.5 2.015 4.5 4.5 0 1.1-.395 2.114-1.048 2.906l-.307.383.268.999-.868-.245-.28.351c-1.044 1.272-2.61 2.04-3.795 2.04z"/>
   </svg>
 );
 
@@ -46,7 +46,7 @@ const CoachingPage = () => {
   return (
     <div className="min-h-screen text-white" style={{ backgroundColor: "#0a0a0a", fontFamily: "'Barlow', sans-serif" }}>
 
-      {/* ── NAVBAR ── */}
+      {/* NAVBAR */}
       <nav
         className="sticky top-0 z-50 flex items-center justify-between px-6 md:px-12 py-4"
         style={{ backgroundColor: "#1c1c1c", borderBottom: "1px solid #2a2a2a" }}
@@ -73,9 +73,7 @@ const CoachingPage = () => {
         </div>
       </nav>
 
-      {/* ══════════════════════════════════════
-          SECTION 1 — HERO
-      ══════════════════════════════════════ */}
+      {/* SECTION 1 — HERO */}
       <section className="relative overflow-hidden" style={{ minHeight: "88vh" }}>
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
@@ -163,7 +161,7 @@ const CoachingPage = () => {
               </p>
               <ul className="space-y-4">
                 {[
-                  "You train 4–5 days a week but your technique isn't improving",
+                  "You train 4-5 days a week but your technique isn't improving",
                   "Your sparring partners are getting better — you feel stuck",
                   "You have no structured plan, just random gym sessions",
                   "Coaches at your gym don't give you personal attention",
@@ -180,9 +178,7 @@ const CoachingPage = () => {
         </div>
       </section>
 
-      {/* ══════════════════════════════════════
-          SECTION 2 — AOF METHOD
-      ══════════════════════════════════════ */}
+      {/* SECTION 2 — AOF METHOD */}
       <section className="py-20 px-6 md:px-12" style={{ backgroundColor: "#0f0f0f" }}>
         <div className="max-w-6xl mx-auto">
           <Reveal>
@@ -261,9 +257,7 @@ const CoachingPage = () => {
         </div>
       </section>
 
-      {/* ══════════════════════════════════════
-          SECTION 3 — YOUR COACH
-      ══════════════════════════════════════ */}
+      {/* SECTION 3 — YOUR COACH */}
       <section className="py-20 px-6 md:px-12" style={{ backgroundColor: "#111111" }}>
         <div className="max-w-6xl mx-auto">
           <button
@@ -331,9 +325,7 @@ const CoachingPage = () => {
         </div>
       </section>
 
-      {/* ══════════════════════════════════════
-          SECTION 4 — TESTIMONIALS
-      ══════════════════════════════════════ */}
+      {/* SECTION 4 — TESTIMONIALS */}
       <section className="py-20 px-6 md:px-12" style={{ backgroundColor: "#0f0f0f" }}>
         <div className="max-w-6xl mx-auto">
           <Reveal>
@@ -392,9 +384,7 @@ const CoachingPage = () => {
         </div>
       </section>
 
-      {/* ══════════════════════════════════════
-          SECTION 5 — APPLY FORM
-      ══════════════════════════════════════ */}
+      {/* SECTION 5 — APPLY FORM */}
       <section ref={formRef} className="py-20 px-6 md:px-12" style={{ backgroundColor: "#111111" }}>
         <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-14 items-start">
 
