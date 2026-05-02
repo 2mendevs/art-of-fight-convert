@@ -1,33 +1,52 @@
-const CtaPairSection = () => (
-  <section
-    className="relative w-full overflow-hidden flex flex-col justify-center"
-    style={{
-      backgroundImage: `url('/images/CTA_BG.png')`,
-      backgroundSize: 'cover',
-      backgroundPosition: 'center center',
-      backgroundRepeat: 'no-repeat',
-      minHeight: '250px', 
-    }}
-  >
-    <div className="relative z-10 w-full max-w-6xl mx-auto px-4 h-full flex flex-col justify-center py-8">
-      <div className="flex flex-col items-center text-center mb-8">
-        <p className="text-lg md:text-xl uppercase tracking-widest text-[#07b4ba] font-bold mb-1 drop-shadow-md">
+import boxBg from "@/assets/Box.png";
+import { useNavigate } from "react-router-dom";
+
+const CtaPairSection = () => {
+  const navigate = useNavigate();
+
+  return (
+    <section
+      className="relative w-full overflow-hidden"
+      style={{
+        backgroundImage: `url(${boxBg})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center center",
+        backgroundRepeat: "no-repeat",
+        height: "280px",
+      }}
+    >
+      <div className="absolute inset-0" style={{ backgroundColor: "rgba(0,0,0,0.45)" }} />
+      <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-4">
+        <p className="text-xs uppercase tracking-widest font-semibold mb-1" style={{ color: "#07b4ba" }}>
           Your New Standard Starts Here
         </p>
-        <h2 className="font-display text-3xl md:text-4xl text-white font-bold uppercase mb-2 drop-shadow-md">
+        <h2
+          className="text-2xl md:text-3xl font-bold uppercase mb-1"
+          style={{ fontFamily: "'Bebas Neue', sans-serif", color: "#fff" }}
+        >
           Join AOF Train Like A Fighter
         </h2>
-        <p className="text-white font-semibold text-lg drop-shadow-md">Results Don't Wait</p>
+        <p className="text-sm mb-6" style={{ color: "rgba(255,255,255,0.65)" }}>
+          Results Don't Wait
+        </p>
+        <div className="flex w-full max-w-2xl justify-between px-4 md:px-10 gap-4">
+          <button
+            onClick={() => navigate("/coaching")}
+            className="flex-1 py-3 rounded-full font-semibold text-sm uppercase tracking-wide transition-opacity hover:opacity-90"
+            style={{ backgroundColor: "#07b4ba", color: "#000", fontFamily: "'Bebas Neue', sans-serif" }}
+          >
+            1 On 1 Coaching
+          </button>
+          <button
+            className="flex-1 py-3 rounded-full font-semibold text-sm uppercase tracking-wide transition-opacity hover:opacity-90"
+            style={{ backgroundColor: "#07b4ba", color: "#000", fontFamily: "'Bebas Neue', sans-serif" }}
+          >
+            AOF 30 Days Program
+          </button>
+        </div>
       </div>
-      <div className="flex w-full justify-between px-2 md:px-16 gap-4 mt-auto">
-        <button className="w-[48%] md:w-auto md:min-w-[280px] py-3 rounded-full bg-[#07b4ba] text-black font-extrabold text-sm md:text-base uppercase tracking-wide hover:bg-[#059a9f] transition-colors shadow-lg">
-          1 On 1 Coaching
-        </button>
-        <button className="w-[48%] md:w-auto md:min-w-[280px] py-3 rounded-full bg-[#07b4ba] text-black font-extrabold text-sm md:text-base uppercase tracking-wide hover:bg-[#059a9f] transition-colors shadow-lg">
-          AOF 30 Days Program
-        </button>
-      </div>
-    </div>
-  </section>
-);
+    </section>
+  );
+};
+
 export default CtaPairSection;
