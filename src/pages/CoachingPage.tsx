@@ -331,7 +331,7 @@ export default function CoachingPage() {
       {/* BUTTONS */}
       <div style={{
         display: "flex",
-        gap: 25,
+        gap: 10,
         alignItems: "center"
       }}>
         <button
