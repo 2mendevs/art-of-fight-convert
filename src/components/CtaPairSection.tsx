@@ -7,17 +7,20 @@ const CtaPairSection = () => {
     <section
       className="relative w-full overflow-hidden"
       style={{
-        backgroundImage: `url('/CTA_BG.png')`,
+        backgroundImage: `url('/images/cta-bg.png')`, // ✅ FIXED PATH
         backgroundSize: "cover",
-        backgroundPosition: "center center",
+        backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
         height: "280px",
       }}
     >
+      {/* Dark overlay */}
       <div
         className="absolute inset-0"
         style={{ backgroundColor: "rgba(0,0,0,0.45)" }}
       />
+
+      {/* Content */}
       <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-4">
         <p
           className="text-xs uppercase tracking-widest font-semibold mb-1"
@@ -25,15 +28,18 @@ const CtaPairSection = () => {
         >
           Your New Standard Starts Here
         </p>
+
         <h2
           className="text-2xl md:text-3xl font-bold uppercase mb-1"
           style={{ fontFamily: "'Bebas Neue', sans-serif", color: "#fff" }}
         >
           Join AOF Train Like A Fighter
         </h2>
+
         <p className="text-sm mb-6" style={{ color: "rgba(255,255,255,0.65)" }}>
           Results Don't Wait
         </p>
+
         <div className="flex w-full max-w-2xl justify-between px-4 md:px-10 gap-4">
           <button
             onClick={() => navigate("/coaching")}
@@ -46,7 +52,9 @@ const CtaPairSection = () => {
           >
             1 On 1 Coaching
           </button>
+
           <button
+            onClick={() => navigate("/program")}
             className="flex-1 py-3 rounded-full font-semibold text-sm uppercase tracking-wide transition-opacity hover:opacity-90"
             style={{
               backgroundColor: "#07b4ba",
