@@ -1,4 +1,4 @@
-import boxBg from "@/public/images/CTA_BG.png";
+import boxBg from "@/images/CTA_BG.png";
 import { useNavigate } from "react-router-dom";
 
 const CtaPairSection = () => {
