@@ -5,61 +5,53 @@ const CtaPairSection = () => {
 
   return (
     <section
-      className="w-full min-h-screen flex items-center"
-      style={{ backgroundColor: "#111111" }}
+      className="relative w-full overflow-hidden"
+      style={{
+        backgroundImage: `url('/CTA_BG.png')`,
+        backgroundSize: "cover",
+        backgroundPosition: "center center",
+        backgroundRepeat: "no-repeat",
+        height: "280px",
+      }}
     >
-      <div className="px-6 md:px-16 py-20 max-w-3xl">
+      <div
+        className="absolute inset-0"
+        style={{ backgroundColor: "rgba(0,0,0,0.45)" }}
+      />
+      <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-4">
         <p
-          className="text-xs uppercase tracking-widest font-semibold mb-4"
+          className="text-xs uppercase tracking-widest font-semibold mb-1"
           style={{ color: "#07b4ba" }}
         >
-          Art of Fighting Academy
+          Your New Standard Starts Here
         </p>
-
-        <h1
-          className="text-5xl md:text-7xl font-bold uppercase leading-none mb-6"
-          style={{
-            fontFamily: "'Bebas Neue', sans-serif",
-            color: "#ffffff",
-          }}
+        <h2
+          className="text-2xl md:text-3xl font-bold uppercase mb-1"
+          style={{ fontFamily: "'Bebas Neue', sans-serif", color: "#fff" }}
         >
-          AOF Academy:
-          <br />
-          Unleash Your
-          <br />
-          Potential
-        </h1>
-
-        <p
-          className="text-sm md:text-base mb-10 max-w-md"
-          style={{ color: "rgba(255,255,255,0.55)" }}
-        >
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-          <br />
-          Transform your body and mind.
+          Join AOF Train Like A Fighter
+        </h2>
+        <p className="text-sm mb-6" style={{ color: "rgba(255,255,255,0.65)" }}>
+          Results Don't Wait
         </p>
-
-        <div className="flex flex-wrap gap-4">
+        <div className="flex w-full max-w-2xl justify-between px-4 md:px-10 gap-4">
           <button
             onClick={() => navigate("/coaching")}
-            className="px-8 py-4 rounded font-bold text-sm uppercase tracking-widest border-2 transition-all hover:bg-white hover:text-black"
+            className="flex-1 py-3 rounded-full font-semibold text-sm uppercase tracking-wide transition-opacity hover:opacity-90"
             style={{
+              backgroundColor: "#07b4ba",
+              color: "#000",
               fontFamily: "'Bebas Neue', sans-serif",
-              borderColor: "#ffffff",
-              color: "#ffffff",
-              backgroundColor: "transparent",
             }}
           >
             1 On 1 Coaching
           </button>
-
           <button
-            onClick={() => navigate("/program")}
-            className="px-8 py-4 rounded font-bold text-sm uppercase tracking-widest transition-all hover:opacity-90"
+            className="flex-1 py-3 rounded-full font-semibold text-sm uppercase tracking-wide transition-opacity hover:opacity-90"
             style={{
-              fontFamily: "'Bebas Neue', sans-serif",
               backgroundColor: "#07b4ba",
-              color: "#000000",
+              color: "#000",
+              fontFamily: "'Bebas Neue', sans-serif",
             }}
           >
             AOF 30 Days Program
