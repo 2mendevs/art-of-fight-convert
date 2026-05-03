@@ -266,7 +266,7 @@ export default function CoachingPage() {
         </div>
       </nav>
 
-      {/* SECTION 1 — HERO */}
+    {/* SECTION 1 — HERO */}
 <section style={{
   position: "relative",
   minHeight: "92vh",
@@ -280,7 +280,7 @@ export default function CoachingPage() {
     position: "absolute",
     inset: 0,
     background: `
-      linear-gradient(to right, rgba(0,0,0,0.95) 40%, rgba(0,0,0,0.6) 70%, rgba(0,0,0,0.2) 100%),
+      linear-gradient(to right, rgba(0,0,0,0.95) 38%, rgba(0,0,0,0.6) 65%, rgba(0,0,0,0.2) 100%),
       url('https://images.unsplash.com/photo-1549476464-37392f717541?w=1600&q=80') center/cover no-repeat
     `
   }} />
@@ -289,14 +289,14 @@ export default function CoachingPage() {
   <div style={{
     position: "relative",
     zIndex: 2,
-    maxWidth: 1100,
-    margin: "0 auto",
-    padding: "100px 48px",
-    width: "100%"
+    width: "100%",
+    padding: "100px 0",
+    marginLeft: "60px"   // 🔥 LEFT ALIGN CONTROL
   }}>
     
     <div style={{ maxWidth: 520 }}>
       
+      {/* TAG */}
       <p style={{
         color: "#07b4ba",
         fontSize: 16,
@@ -306,6 +306,7 @@ export default function CoachingPage() {
         AOF Academy–1 On 1 Coaching
       </p>
 
+      {/* HEADLINE */}
       <h1 style={{
         fontSize: "clamp(44px,6vw,76px)",
         fontWeight: 900,
@@ -317,6 +318,7 @@ export default function CoachingPage() {
         FIGHT LIKE ONE
       </h1>
 
+      {/* DESCRIPTION */}
       <p style={{
         fontSize: 17,
         color: "#ddd",
@@ -346,7 +348,9 @@ export default function CoachingPage() {
 
         <button
           className="btn-outline"
-          onClick={() => document.getElementById("testimonials")?.scrollIntoView({ behavior: "smooth" })}
+          onClick={() =>
+            document.getElementById("testimonials")?.scrollIntoView({ behavior: "smooth" })
+          }
           style={{
             padding: "16px 34px",
             borderRadius: 8,
