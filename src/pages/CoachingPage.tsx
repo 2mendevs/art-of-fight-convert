@@ -431,7 +431,7 @@ export default function CoachingPage() {
     className="hero-content"
     style={{
       marginLeft: "0px",     // pushed fully left
-      paddingLeft: "40px",   // controlled gutter like Figma
+      paddingLeft: "15px",   // controlled gutter like Figma
       maxWidth: "520px"      // keeps text tight
     }}
   >
