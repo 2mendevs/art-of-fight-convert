@@ -518,7 +518,7 @@ export default function CoachingPage() {
 
 {/* ── SECTION 2: AOF METHOD ── */}
 <div className="method-section">
-  <div className="section" style={{ padding: "50px 40px" }}> {/* 🔥 reduced height */}
+  <div className="section" style={{ padding: "50px 40px" }}>
 
     {/* HEADER */}
     <Reveal>
@@ -552,15 +552,16 @@ export default function CoachingPage() {
       flexWrap: "wrap"
     }}>
 
-      {/* IMAGE */}
+      {/* 🔥 IMAGE (UPDATED) */}
       <div style={{ flex: "0 0 380px", maxWidth: "100%" }}>
         <img
-          src="/boxing-gloves.jpg"
-          alt="Boxing gloves"
+          src="https://images.unsplash.com/photo-1605296867424-35fc25c9212a?w=1000&q=80"
+          alt="MMA Training"
           style={{
             width: "100%",
             borderRadius: 10,
-            border: "1px solid #333"
+            border: "1px solid #333",
+            objectFit: "cover"
           }}
         />
       </div>
@@ -592,7 +593,7 @@ export default function CoachingPage() {
       </div>
     </div>
 
-    {/* WHAT YOU GET (MMA CARDS) */}
+    {/* MMA CARDS */}
     <Reveal>
       <div style={{ marginTop: 30 }}>
         <h3 style={{
@@ -610,13 +611,12 @@ export default function CoachingPage() {
           flexWrap: "wrap",
           justifyContent: "center"
         }}>
-
           {[
-            { title: "Fight IQ", desc: "Smarter decisions inside the cage" },
-            { title: "Striking", desc: "Precision & knockout setups" },
+            { title: "Fight IQ", desc: "Smarter decisions in the cage" },
+            { title: "Striking", desc: "Precision & timing mastery" },
             { title: "Grappling", desc: "Control, escapes & submissions" },
-            { title: "Conditioning", desc: "Elite stamina for all rounds" },
-            { title: "Game Plan", desc: "Opponent-specific strategies" }
+            { title: "Conditioning", desc: "Elite stamina & endurance" },
+            { title: "Game Plan", desc: "Opponent-based strategies" }
           ].map((card, i) => (
             <div key={i} style={{
               width: 150,
@@ -644,7 +644,6 @@ export default function CoachingPage() {
               </p>
             </div>
           ))}
-
         </div>
       </div>
     </Reveal>
