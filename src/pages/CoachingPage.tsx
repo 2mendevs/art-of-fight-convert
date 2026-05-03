@@ -267,49 +267,99 @@ export default function CoachingPage() {
       </nav>
 
       {/* SECTION 1 — HERO */}
-      <section style={{ position: "relative", minHeight: "88vh", overflow: "hidden", display: "flex", alignItems: "center" }}>
-        <div style={{
-          position: "absolute", inset: 0,
-          background: "linear-gradient(to right, rgba(0,0,0,0.9) 48%, rgba(0,0,0,0.25) 100%), url('https://images.unsplash.com/photo-1549476464-37392f717541?w=1400&q=80') center/cover no-repeat",
-        }} />
-        <div style={{ position: "relative", zIndex: 2, maxWidth: 1100, margin: "0 auto", padding: "80px 48px" }}>
-          <Reveal>
-            <p style={{ color: "#07b4ba", fontSize: 15, fontWeight: 600, marginBottom: 16 }}>
-              AOF Academy — 1 On 1 Coaching
-            </p>
-          </Reveal>
-          <Reveal style={{ transitionDelay: "100ms" }}>
-            <h1 style={{ fontSize: "clamp(40px,6vw,72px)", fontWeight: 900, lineHeight: 1.05, marginBottom: 24 }}>
-              TRAIN LIKE A<br />
-              <span style={{ color: "#07b4ba" }}>CHAMPION.</span><br />
-              FIGHT LIKE ONE
-            </h1>
-          </Reveal>
-          <Reveal style={{ transitionDelay: "200ms" }}>
-            <p style={{ fontSize: 17, color: "#ddd", maxWidth: 480, lineHeight: 1.65, marginBottom: 36 }}>
-              Stop training in the crowd. Get a personalized coaching program built around your body, your goals, and your timeline — guided by coaches who have been in the ring.
-            </p>
-          </Reveal>
-          <Reveal style={{ transitionDelay: "300ms" }}>
-            <div style={{ display: "flex", gap: 16, flexWrap: "wrap" }}>
-              <button
-                className="btn-teal"
-                onClick={scrollToForm}
-                style={{ padding: "16px 36px", borderRadius: 8, fontSize: 16 }}
-              >
-                Book A Call
-              </button>
-              <button
-                className="btn-outline"
-                style={{ padding: "16px 36px", borderRadius: 8, fontSize: 16 }}
-                onClick={() => document.getElementById("testimonials")?.scrollIntoView({ behavior: "smooth" })}
-              >
-                See Results
-              </button>
-            </div>
-          </Reveal>
-        </div>
-      </section>
+<section style={{
+  position: "relative",
+  minHeight: "92vh",
+  display: "flex",
+  alignItems: "center",
+  overflow: "hidden"
+}}>
+  
+  {/* BACKGROUND */}
+  <div style={{
+    position: "absolute",
+    inset: 0,
+    background: `
+      linear-gradient(to right, rgba(0,0,0,0.95) 40%, rgba(0,0,0,0.6) 70%, rgba(0,0,0,0.2) 100%),
+      url('https://images.unsplash.com/photo-1549476464-37392f717541?w=1600&q=80') center/cover no-repeat
+    `
+  }} />
+
+  {/* CONTENT */}
+  <div style={{
+    position: "relative",
+    zIndex: 2,
+    maxWidth: 1100,
+    margin: "0 auto",
+    padding: "100px 48px",
+    width: "100%"
+  }}>
+    
+    <div style={{ maxWidth: 520 }}>
+      
+      <p style={{
+        color: "#07b4ba",
+        fontSize: 16,
+        fontWeight: 600,
+        marginBottom: 18
+      }}>
+        AOF Academy–1 On 1 Coaching
+      </p>
+
+      <h1 style={{
+        fontSize: "clamp(44px,6vw,76px)",
+        fontWeight: 900,
+        lineHeight: 1.05,
+        marginBottom: 24
+      }}>
+        TRAIN LIKE A <br />
+        <span style={{ color: "#07b4ba" }}>CHAMPION.</span><br />
+        FIGHT LIKE ONE
+      </h1>
+
+      <p style={{
+        fontSize: 17,
+        color: "#ddd",
+        lineHeight: 1.7,
+        marginBottom: 36
+      }}>
+        Stop training in the crowd. Get a personalized coaching program built around your body, your goals, and your timeline — guided by coaches who have been in the ring.
+      </p>
+
+      {/* BUTTONS */}
+      <div style={{
+        display: "flex",
+        gap: 18,
+        alignItems: "center"
+      }}>
+        <button
+          className="btn-teal"
+          onClick={scrollToForm}
+          style={{
+            padding: "16px 34px",
+            borderRadius: 8,
+            fontSize: 16
+          }}
+        >
+          Book A Call
+        </button>
+
+        <button
+          className="btn-outline"
+          onClick={() => document.getElementById("testimonials")?.scrollIntoView({ behavior: "smooth" })}
+          style={{
+            padding: "16px 34px",
+            borderRadius: 8,
+            fontSize: 16
+          }}
+        >
+          See Results
+        </button>
+      </div>
+
+    </div>
+  </div>
+</section>
 
       {/* TICKER */}
       <div className="ticker-wrap">
