@@ -192,7 +192,7 @@ const methodItems = [
   { icon: "🏆", title: "Competition Preparation", desc: "Full camp-style peaking for tournaments — physically and mentally ready to win." },
 ];
 
-const whatCards = [
+const whatCards 
   { icon: "📋", label: "Custom Training Plan" },
   { icon: "🎥", label: "Video Analysis" },
   { icon: "💬", label: "Daily Check-ins" },
@@ -438,17 +438,24 @@ export default function CoachingPage() {
               />
             </div>
             <div style={{ flex: 1, minWidth: 260 }}>
-              {methodItems.map((item, i) => (
-                <Reveal key={i}>
-                  <div className="method-item">
-                    <div className="method-icon" style={{ fontSize: 22 }}>{item.icon}</div>
-                    <div>
-                      <h4 style={{ fontWeight: 700, fontSize: 16, marginBottom: 4, color: "#fff" }}>{item.title}</h4>
-                      <p style={{ color: "#aaa", fontSize: 14, lineHeight: 1.55 }}>{item.desc}</p>
-                    </div>
-                  </div>
-                </Reveal>
-              ))}
+{methodItems.map((item, i) => (
+  <Reveal key={i}>
+    <div className="method-item">
+      <div className="method-icon" style={{ fontSize: 22 }}>
+        {item.icon}
+      </div>
+
+      <p style={{
+        color: "#ccc",
+        fontSize: 15,
+        lineHeight: 1.6,
+        maxWidth: 420
+      }}>
+        {item.desc}
+      </p>
+    </div>
+  </Reveal>
+))}
             </div>
           </div>
 
