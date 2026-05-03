@@ -411,7 +411,14 @@ export default function CoachingPage() {
         </nav>
 
 {/* ── SECTION 1: HERO ── */}
-<section className="hero">
+<section
+  className="hero"
+  style={{
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "flex-start" // 🔥 pushes content higher
+  }}
+>
   
   {/* 🔥 CUSTOM BACKGROUND */}
   <div
@@ -426,13 +433,14 @@ export default function CoachingPage() {
 
   <div className="hero-overlay" />
 
-  {/* 🔥 HARD LEFT ALIGN */}
+  {/* 🔥 LEFT + TOP POSITION CONTROL */}
   <div
     className="hero-content"
     style={{
-      marginLeft: "0px",     // pushed fully left
-      paddingLeft: "15px",   // controlled gutter like Figma
-      maxWidth: "800px"      // keeps text tight
+      marginLeft: "0px",
+      paddingLeft: "15px",
+      paddingTop: "30px", // 🔥 moves content UP
+      maxWidth: "800px"
     }}
   >
     <Reveal>
@@ -481,7 +489,6 @@ export default function CoachingPage() {
     ))}
   </div>
 </section>
-
         {/* ── SOUNDS FAMILIAR ── */}
         <div style={{ background: "#111" }}>
           <div className="section">
