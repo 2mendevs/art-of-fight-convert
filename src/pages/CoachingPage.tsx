@@ -419,7 +419,7 @@ export default function CoachingPage() {
   <div
     className="hero-content"
     style={{
-      marginLeft: "15px" // 🔥 LEFT ALIGN CONTROL
+      marginLeft: "10px" // 🔥 LEFT ALIGN CONTROL
     }}
   >
     <Reveal>
