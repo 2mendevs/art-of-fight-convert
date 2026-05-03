@@ -411,46 +411,63 @@ export default function CoachingPage() {
         </nav>
 
         {/* ── SECTION 1: HERO ── */}
-        <section className="hero">
-          <div className="hero-bg" />
-          <div className="hero-overlay" />
-          <div className="hero-content">
-            <Reveal>
-              <p className="hero-tag">AOF Academy – 1 On 1 Coaching</p>
-              <h1 className="hero-headline">
-                Train Like A<br />
-                <span>Champion.</span><br />
-                Fight Like One
-              </h1>
-              <p className="hero-desc">
-                Stop training in the crowd. Get a personalized coaching program built around your body, your goals, and your timeline — guided by coaches who have been in the ring.
-              </p>
-              <div className="hero-btns">
-                <button className="btn-primary" onClick={scrollToForm}>Book A Call</button>
-                <button
-                  className="btn-outline"
-                  onClick={() => document.getElementById("testimonials")?.scrollIntoView({ behavior: "smooth" })}
-                >
-                  See Results
-                </button>
-              </div>
-            </Reveal>
-          </div>
+<section className="hero">
+  <div className="hero-bg" />
+  <div className="hero-overlay" />
 
-          {/* Feature Ticker */}
-          <div className="ticker">
-            {[
-              { icon: "🛡", label: "Personalised Program" },
-              { icon: "🏆", label: "Proven Fight System" },
-              { icon: "👤", label: "Direct Coach Access" },
-            ].map(({ icon, label }) => (
-              <div className="ticker-item" key={label}>
-                <span>{icon}</span>
-                {label}
-              </div>
-            ))}
-          </div>
-        </section>
+  {/* 🔥 FIXED LEFT ALIGN */}
+  <div
+    className="hero-content"
+    style={{
+      marginLeft: "15px" // 🔥 LEFT ALIGN CONTROL
+    }}
+  >
+    <Reveal>
+      <p className="hero-tag">AOF Academy – 1 On 1 Coaching</p>
+
+      <h1 className="hero-headline">
+        Train Like A<br />
+        <span>Champion.</span><br />
+        Fight Like One
+      </h1>
+
+      <p className="hero-desc">
+        Stop training in the crowd. Get a personalized coaching program built around your body, your goals, and your timeline — guided by coaches who have been in the ring.
+      </p>
+
+      <div className="hero-btns">
+        <button className="btn-primary" onClick={scrollToForm}>
+          Book A Call
+        </button>
+
+        <button
+          className="btn-outline"
+          onClick={() =>
+            document
+              .getElementById("testimonials")
+              ?.scrollIntoView({ behavior: "smooth" })
+          }
+        >
+          See Results
+        </button>
+      </div>
+    </Reveal>
+  </div>
+
+  {/* Feature Ticker */}
+  <div className="ticker">
+    {[
+      { icon: "🛡", label: "Personalised Program" },
+      { icon: "🏆", label: "Proven Fight System" },
+      { icon: "👤", label: "Direct Coach Access" },
+    ].map(({ icon, label }) => (
+      <div className="ticker-item" key={label}>
+        <span>{icon}</span>
+        {label}
+      </div>
+    ))}
+  </div>
+</section>
 
         {/* ── SOUNDS FAMILIAR ── */}
         <div style={{ background: "#111" }}>
