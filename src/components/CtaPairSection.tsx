@@ -1,4 +1,4 @@
-import boxBg from "@/images/BOX_BG.png";
+import boxBg from "@/public/images/CTA_BG.png";
 import { useNavigate } from "react-router-dom";
 
 const CtaPairSection = () => {
@@ -8,7 +8,7 @@ const CtaPairSection = () => {
     <section
       className="relative w-full overflow-hidden"
       style={{
-        backgroundImage: `url(${boxBg})`,
+        backgroundImage: `url(${CTA_BG})`,
         backgroundSize: "cover",
         backgroundPosition: "center center",
         backgroundRepeat: "no-repeat",
