@@ -1,18 +1,17 @@
 import React, { useEffect, useRef, useState, CSSProperties, ReactNode } from "react";
 
-/* ── Google Font: Barlow ── */
 const FontLoader = () => (
   <style>{`
     @import url('https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap');
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: 'Barlow', sans-serif; }
+    body { font-family: 'Barlow', sans-serif; background: #1a1a2e; }
     html { scroll-behavior: smooth; }
 
     .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease, transform 0.6s ease; }
     .reveal.visible { opacity: 1; transform: translateY(0); }
 
     .btn-teal {
-      background: #00bcd4; color: #000; font-weight: 700;
+      background: #00bcd4; color: #fff; font-weight: 700;
       border: none; cursor: pointer; font-family: 'Barlow', sans-serif;
       transition: background 0.2s;
     }
@@ -23,16 +22,17 @@ const FontLoader = () => (
       border: 2px solid #fff; cursor: pointer; font-family: 'Barlow', sans-serif;
       transition: background 0.2s, color 0.2s;
     }
-    .btn-outline:hover { background: #fff; color: #000; }
+    .btn-outline:hover { background: #fff; color: #1a1a2e; }
 
     input, select {
       width: 100%; padding: 18px 16px;
-      background: #c8c8c8; border: none; border-radius: 6px;
+      background: #2e2e4a; border: 1px solid #3a3a5c; border-radius: 6px;
       font-size: 16px; font-family: 'Barlow', sans-serif;
-      color: #111; font-weight: 600; outline: none;
+      color: #fff; font-weight: 600; outline: none;
       margin-bottom: 14px; cursor: pointer;
     }
-    input::placeholder { color: #444; }
+    input::placeholder { color: #888; }
+    select option { background: #2e2e4a; color: #fff; }
 
     .ticker-wrap {
       background: #00bcd4; padding: 10px 0; overflow: hidden; white-space: nowrap;
@@ -47,7 +47,7 @@ const FontLoader = () => (
     .ticker-item {
       display: inline-flex; align-items: center; gap: 8px;
       margin: 0 40px; font-weight: 700; font-size: 13px; letter-spacing: 1.5px;
-      text-transform: uppercase; color: #000;
+      text-transform: uppercase; color: #fff;
     }
 
     .method-item {
@@ -59,20 +59,21 @@ const FontLoader = () => (
     }
 
     .what-card {
-      background: #1e1e1e; border: 2px solid #00bcd4; border-radius: 12px;
+      background: #2e2e4a; border: 2px solid #00bcd4; border-radius: 12px;
       padding: 28px 20px; text-align: center; flex: 1; min-width: 150px;
     }
     .what-card .icon { font-size: 28px; margin-bottom: 12px; color: #00bcd4; }
     .what-card h4 { font-size: 14px; font-weight: 700; color: #fff; }
 
     .promise-box {
-      background: #1a6b6b; border: 1px solid #00bcd4; border-radius: 10px;
+      background: linear-gradient(135deg, #1e3a5f, #1a4a4a);
+      border: 1px solid #00bcd4; border-radius: 10px;
       padding: 28px 32px; margin-top: 40px;
     }
 
     .stat-card {
-      background: #1e1e1e; border-radius: 12px; padding: 20px 24px;
-      text-align: center; flex: 1; min-width: 130px;
+      background: #2e2e4a; border: 1px solid #3a3a5c; border-radius: 12px;
+      padding: 20px 24px; text-align: center; flex: 1; min-width: 130px;
     }
     .stat-card h3 { font-size: 28px; font-weight: 800; color: #00bcd4; }
     .stat-card p { font-size: 13px; color: #aaa; margin-top: 4px; }
@@ -85,14 +86,15 @@ const FontLoader = () => (
     }
 
     .feedback-card {
-      background: #1e1e1e; border-radius: 12px; padding: 28px;
-      flex: 1; min-width: 200px;
+      background: #2e2e4a; border: 1px solid #3a3a5c; border-radius: 12px;
+      padding: 28px; flex: 1; min-width: 200px;
     }
     .feedback-card p { color: #ccc; font-size: 15px; line-height: 1.6; }
     .feedback-card .author { margin-top: 14px; font-weight: 700; color: #fff; }
 
     .form-section {
-      background: #1c1c1c; border-radius: 12px; padding: 36px 32px;
+      background: #2e2e4a; border: 1px solid #3a3a5c; border-radius: 12px;
+      padding: 36px 32px;
     }
     .form-section h3 {
       color: #00bcd4; font-size: 18px; font-weight: 700; margin-bottom: 24px;
@@ -118,7 +120,7 @@ const FontLoader = () => (
     .coach-star-row {
       display: flex; align-items: flex-start; gap: 10px; margin-bottom: 12px;
     }
-    .coach-star-row .star { color: #fff; font-size: 16px; flex-shrink: 0; }
+    .coach-star-row .star { color: #00bcd4; font-size: 16px; flex-shrink: 0; }
     .coach-star-row p { color: #ccc; font-size: 15px; line-height: 1.45; }
 
     @media (max-width: 768px) {
@@ -129,76 +131,35 @@ const FontLoader = () => (
   `}</style>
 );
 
-/* ── Types ── */
-interface RevealProps {
-  children: ReactNode;
-  style?: CSSProperties;
-}
+interface RevealProps { children: ReactNode; style?: CSSProperties; }
+interface FormState { name: string; phone: string; goal: string; time: string; }
+interface MethodItem { icon: string; title: string; desc: string; }
+interface WhatCard { icon: string; label: string; }
+interface StatItem { val: string; label: string; }
+interface TestimonialCard { text: string; author: string; }
+interface ChecklistItem { text: string; }
 
-interface FormState {
-  name: string;
-  phone: string;
-  goal: string;
-  time: string;
-}
-
-interface MethodItem {
-  icon: string;
-  title: string;
-  desc: string;
-}
-
-interface WhatCard {
-  icon: string;
-  label: string;
-}
-
-interface StatItem {
-  val: string;
-  label: string;
-}
-
-interface TestimonialCard {
-  text: string;
-  author: string;
-}
-
-interface ChecklistItem {
-  text: string;
-}
-
-/* ── Reveal on scroll ── */
 function Reveal({ children, style = {} }: RevealProps) {
   const ref = useRef<HTMLDivElement>(null);
-
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
     const obs = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) el.classList.add("visible");
-      },
+      ([entry]) => { if (entry.isIntersecting) el.classList.add("visible"); },
       { threshold: 0.12 }
     );
     obs.observe(el);
     return () => obs.disconnect();
   }, []);
-
-  return (
-    <div ref={ref} className="reveal" style={style}>
-      {children}
-    </div>
-  );
+  return <div ref={ref} className="reveal" style={style}>{children}</div>;
 }
 
-/* ── WhatsApp SVG ── */
 const WhatsAppIcon = () => (
   <svg width="22" height="22" fill="currentColor" viewBox="0 0 24 24">
     <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
   </svg>
 );
 
-/* ── Data ── */
 const painPoints: string[] = [
   "You train 4-5 days a week but your technique isn't improving",
   "Your sparring partners are getting better — you feel stuck",
@@ -238,18 +199,9 @@ const stats: StatItem[] = [
 ];
 
 const feedbackCards: TestimonialCard[] = [
-  {
-    text: "In 8 weeks my footwork completely changed. My coach saw things I couldn't see myself and fixed them immediately.",
-    author: "— Jordan K.",
-  },
-  {
-    text: "I was plateau'd for over a year. AOF broke that within the first month. The personalised approach is unlike anything else.",
-    author: "— Priya S.",
-  },
-  {
-    text: "Best investment I've made in my fight career. The plan, the feedback, the accountability — it's all dialled in perfectly.",
-    author: "— Carlos R.",
-  },
+  { text: "In 8 weeks my footwork completely changed. My coach saw things I couldn't see myself and fixed them immediately.", author: "— Jordan K." },
+  { text: "I was plateau'd for over a year. AOF broke that within the first month. The personalised approach is unlike anything else.", author: "— Priya S." },
+  { text: "Best investment I've made in my fight career. The plan, the feedback, the accountability — it's all dialled in perfectly.", author: "— Carlos R." },
 ];
 
 const checklistItems: ChecklistItem[] = [
@@ -259,92 +211,80 @@ const checklistItems: ChecklistItem[] = [
   { text: "Start within 48 hours of approval" },
 ];
 
-/* ══════════════════════════════════════
-   MAIN COMPONENT
-══════════════════════════════════════ */
+/* ── Colour tokens ── */
+const C = {
+  pageBg:    "#1a1a2e",
+  sectionAlt:"#16213e",
+  sectionB:  "#0f3460",
+  card:      "#2e2e4a",
+  cardBorder:"#3a3a5c",
+  nav:       "#16213e",
+  navBorder: "#2a2a4a",
+  teal:      "#00bcd4",
+  text:      "#ffffff",
+  muted:     "#b0b8d0",
+  faint:     "#7a85a0",
+};
+
 export default function CoachingPage() {
   const formRef = useRef<HTMLElement>(null);
   const [form, setForm] = useState<FormState>({ name: "", phone: "", goal: "", time: "" });
   const [submitted, setSubmitted] = useState<boolean>(false);
 
-  const scrollToForm = (): void => {
-    formRef.current?.scrollIntoView({ behavior: "smooth" });
-  };
-
-  const handleSubmit = (): void => {
-    if (form.name && form.phone) setSubmitted(true);
-  };
+  const scrollToForm = () => formRef.current?.scrollIntoView({ behavior: "smooth" });
+  const handleSubmit = () => { if (form.name && form.phone) setSubmitted(true); };
 
   return (
-    <div style={{ backgroundColor: "#0a0a0a", fontFamily: "'Barlow', sans-serif", color: "#fff" }}>
+    <div style={{ backgroundColor: C.pageBg, fontFamily: "'Barlow', sans-serif", color: C.text }}>
       <FontLoader />
 
       {/* ── NAVBAR ── */}
-      <nav
-        style={{
-          position: "sticky",
-          top: 0,
-          zIndex: 50,
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-          padding: "16px 48px",
-          backgroundColor: "#1c1c1c",
-          borderBottom: "1px solid #2a2a2a",
-        }}
-      >
-        <span style={{ fontSize: 22, fontWeight: 900, color: "#00bcd4", letterSpacing: 1 }}>AOF</span>
+      <nav style={{
+        position: "sticky", top: 0, zIndex: 50,
+        display: "flex", alignItems: "center", justifyContent: "space-between",
+        padding: "16px 48px", backgroundColor: C.nav,
+        borderBottom: `1px solid ${C.navBorder}`,
+        boxShadow: "0 2px 20px rgba(0,0,0,0.3)",
+      }}>
+        <span style={{ fontSize: 22, fontWeight: 900, color: C.teal, letterSpacing: 1 }}>AOF</span>
         <div style={{ display: "flex", alignItems: "center", gap: 24 }}>
-          <span style={{ color: "#ccc", fontSize: 15, display: "flex", alignItems: "center", gap: 8 }}>
+          <span style={{ color: C.muted, fontSize: 15, display: "flex", alignItems: "center", gap: 8 }}>
             <span style={{ fontSize: 18 }}>←</span> Back To Home
           </span>
-          <button
-            className="btn-teal"
-            onClick={scrollToForm}
-            style={{ padding: "12px 28px", borderRadius: 8, fontSize: 15 }}
-          >
+          <button className="btn-teal" onClick={scrollToForm}
+            style={{ padding: "12px 28px", borderRadius: 8, fontSize: 15 }}>
             Book A Call
           </button>
         </div>
       </nav>
 
-      {/* ══ SECTION 1 — HERO ══ */}
+      {/* ══ HERO ══ */}
       <section style={{ position: "relative", minHeight: "88vh", overflow: "hidden", display: "flex", alignItems: "center" }}>
-        <div
-          style={{
-            position: "absolute",
-            inset: 0,
-            background:
-              "linear-gradient(to right, rgba(0,0,0,0.9) 48%, rgba(0,0,0,0.25) 100%), url('https://images.unsplash.com/photo-1549476464-37392f717541?w=1400&q=80') center/cover no-repeat",
-          }}
-        />
+        <div style={{
+          position: "absolute", inset: 0,
+          background: "linear-gradient(to right, rgba(22,33,62,0.97) 48%, rgba(22,33,62,0.4) 100%), url('https://images.unsplash.com/photo-1549476464-37392f717541?w=1400&q=80') center/cover no-repeat",
+        }} />
         <div style={{ position: "relative", zIndex: 2, maxWidth: 1100, margin: "0 auto", padding: "80px 48px" }}>
-          <p style={{ color: "#00bcd4", fontSize: 15, fontWeight: 600, marginBottom: 16 }}>
-            AOF Academy-1 On 1 Coaching
+          <p style={{ color: C.teal, fontSize: 15, fontWeight: 600, marginBottom: 16 }}>
+            AOF Academy — 1 On 1 Coaching
           </p>
           <h1 style={{ fontSize: "clamp(40px,6vw,72px)", fontWeight: 900, lineHeight: 1.05, marginBottom: 24 }}>
             TRAIN LIKE A<br />
-            <span style={{ color: "#00bcd4" }}>CHAMPION.</span>
-            <br />
+            <span style={{ color: C.teal }}>CHAMPION.</span><br />
             FIGHT LIKE ONE
           </h1>
-          <p style={{ fontSize: 17, color: "#ddd", maxWidth: 480, lineHeight: 1.65, marginBottom: 36 }}>
+          <p style={{ fontSize: 17, color: C.muted, maxWidth: 480, lineHeight: 1.65, marginBottom: 36 }}>
             Stop training in the crowd. Get a personalized coaching program built around your body, your goals, and your
             timeline — guided by coaches who have been in the ring.
           </p>
           <div style={{ display: "flex", gap: 16, flexWrap: "wrap" }}>
-            <button
-              className="btn-teal"
-              onClick={scrollToForm}
-              style={{ padding: "16px 36px", borderRadius: 8, fontSize: 16 }}
-            >
+            <button className="btn-teal" onClick={scrollToForm}
+              style={{ padding: "16px 36px", borderRadius: 8, fontSize: 16 }}>
               Book A Call
             </button>
-            <button
-              className="btn-outline"
+            <button className="btn-outline"
               style={{ padding: "16px 36px", borderRadius: 8, fontSize: 16 }}
-              onClick={() => document.getElementById("testimonials")?.scrollIntoView({ behavior: "smooth" })}
-            >
+              onClick={() => document.getElementById("testimonials")?.scrollIntoView({ behavior: "smooth" })}>
               See Results
             </button>
           </div>
@@ -364,7 +304,7 @@ export default function CoachingPage() {
                 <span key={j} className="ticker-item">
                   <span>{item.icon}</span>
                   {item.text}
-                  <span style={{ marginLeft: 40, color: "#0009" }}>✦</span>
+                  <span style={{ marginLeft: 40, color: "rgba(255,255,255,0.4)" }}>✦</span>
                 </span>
               ))}
             </span>
@@ -372,30 +312,27 @@ export default function CoachingPage() {
         </div>
       </div>
 
-      {/* ── "Sounds Familiar?" ── */}
-      <section style={{ backgroundColor: "#0a0a0a", padding: "80px 48px" }}>
-        <div
-          className="two-col"
-          style={{ maxWidth: 1100, margin: "0 auto", display: "flex", gap: 48, alignItems: "flex-start", flexWrap: "wrap" }}
-        >
+      {/* ── PROBLEM ── */}
+      <section style={{ backgroundColor: C.sectionAlt, padding: "80px 48px" }}>
+        <div className="two-col" style={{ maxWidth: 1100, margin: "0 auto", display: "flex", gap: 48, alignItems: "flex-start", flexWrap: "wrap" }}>
           <div style={{ flex: "0 0 440px", maxWidth: "100%" }}>
             <img
               src="/images/Problem.png"
               alt="MMA fighters"
-              style={{ width: "100%", borderRadius: 10, objectFit: "cover", maxHeight: 320 }}
+              style={{ width: "100%", borderRadius: 10, objectFit: "cover", maxHeight: 320, border: `1px solid ${C.cardBorder}` }}
             />
           </div>
           <div style={{ flex: 1, minWidth: 280 }}>
             <Reveal>
-              <p style={{ color: "#00bcd4", fontSize: 18, fontWeight: 700, marginBottom: 8 }}>Sound's Familiar ?</p>
+              <p style={{ color: C.teal, fontSize: 18, fontWeight: 700, marginBottom: 8 }}>Sound's Familiar?</p>
               <h2 style={{ fontSize: 22, fontWeight: 800, marginBottom: 28 }}>
-                You're Putting In The Work, But Not Seeing The Results.
+                You're Putting In The Work,<br />But Not Seeing The Results.
               </h2>
               <ul style={{ listStyle: "none" }}>
                 {painPoints.map((item, i) => (
                   <li key={i} style={{ display: "flex", alignItems: "flex-start", gap: 12, marginBottom: 14 }}>
                     <span style={{ color: "#e53935", fontSize: 18, flexShrink: 0 }}>✕</span>
-                    <span style={{ color: "#ccc", fontSize: 15 }}>{item}</span>
+                    <span style={{ color: C.muted, fontSize: 15 }}>{item}</span>
                   </li>
                 ))}
               </ul>
@@ -404,18 +341,17 @@ export default function CoachingPage() {
         </div>
       </section>
 
-      {/* ══ SECTION 2 — AOF METHOD ══ */}
-      <section style={{ backgroundColor: "#0f0f0f", padding: "80px 48px" }}>
+      {/* ══ AOF METHOD ══ */}
+      <section style={{ backgroundColor: C.pageBg, padding: "80px 48px" }}>
         <div style={{ maxWidth: 1100, margin: "0 auto" }}>
           <Reveal>
             <div style={{ textAlign: "center", marginBottom: 52 }}>
-              <p style={{ color: "#00bcd4", fontSize: 16, fontWeight: 700 }}>The AOF Method</p>
+              <p style={{ color: C.teal, fontSize: 16, fontWeight: 700 }}>The AOF Method</p>
               <h2 style={{ fontSize: "clamp(26px,4vw,42px)", fontWeight: 800, marginTop: 6 }}>
-                A Proven System.
-                <br />
-                <span style={{ color: "#00bcd4" }}>Real Transformation.</span>
+                A Proven System.<br />
+                <span style={{ color: C.teal }}>Real Transformation.</span>
               </h2>
-              <div style={{ width: 160, height: 2, background: "#00bcd4", margin: "20px auto 0" }} />
+              <div style={{ width: 160, height: 2, background: C.teal, margin: "20px auto 0" }} />
             </div>
           </Reveal>
 
@@ -424,7 +360,7 @@ export default function CoachingPage() {
               <img
                 src="/images/AOF_method.png"
                 alt="Boxing gloves"
-                style={{ width: "100%", borderRadius: 10, border: "1px solid #333" }}
+                style={{ width: "100%", borderRadius: 10, border: `1px solid ${C.cardBorder}` }}
               />
             </div>
             <div style={{ flex: 1, minWidth: 260 }}>
@@ -434,7 +370,7 @@ export default function CoachingPage() {
                     <div className="method-icon" style={{ fontSize: 22 }}>{item.icon}</div>
                     <div>
                       <h4 style={{ fontWeight: 700, fontSize: 16, marginBottom: 4 }}>{item.title}</h4>
-                      <p style={{ color: "#aaa", fontSize: 14, lineHeight: 1.55 }}>{item.desc}</p>
+                      <p style={{ color: C.muted, fontSize: 14, lineHeight: 1.55 }}>{item.desc}</p>
                     </div>
                   </div>
                 </Reveal>
@@ -442,7 +378,6 @@ export default function CoachingPage() {
             </div>
           </div>
 
-          {/* What You Get */}
           <Reveal style={{ marginTop: 56 }}>
             <h3 style={{ textAlign: "center", fontSize: 22, fontWeight: 800, marginBottom: 28 }}>What You Get</h3>
             <div style={{ display: "flex", gap: 16, flexWrap: "wrap" }}>
@@ -455,11 +390,10 @@ export default function CoachingPage() {
             </div>
           </Reveal>
 
-          {/* Our Promise */}
           <Reveal style={{ marginTop: 40 }}>
             <div className="promise-box">
-              <h4 style={{ color: "#00bcd4", fontWeight: 800, fontSize: 17, marginBottom: 10 }}>Our Promise</h4>
-              <p style={{ color: "#ddd", fontSize: 15, lineHeight: 1.65 }}>
+              <h4 style={{ color: C.teal, fontWeight: 800, fontSize: 17, marginBottom: 10 }}>Our Promise</h4>
+              <p style={{ color: C.muted, fontSize: 15, lineHeight: 1.65 }}>
                 If you follow the program and don't see measurable improvement in your first 30 days, we'll extend your
                 coaching at no extra cost. We succeed when you succeed — that's not a slogan, it's our commitment.
               </p>
@@ -468,23 +402,17 @@ export default function CoachingPage() {
         </div>
       </section>
 
-      {/* ══ SECTION 3 — YOUR COACH ══ */}
-      <section style={{ backgroundColor: "#111111", padding: "80px 48px" }}>
+      {/* ══ COACH ══ */}
+      <section style={{ backgroundColor: C.sectionAlt, padding: "80px 48px" }}>
         <div style={{ maxWidth: 1100, margin: "0 auto" }}>
-          {/* Book A Call ribbon */}
-          <div
-            style={{
-              background: "#00bcd4",
-              borderRadius: 8,
-              padding: "14px 0",
-              textAlign: "center",
-              marginBottom: 40,
-            }}
-          >
-            <span style={{ color: "#000", fontWeight: 800, fontSize: 18, letterSpacing: 1 }}>Book A Call</span>
+          <div style={{
+            background: `linear-gradient(135deg, ${C.teal}, #0097a7)`,
+            borderRadius: 8, padding: "14px 0", textAlign: "center", marginBottom: 40,
+          }}>
+            <span style={{ color: "#fff", fontWeight: 800, fontSize: 18, letterSpacing: 1 }}>Book A Call</span>
           </div>
 
-          <p style={{ fontSize: 14, color: "#aaa", fontWeight: 600, marginBottom: 20, letterSpacing: 0.5 }}>
+          <p style={{ fontSize: 14, color: C.faint, fontWeight: 600, marginBottom: 20, letterSpacing: 0.5 }}>
             Your Coach
           </p>
 
@@ -492,11 +420,11 @@ export default function CoachingPage() {
             <img
               src="/images/Conor.png"
               alt="Head Coach"
-              style={{ width: 220, height: 280, objectFit: "cover", borderRadius: 10, flexShrink: 0 }}
+              style={{ width: 220, height: 280, objectFit: "cover", borderRadius: 10, flexShrink: 0, border: `2px solid ${C.teal}` }}
             />
             <div style={{ flex: 1 }}>
               <h2 style={{ fontSize: 32, fontWeight: 900, marginBottom: 6 }}>Head Coach</h2>
-              <div style={{ width: 60, height: 2, background: "#00bcd4", marginBottom: 24 }} />
+              <div style={{ width: 60, height: 2, background: C.teal, marginBottom: 24 }} />
               {coachCredentials.map((item, i) => (
                 <div key={i} className="coach-star-row">
                   <span className="star">★</span>
@@ -516,45 +444,39 @@ export default function CoachingPage() {
         </div>
       </section>
 
-      {/* ══ SECTION 4 — TESTIMONIALS ══ */}
-      <section id="testimonials" style={{ backgroundColor: "#0f0f0f", padding: "80px 48px" }}>
+      {/* ══ TESTIMONIALS ══ */}
+      <section id="testimonials" style={{ backgroundColor: C.sectionB, padding: "80px 48px" }}>
         <div style={{ maxWidth: 1100, margin: "0 auto" }}>
           <Reveal>
             <div style={{ textAlign: "center", marginBottom: 52 }}>
-              <p style={{ color: "#00bcd4", fontWeight: 700, fontSize: 15 }}>Real People , Real Results</p>
+              <p style={{ color: C.teal, fontWeight: 700, fontSize: 15 }}>Real People, Real Results</p>
               <h2 style={{ fontSize: "clamp(26px,4vw,42px)", fontWeight: 900, marginTop: 8 }}>
                 Trusted By Fighters,{" "}
-                <span style={{ color: "#00bcd4" }}>Proven Results</span>
+                <span style={{ color: C.teal }}>Proven Results</span>
               </h2>
-              <p style={{ color: "#aaa", marginTop: 10, fontSize: 14 }}>
+              <p style={{ color: C.muted, marginTop: 10, fontSize: 14 }}>
                 Here's What Athletes Say About Their Transformation With AOF
               </p>
             </div>
           </Reveal>
 
-          {/* Featured testimonial */}
           <Reveal>
             <div className="testimonial-main">
-              <img
-                src="/images/Testimonials.png"
-                alt="Featured athlete"
-              />
+              <img src="/images/Testimonials.png" alt="Featured athlete" />
               <div style={{ flex: 1 }}>
                 <h3 style={{ fontSize: "clamp(22px,3vw,34px)", fontWeight: 900, lineHeight: 1.25, marginBottom: 20 }}>
-                  AOF Changed
-                  <br />
-                  The Way <span style={{ color: "#00bcd4" }}>I Train And Perform.</span>
+                  AOF Changed<br />The Way{" "}
+                  <span style={{ color: C.teal }}>I Train And Perform.</span>
                 </h3>
-                <p style={{ color: "#ccc", fontSize: 15, lineHeight: 1.7 }}>
+                <p style={{ color: C.muted, fontSize: 15, lineHeight: 1.7 }}>
                   The structure, the attention to detail, and the accountability took me to a level I never thought
                   possible. I'm stronger, faster, and fight with more confidence than ever.
                 </p>
-                <p style={{ marginTop: 16, color: "#00bcd4", fontWeight: 700 }}>— Alex M., Amateur MMA Fighter</p>
+                <p style={{ marginTop: 16, color: C.teal, fontWeight: 700 }}>— Alex M., Amateur MMA Fighter</p>
               </div>
             </div>
           </Reveal>
 
-          {/* 3 feedback cards */}
           <div style={{ display: "flex", gap: 20, flexWrap: "wrap" }}>
             {feedbackCards.map((t, i) => (
               <Reveal key={i}>
@@ -568,30 +490,19 @@ export default function CoachingPage() {
         </div>
       </section>
 
-      {/* ══ SECTION 5 — APPLY FORM ══ */}
-      <section ref={formRef} style={{ backgroundColor: "#111111", padding: "80px 48px" }}>
-        <div
-          style={{
-            maxWidth: 1100,
-            margin: "0 auto",
-            display: "flex",
-            gap: 56,
-            alignItems: "flex-start",
-            flexWrap: "wrap",
-          }}
-        >
-          {/* Left */}
+      {/* ══ FORM ══ */}
+      <section ref={formRef} style={{ backgroundColor: C.sectionAlt, padding: "80px 48px" }}>
+        <div style={{ maxWidth: 1100, margin: "0 auto", display: "flex", gap: 56, alignItems: "flex-start", flexWrap: "wrap" }}>
           <div style={{ flex: 1, minWidth: 260 }}>
             <Reveal>
-              <p style={{ color: "#00bcd4", fontWeight: 700, fontSize: 13, letterSpacing: 1, marginBottom: 10 }}>
+              <p style={{ color: C.teal, fontWeight: 700, fontSize: 13, letterSpacing: 1, marginBottom: 10 }}>
                 READY TO START?
               </p>
               <h2 style={{ fontSize: "clamp(28px,4vw,48px)", fontWeight: 900, lineHeight: 1.1, marginBottom: 20 }}>
-                APPLY FOR YOUR
-                <br />
-                <span style={{ color: "#00bcd4" }}>1-ON-1 COACHING SPOT</span>
+                APPLY FOR YOUR<br />
+                <span style={{ color: C.teal }}>1-ON-1 COACHING SPOT</span>
               </h2>
-              <p style={{ color: "#aaa", fontSize: 14, lineHeight: 1.65, marginBottom: 32, maxWidth: 380 }}>
+              <p style={{ color: C.muted, fontSize: 14, lineHeight: 1.65, marginBottom: 32, maxWidth: 380 }}>
                 Spots are limited. We only take on a small number of 1-on-1 students at a time to ensure every athlete
                 gets the attention they deserve. Fill out the form and we'll reach out within 24 hours.
               </p>
@@ -608,7 +519,6 @@ export default function CoachingPage() {
             </Reveal>
           </div>
 
-          {/* Right – form */}
           <div style={{ flex: 1, minWidth: 300 }}>
             <Reveal>
               <div className="form-section">
@@ -617,74 +527,39 @@ export default function CoachingPage() {
                   <div style={{ textAlign: "center", padding: "40px 0" }}>
                     <div style={{ fontSize: 48, marginBottom: 16 }}>✅</div>
                     <h4 style={{ color: "#fff", fontSize: 20, marginBottom: 8 }}>Application Received!</h4>
-                    <p style={{ color: "#aaa" }}>We'll be in touch within 24 hours.</p>
+                    <p style={{ color: C.muted }}>We'll be in touch within 24 hours.</p>
                   </div>
                 ) : (
                   <>
-                    <input
-                      type="text"
-                      placeholder="Full Name"
-                      value={form.name}
-                      onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                        setForm((f) => ({ ...f, name: e.target.value }))
-                      }
-                    />
-                    <input
-                      type="tel"
-                      placeholder="Phone Number"
-                      value={form.phone}
-                      onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                        setForm((f) => ({ ...f, phone: e.target.value }))
-                      }
-                    />
-                    <select
-                      value={form.goal}
-                      onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
-                        setForm((f) => ({ ...f, goal: e.target.value }))
-                      }
-                      style={{ marginBottom: 14 }}
-                    >
+                    <input type="text" placeholder="Full Name" value={form.name}
+                      onChange={(e: React.ChangeEvent<HTMLInputElement>) => setForm(f => ({ ...f, name: e.target.value }))} />
+                    <input type="tel" placeholder="Phone Number" value={form.phone}
+                      onChange={(e: React.ChangeEvent<HTMLInputElement>) => setForm(f => ({ ...f, phone: e.target.value }))} />
+                    <select value={form.goal}
+                      onChange={(e: React.ChangeEvent<HTMLSelectElement>) => setForm(f => ({ ...f, goal: e.target.value }))}>
                       <option value="">Main Goal</option>
                       <option value="technique">Improve Technique</option>
                       <option value="competition">Competition Prep</option>
                       <option value="fitness">Fitness &amp; Conditioning</option>
                       <option value="beginner">Learn MMA from Scratch</option>
                     </select>
-                    <select
-                      value={form.time}
-                      onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
-                        setForm((f) => ({ ...f, time: e.target.value }))
-                      }
-                      style={{ marginBottom: 20 }}
-                    >
+                    <select value={form.time}
+                      onChange={(e: React.ChangeEvent<HTMLSelectElement>) => setForm(f => ({ ...f, time: e.target.value }))}>
                       <option value="">Schedule A Time</option>
                       <option value="morning">Morning (6am – 12pm)</option>
                       <option value="afternoon">Afternoon (12pm – 5pm)</option>
                       <option value="evening">Evening (5pm – 9pm)</option>
                     </select>
-                    <button
-                      onClick={handleSubmit}
-                      style={{
-                        width: "100%",
-                        padding: "16px",
-                        borderRadius: 8,
-                        background: "#e0e0e0",
-                        color: "#111",
-                        fontWeight: 700,
-                        fontSize: 17,
-                        border: "none",
-                        cursor: "pointer",
-                        fontFamily: "'Barlow', sans-serif",
-                        transition: "background 0.2s",
-                      }}
-                      onMouseOver={(e: React.MouseEvent<HTMLButtonElement>) =>
-                        (e.currentTarget.style.background = "#cacaca")
-                      }
-                      onMouseOut={(e: React.MouseEvent<HTMLButtonElement>) =>
-                        (e.currentTarget.style.background = "#e0e0e0")
-                      }
-                    >
-                      Submit
+                    <button onClick={handleSubmit} style={{
+                      width: "100%", padding: "16px", borderRadius: 8,
+                      background: `linear-gradient(135deg, ${C.teal}, #0097a7)`,
+                      color: "#fff", fontWeight: 700, fontSize: 17,
+                      border: "none", cursor: "pointer",
+                      fontFamily: "'Barlow', sans-serif", transition: "opacity 0.2s",
+                    }}
+                      onMouseOver={(e: React.MouseEvent<HTMLButtonElement>) => (e.currentTarget.style.opacity = "0.88")}
+                      onMouseOut={(e: React.MouseEvent<HTMLButtonElement>) => (e.currentTarget.style.opacity = "1")}>
+                      Submit Application
                     </button>
                   </>
                 )}
@@ -694,16 +569,13 @@ export default function CoachingPage() {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer
-        style={{
-          backgroundColor: "#0a0a0a",
-          borderTop: "1px solid #1e1e1e",
-          padding: "24px 48px",
-          textAlign: "center",
-        }}
-      >
-        <p style={{ color: "#555", fontSize: 13 }}>© 2025 AOF Academy. All rights reserved.</p>
+      {/* ── FOOTER ── */}
+      <footer style={{
+        backgroundColor: "#0d0d1a",
+        borderTop: `1px solid ${C.navBorder}`,
+        padding: "24px 48px", textAlign: "center",
+      }}>
+        <p style={{ color: C.faint, fontSize: 13 }}>© 2025 AOF Academy. All rights reserved.</p>
       </footer>
     </div>
   );
