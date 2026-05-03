@@ -467,53 +467,109 @@ export default function CoachingPage() {
         </div>
       </section>
 
-      {/* SECTION 4 — TESTIMONIALS */}
-      <section id="testimonials" style={{ backgroundColor: "#0f0f0f", padding: "80px 48px" }}>
-        <div style={{ maxWidth: 1100, margin: "0 auto" }}>
-          <Reveal>
-            <div style={{ textAlign: "center", marginBottom: 52 }}>
-              <p style={{ color: "#07b4ba", fontWeight: 700, fontSize: 15 }}>Real People, Real Results</p>
-              <h2 style={{ fontSize: "clamp(26px,4vw,42px)", fontWeight: 900, marginTop: 8, color: "#fff" }}>
-                Trusted By Fighters,{" "}
-                <span style={{ color: "#07b4ba" }}>Proven Results</span>
-              </h2>
-              <p style={{ color: "#aaa", marginTop: 10, fontSize: 14 }}>
-                Here's What Athletes Say About Their Transformation With AOF
-              </p>
-            </div>
-          </Reveal>
+     {/* SECTION 4 — TESTIMONIALS */}
+<section id="testimonials" style={{ backgroundColor: "#05070a", padding: "100px 48px" }}>
+  <div style={{ maxWidth: 1100, margin: "0 auto" }}>
 
-          <Reveal>
-            <div className="testimonial-main">
-              <img
-                src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?w=600&q=80"
-                alt="Featured athlete"
-              />
-              <div style={{ flex: 1 }}>
-                <h3 style={{ fontSize: "clamp(22px,3vw,34px)", fontWeight: 900, lineHeight: 1.25, marginBottom: 20, color: "#fff" }}>
-                  AOF Changed<br />
-                  The Way <span style={{ color: "#07b4ba" }}>I Train And Perform.</span>
-                </h3>
-                <p style={{ color: "#ccc", fontSize: 15, lineHeight: 1.7 }}>
-                  The structure, the attention to detail, and the accountability took me to a level I never thought possible. I'm stronger, faster, and fight with more confidence than ever.
-                </p>
-                <p style={{ marginTop: 16, color: "#07b4ba", fontWeight: 700 }}>— Alex M., Amateur MMA Fighter</p>
-              </div>
-            </div>
-          </Reveal>
+    {/* HEADER */}
+    <div style={{ textAlign: "center", marginBottom: 60 }}>
+      <p style={{ color: "#07b4ba", fontWeight: 700, fontSize: 16 }}>
+        Real People , Real Results
+      </p>
 
-          <div style={{ display: "flex", gap: 20, flexWrap: "wrap" }}>
-            {feedbackCards.map((t, i) => (
-              <Reveal key={i}>
-                <div className="feedback-card">
-                  <p>{t.text}</p>
-                  <p className="author">{t.author}</p>
-                </div>
-              </Reveal>
-            ))}
-          </div>
+      <h2 style={{
+        fontSize: "clamp(32px,4vw,46px)",
+        fontWeight: 900,
+        marginTop: 10,
+        color: "#fff"
+      }}>
+        Trusted By Fighters,{" "}
+        <span style={{ color: "#07b4ba" }}>Proven Results</span>
+      </h2>
+
+      <p style={{ color: "#aaa", marginTop: 10, fontSize: 14 }}>
+        Here’s What Athletes Say About Their Transformation With AOF
+      </p>
+    </div>
+
+    {/* MAIN TESTIMONIAL */}
+    <div style={{
+      display: "flex",
+      gap: 40,
+      alignItems: "center",
+      marginBottom: 60,
+      flexWrap: "wrap"
+    }}>
+      
+      {/* LEFT IMAGE */}
+      <div style={{ flex: "0 0 420px", maxWidth: "100%" }}>
+        <img
+          src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?w=800&q=80"
+          alt="fighter"
+          style={{
+            width: "100%",
+            borderRadius: 4,
+            objectFit: "cover"
+          }}
+        />
+      </div>
+
+      {/* RIGHT CONTENT */}
+      <div style={{ flex: 1, minWidth: 280 }}>
+        <h3 style={{
+          fontSize: "clamp(26px,3vw,38px)",
+          fontWeight: 900,
+          lineHeight: 1.3,
+          marginBottom: 20,
+          color: "#fff"
+        }}>
+          AOF Changed <br />
+          The Way{" "}
+          <span style={{ color: "#07b4ba" }}>
+            I Train And Perform.
+          </span>
+        </h3>
+
+        <p style={{
+          color: "#ccc",
+          fontSize: 15,
+          lineHeight: 1.7,
+          maxWidth: 480
+        }}>
+          The structure, the attention to detail, and the accountability
+          took me to a level I never thought possible. I'm stronger,
+          faster, and fight with more confidence than ever.
+        </p>
+      </div>
+    </div>
+
+    {/* FEEDBACK CARDS */}
+    <div style={{
+      display: "flex",
+      gap: 24,
+      flexWrap: "wrap"
+    }}>
+      {feedbackCards.map((item, i) => (
+        <div key={i} style={{
+          flex: "1 1 300px",
+          background: "#d9d9d9",
+          borderRadius: 20,
+          padding: "50px 20px",
+          textAlign: "center"
+        }}>
+          <p style={{
+            color: "#07b4ba",
+            fontWeight: 700,
+            fontSize: 18
+          }}>
+            Feedback
+          </p>
         </div>
-      </section>
+      ))}
+    </div>
+
+  </div>
+</section>
 
       {/* SECTION 5 — APPLY FORM */}
       <section ref={formRef} style={{ backgroundColor: "#111111", padding: "80px 48px" }}>
