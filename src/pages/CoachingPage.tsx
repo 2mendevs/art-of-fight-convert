@@ -1,382 +1,517 @@
-import { useEffect, useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import {
-  ShieldCheck, Trophy, Users, Target, Zap,
-  BarChart3, Star, CheckCircle, XCircle, ArrowLeft
-} from "lucide-react";
+import React, { useEffect, useRef, useState } from "react";
 
-const Reveal = ({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) => {
+/* ─────────────────────────────────────────
+   TYPES
+───────────────────────────────────────── */
+interface RevealProps {
+  children: React.ReactNode;
+  style?: React.CSSProperties;
+}
+
+interface FormState {
+  name: string;
+  phone: string;
+  goal: string;
+  time: string;
+}
+
+interface MethodItem {
+  icon: string;
+  title: string;
+  desc: string;
+}
+
+interface CardItem {
+  icon: string;
+  label: string;
+}
+
+interface StatItem {
+  val: string;
+  label: string;
+}
+
+interface FeedbackItem {
+  text: string;
+  author: string;
+}
+
+/* ─────────────────────────────────────────
+   STATIC DATA
+───────────────────────────────────────── */
+const painPoints: string[] = [
+  "You train 4-5 days a week but your technique isn't improving",
+  "Your sparring partners are getting better — you feel stuck",
+  "You have no structured plan, just random gym sessions",
+  "Coaches at your gym don't give you personal attention",
+  "You don't know what to fix or where to even start",
+];
+
+const methodItems: MethodItem[] = [
+  { icon: "🎯", title: "Personalised Fight Plan", desc: "A roadmap built entirely around your body type, skill level, and competition goals." },
+  { icon: "⚡", title: "High-Intensity Drilling", desc: "Focused repetition drills that embed proper technique into muscle memory fast." },
+  { icon: "📈", title: "Progressive Overload", desc: "Structured intensity cycles to keep your body adapting and improving every week." },
+  { icon: "👤", title: "1-on-1 Accountability", desc: "Your coach tracks every session, reviews footage, and adjusts the plan in real time." },
+  { icon: "🏆", title: "Competition Preparation", desc: "Full camp-style peaking for tournaments — physically and mentally ready to win." },
+];
+
+const whatCards: CardItem[] = [
+  { icon: "📋", label: "Custom Training Plan" },
+  { icon: "🎥", label: "Video Analysis" },
+  { icon: "💬", label: "Daily Check-ins" },
+  { icon: "📊", label: "Progress Tracking" },
+  { icon: "🥊", label: "Sparring Strategy" },
+];
+
+const coachCredentials: string[] = [
+  "Former Professional MMA Fighter — 12+ Years Ring Experience",
+  "Trained athletes who compete at national & international level",
+  "Specialist in striking, grappling transitions & mental conditioning",
+  "Coaches remotely across 3 continents with proven results",
+];
+
+const stats: StatItem[] = [
+  { val: "1,000+", label: "Athletes Coached" },
+  { val: "10+", label: "Years Experience" },
+  { val: "50+", label: "Champions Trained" },
+  { val: "3", label: "Continents" },
+];
+
+const feedbackCards: FeedbackItem[] = [
+  { text: "In 8 weeks my footwork completely changed. My coach saw things I couldn't see myself and fixed them immediately.", author: "— Jordan K." },
+  { text: "I was plateau'd for over a year. AOF broke that within the first month. The personalised approach is unlike anything else.", author: "— Priya S." },
+  { text: "Best investment I've made in my fight career. The plan, the feedback, the accountability — it's all dialled in perfectly.", author: "— Carlos R." },
+];
+
+const checklistItems: string[] = [
+  "Free 30-minute strategy call included",
+  "No long-term contracts — cancel anytime",
+  "Results guaranteed or coaching extended free",
+  "Start within 48 hours of approval",
+];
+
+/* ─────────────────────────────────────────
+   GLOBAL STYLES
+   Using dangerouslySetInnerHTML avoids all
+   TSX type errors from raw CSS in <style>
+───────────────────────────────────────── */
+const globalCSS = `
+@import url('https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700;800;900&display=swap');
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'Barlow',sans-serif;}
+
+.aof-reveal{opacity:0;transform:translateY(28px);transition:opacity .6s ease,transform .6s ease;}
+.aof-reveal.visible{opacity:1;transform:translateY(0);}
+
+.aof-btn-teal{background:#00bcd4;color:#000;font-weight:800;border:none;cursor:pointer;
+  font-family:'Barlow',sans-serif;padding:13px 30px;border-radius:8px;font-size:15px;
+  transition:background .2s;}
+.aof-btn-teal:hover{background:#00a8be;}
+
+.aof-btn-outline{background:transparent;color:#fff;font-weight:800;
+  border:2px solid #fff;cursor:pointer;font-family:'Barlow',sans-serif;
+  padding:13px 30px;border-radius:8px;font-size:15px;transition:all .2s;}
+.aof-btn-outline:hover{background:#fff;color:#000;}
+
+.aof-ticker-wrap{background:#00bcd4;padding:10px 0;overflow:hidden;white-space:nowrap;}
+.aof-ticker-inner{display:inline-block;animation:aofTick 18s linear infinite;}
+@keyframes aofTick{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+.aof-ticker-item{display:inline-flex;align-items:center;gap:8px;margin:0 36px;
+  font-weight:800;font-size:12px;letter-spacing:1.5px;text-transform:uppercase;color:#000;}
+
+.aof-method-row{display:flex;align-items:flex-start;gap:15px;margin-bottom:24px;}
+.aof-what-card{background:#1e1e1e;border:2px solid #00bcd4;border-radius:12px;
+  padding:24px 16px;text-align:center;flex:1;min-width:140px;}
+.aof-promise{background:#0d4040;border:1px solid #00bcd4;border-radius:10px;padding:26px 30px;margin-top:36px;}
+.aof-stat-card{background:#1e1e1e;border-radius:10px;padding:18px 20px;text-align:center;flex:1;min-width:110px;}
+.aof-feed-card{background:#1e1e1e;border-radius:12px;padding:24px;flex:1;min-width:200px;}
+.aof-form-box{background:#1c1c1c;border-radius:12px;padding:32px 28px;}
+.aof-check-item{display:flex;align-items:flex-start;gap:10px;margin-bottom:16px;}
+.aof-whatsapp-btn{display:flex;align-items:center;justify-content:center;gap:10px;
+  background:#25d366;color:#fff;font-weight:800;font-size:15px;border:none;
+  border-radius:8px;padding:14px 24px;cursor:pointer;width:100%;max-width:360px;
+  margin-top:28px;font-family:'Barlow',sans-serif;transition:background .2s;}
+.aof-whatsapp-btn:hover{background:#1fb855;}
+.aof-ribbon{background:#00bcd4;border-radius:8px;padding:13px 0;text-align:center;margin-bottom:36px;}
+.aof-star-row{display:flex;align-items:flex-start;gap:10px;margin-bottom:11px;}
+
+.aof-input{width:100%;padding:16px 14px;background:#c0c0c0;border:none;border-radius:6px;
+  font-size:15px;font-family:'Barlow',sans-serif;color:#111;font-weight:700;
+  outline:none;margin-bottom:12px;cursor:pointer;}
+.aof-select{width:100%;padding:16px 14px;background:#c0c0c0;border:none;border-radius:6px;
+  font-size:15px;font-family:'Barlow',sans-serif;color:#111;font-weight:700;
+  outline:none;margin-bottom:12px;cursor:pointer;-webkit-appearance:none;appearance:none;}
+.aof-submit{width:100%;padding:15px;border-radius:8px;background:#d8d8d8;color:#111;
+  font-weight:800;font-size:16px;border:none;cursor:pointer;
+  font-family:'Barlow',sans-serif;margin-top:6px;transition:background .2s;}
+.aof-submit:hover{background:#c0c0c0;}
+
+@media(max-width:768px){
+  .aof-two-col{flex-direction:column!important;}
+  .aof-testi-img{width:100%!important;}
+}
+`;
+
+/* ─────────────────────────────────────────
+   SUB-COMPONENTS
+───────────────────────────────────────── */
+function GlobalStyles(): React.ReactElement {
+  return <style dangerouslySetInnerHTML={{ __html: globalCSS }} />;
+}
+
+function Reveal({ children, style }: RevealProps): React.ReactElement {
   const ref = useRef<HTMLDivElement>(null);
-  const [visible, setVisible] = useState(false);
+
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
     const obs = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) { setVisible(true); obs.disconnect(); } },
+      ([entry]) => {
+        if (entry.isIntersecting) el.classList.add("visible");
+      },
       { threshold: 0.1 }
     );
     obs.observe(el);
     return () => obs.disconnect();
   }, []);
+
   return (
-    <div
-      ref={ref}
-      style={{
-        opacity: visible ? 1 : 0,
-        transform: visible ? "translateY(0)" : "translateY(28px)",
-        transition: `opacity 0.7s cubic-bezier(0.22,1,0.36,1) ${delay}ms, transform 0.7s cubic-bezier(0.22,1,0.36,1) ${delay}ms`,
-      }}
-    >
+    <div ref={ref} className="aof-reveal" style={style}>
       {children}
     </div>
   );
-};
+}
 
-const WhatsAppIcon = () => (
-  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-    <path fillRule="evenodd" clipRule="evenodd" d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.978-1.41A9.96 9.96 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm-1.39 14.417c-1.recursive 0-2.916-.768-3.96-2.04l-.28-.351-.868.245.268-.999-.307-.383C4.895 12.114 4.5 11.1 4.5 10c0-2.485 2.015-4.5 4.5-4.5.88 0 1.703.253 2.393.69l.32.207.32-.104c.51-.166 1.05-.254 1.607-.254 2.485 0 4.5 2.015 4.5 4.5 0 1.1-.395 2.114-1.048 2.906l-.307.383.268.999-.868-.245-.28.351c-1.044 1.272-2.61 2.04-3.795 2.04z"/>
-  </svg>
-);
+function WhatsAppIcon(): React.ReactElement {
+  return (
+    <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+    </svg>
+  );
+}
 
-const CoachingPage = () => {
+/* ─────────────────────────────────────────
+   MAIN PAGE COMPONENT
+───────────────────────────────────────── */
+export default function CoachingPage(): React.ReactElement {
   const formRef = useRef<HTMLDivElement>(null);
-  const navigate = useNavigate();
-  const scrollToForm = () => formRef.current?.scrollIntoView({ behavior: "smooth" });
+  const [form, setForm] = useState<FormState>({ name: "", phone: "", goal: "", time: "" });
+  const [submitted, setSubmitted] = useState<boolean>(false);
+
+  const scrollToForm = (): void => {
+    formRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  const handleSubmit = (): void => {
+    if (form.name.trim() && form.phone.trim()) setSubmitted(true);
+  };
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
+    const { name, value } = e.target;
+    setForm((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>): void => {
+    const { name, value } = e.target;
+    setForm((prev) => ({ ...prev, [name]: value }));
+  };
 
   return (
-    <div className="min-h-screen text-white" style={{ backgroundColor: "#0a0a0a", fontFamily: "'Barlow', sans-serif" }}>
+    <div style={{ backgroundColor: "#0a0a0a", color: "#fff", fontFamily: "'Barlow', sans-serif" }}>
+      <GlobalStyles />
 
-      {/* NAVBAR */}
+      {/* ── NAVBAR ── */}
       <nav
-        className="sticky top-0 z-50 flex items-center justify-between px-6 md:px-12 py-4"
-        style={{ backgroundColor: "#1c1c1c", borderBottom: "1px solid #2a2a2a" }}
+        style={{
+          position: "sticky",
+          top: 0,
+          zIndex: 50,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+          padding: "14px 48px",
+          backgroundColor: "#1c1c1c",
+          borderBottom: "1px solid #2a2a2a",
+        }}
       >
-        <span style={{ fontFamily: "'Bebas Neue', sans-serif", color: "#07b4ba", fontSize: "1.6rem", letterSpacing: "0.1em" }}>
-          AOF
-        </span>
-        <div className="flex items-center gap-5">
-          <button
-            onClick={() => navigate("/")}
-            className="flex items-center gap-2 text-sm hover:opacity-80 transition-opacity"
-            style={{ color: "#cccccc" }}
-          >
-            <ArrowLeft size={15} />
-            Back To Home
-          </button>
-          <button
-            onClick={scrollToForm}
-            className="px-5 py-2 text-sm rounded transition-opacity hover:opacity-90"
-            style={{ backgroundColor: "#07b4ba", color: "#000", fontFamily: "'Bebas Neue', sans-serif", letterSpacing: "0.1em" }}
-          >
+        <span style={{ fontSize: 22, fontWeight: 900, color: "#00bcd4", letterSpacing: 1 }}>AOF</span>
+        <div style={{ display: "flex", alignItems: "center", gap: 24 }}>
+          <span style={{ color: "#ccc", fontSize: 14, display: "flex", alignItems: "center", gap: 6, cursor: "pointer" }}>
+            ← Back To Home
+          </span>
+          <button className="aof-btn-teal" onClick={scrollToForm}>
             Book A Call
           </button>
         </div>
       </nav>
 
-      {/* SECTION 1 — HERO */}
-      <section className="relative overflow-hidden" style={{ minHeight: "88vh" }}>
+      {/* ══ SECTION 1 — HERO ══ */}
+      <section
+        style={{
+          position: "relative",
+          minHeight: "88vh",
+          display: "flex",
+          alignItems: "center",
+          overflow: "hidden",
+        }}
+      >
         <div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{
-            backgroundImage: "url('https://images.unsplash.com/photo-1555597673-b21d5c935865?w=1600&q=80')",
-            filter: "brightness(0.28)",
+            position: "absolute",
+            inset: 0,
+            background:
+              "linear-gradient(to right,rgba(0,0,0,.9) 48%,rgba(0,0,0,.2) 100%), url('https://images.unsplash.com/photo-1549476464-37392f717541?w=1400&q=80') center/cover no-repeat",
           }}
         />
-        <div
-          className="absolute inset-0"
-          style={{ background: "linear-gradient(to right, rgba(0,0,0,0.95) 45%, rgba(0,0,0,0.2))" }}
-        />
-
-        <div className="relative z-10 max-w-6xl mx-auto px-6 md:px-12 pt-20 pb-10">
-          <Reveal delay={0}>
-            <p className="text-xs uppercase tracking-widest mb-3" style={{ color: "#07b4ba" }}>
-              AOF Academy — 1 On 1 Coaching
-            </p>
-          </Reveal>
-          <Reveal delay={100}>
-            <h1 style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: "clamp(3rem, 8vw, 6rem)", lineHeight: 1, color: "#fff" }}>
-              Train Like A <span style={{ color: "#07b4ba" }}>Champion.</span>
-              <br />Fight Like One
-            </h1>
-          </Reveal>
-          <Reveal delay={200}>
-            <p className="mt-5 mb-8 text-sm md:text-base leading-relaxed max-w-md" style={{ color: "rgba(255,255,255,0.65)" }}>
-              Stop training in the crowd. Get a personalized coaching program built around your body, your goals, and your timeline — guided by coaches who have been in the ring.
-            </p>
-          </Reveal>
-          <Reveal delay={300}>
-            <div className="flex flex-wrap gap-3">
-              <button
-                onClick={scrollToForm}
-                className="px-7 py-3 rounded text-sm transition-opacity hover:opacity-90"
-                style={{ backgroundColor: "#07b4ba", color: "#000", fontFamily: "'Bebas Neue', sans-serif", letterSpacing: "0.1em" }}
-              >
-                Book A Call
-              </button>
-              <button
-                className="px-7 py-3 rounded text-sm transition-colors"
-                style={{ border: "1px solid #07b4ba", color: "#07b4ba", fontFamily: "'Bebas Neue', sans-serif", letterSpacing: "0.1em", background: "transparent" }}
-              >
-                See Results
-              </button>
-            </div>
-          </Reveal>
-        </div>
-
-        {/* Trust strip */}
-        <div className="relative z-10 w-full py-3" style={{ backgroundColor: "#07b4ba" }}>
-          <div className="max-w-4xl mx-auto flex justify-around items-center px-6">
-            {[
-              { icon: ShieldCheck, label: "Personalised Program" },
-              { icon: Trophy, label: "Proven Fight System" },
-              { icon: Users, label: "Direct Coach Access" },
-            ].map(({ icon: Icon, label }) => (
-              <div key={label} className="flex items-center gap-2">
-                <Icon className="w-4 h-4" style={{ color: "#000" }} />
-                <span style={{ fontFamily: "'Bebas Neue', sans-serif", color: "#000", letterSpacing: "0.1em", fontSize: "0.8rem" }}>
-                  {label}
-                </span>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Pain points */}
-        <div className="relative z-10 max-w-6xl mx-auto px-6 md:px-12 py-14 grid md:grid-cols-2 gap-10 items-center">
-          <Reveal delay={0}>
-            <div className="rounded-xl overflow-hidden" style={{ border: "1px solid #2a2a2a" }}>
-              <img
-                src="https://images.unsplash.com/photo-1549719386-74dfcbf7dbed?w=700&q=80"
-                alt="MMA fighters"
-                className="w-full object-cover"
-                style={{ height: "280px" }}
-              />
-            </div>
-          </Reveal>
-          <Reveal delay={150}>
-            <div>
-              <p className="text-lg font-semibold mb-1" style={{ color: "#07b4ba" }}>Sound's Familiar?</p>
-              <p className="text-base font-semibold mb-6" style={{ color: "#fff" }}>
-                You're Putting In The Work, But Not Seeing The Results.
-              </p>
-              <ul className="space-y-4">
-                {[
-                  "You train 4-5 days a week but your technique isn't improving",
-                  "Your sparring partners are getting better — you feel stuck",
-                  "You have no structured plan, just random gym sessions",
-                  "Coaches at your gym don't give you personal attention",
-                  "You're motivated but have no one to keep you accountable",
-                ].map((text, i) => (
-                  <li key={i} className="flex items-start gap-3">
-                    <XCircle className="w-5 h-5 shrink-0 mt-0.5" style={{ color: "#e53e3e" }} />
-                    <span className="text-sm" style={{ color: "rgba(255,255,255,0.7)" }}>{text}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* SECTION 2 — AOF METHOD */}
-      <section className="py-20 px-6 md:px-12" style={{ backgroundColor: "#0f0f0f" }}>
-        <div className="max-w-6xl mx-auto">
-          <Reveal>
-            <div className="text-center mb-12">
-              <p className="font-semibold mb-1" style={{ color: "#07b4ba" }}>The AOF Method</p>
-              <h2 style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: "clamp(2rem,5vw,3.5rem)", color: "#fff", lineHeight: 1.1 }}>
-                A Proven System. <span style={{ color: "#07b4ba" }}>Real Transformation.</span>
-              </h2>
-              <div className="mx-auto mt-4" style={{ width: "80px", borderTop: "2px dashed rgba(7,180,186,0.5)" }} />
-            </div>
-          </Reveal>
-
-          <div className="grid md:grid-cols-2 gap-10 items-center mb-16">
-            <Reveal delay={0}>
-              <div className="rounded-xl overflow-hidden" style={{ border: "1px solid #2a2a2a" }}>
-                <img
-                  src="https://images.unsplash.com/photo-1578496781985-452d4a934d50?w=700&q=80"
-                  alt="Boxing gloves"
-                  className="w-full object-cover"
-                  style={{ height: "300px" }}
-                />
-              </div>
-            </Reveal>
-            <Reveal delay={150}>
-              <ul className="space-y-5">
-                {[
-                  { icon: Target, text: "Fully personalised training plan built around your goals and schedule" },
-                  { icon: Zap, text: "High-intensity sessions designed by coaches with real ring experience" },
-                  { icon: BarChart3, text: "Weekly progress tracking so you can see exactly how far you've come" },
-                  { icon: Users, text: "Direct access to your head coach — anytime, any question" },
-                  { icon: Trophy, text: "Proven system that has produced amateur and professional fighters" },
-                ].map(({ icon: Icon, text }, i) => (
-                  <li key={i} className="flex items-start gap-4">
-                    <div
-                      className="w-9 h-9 rounded-full flex items-center justify-center shrink-0"
-                      style={{ border: "1px solid rgba(7,180,186,0.5)" }}
-                    >
-                      <Icon className="w-4 h-4" style={{ color: "#07b4ba" }} />
-                    </div>
-                    <span className="text-sm leading-relaxed pt-1.5" style={{ color: "rgba(255,255,255,0.75)" }}>{text}</span>
-                  </li>
-                ))}
-              </ul>
-            </Reveal>
-          </div>
-
-          <Reveal>
-            <p className="text-center font-semibold text-lg mb-6" style={{ color: "#fff" }}>What You Get</p>
-          </Reveal>
-          <div className="grid grid-cols-2 md:grid-cols-5 gap-4 mb-12">
-            {["Weekly 1-on-1 Sessions", "Custom Fight Plan", "Nutrition Guidance", "Video Analysis", "24/7 Coach Support"].map((item, i) => (
-              <Reveal key={i} delay={i * 80}>
-                <div
-                  className="rounded-xl p-5 flex items-center justify-center text-center"
-                  style={{ border: "1.5px solid #07b4ba", backgroundColor: "rgba(7,180,186,0.06)", minHeight: "100px" }}
-                >
-                  <span className="text-xs leading-snug" style={{ color: "rgba(255,255,255,0.85)" }}>{item}</span>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-
-          <Reveal>
-            <div
-              className="rounded-xl p-7 text-center max-w-2xl mx-auto"
-              style={{ border: "1.5px solid #07b4ba", backgroundColor: "rgba(7,180,186,0.08)" }}
+        <div style={{ position: "relative", zIndex: 2, padding: "80px 48px", maxWidth: 600 }}>
+          <p style={{ color: "#00bcd4", fontSize: 14, fontWeight: 700, marginBottom: 14 }}>
+            AOF Academy-1 On 1 Coaching
+          </p>
+          <h1 style={{ fontSize: "clamp(38px,6vw,70px)", fontWeight: 900, lineHeight: 1.05, marginBottom: 22 }}>
+            TRAIN LIKE A<br />
+            <span style={{ color: "#00bcd4" }}>CHAMPION.</span>
+            <br />
+            FIGHT LIKE ONE
+          </h1>
+          <p style={{ fontSize: 16, color: "#ccc", maxWidth: 460, lineHeight: 1.65, marginBottom: 34 }}>
+            Stop training in the crowd. Get a personalized coaching program built around your body, your goals, and your
+            timeline — guided by coaches who have been in the ring.
+          </p>
+          <div style={{ display: "flex", gap: 14, flexWrap: "wrap" }}>
+            <button className="aof-btn-teal" onClick={scrollToForm}>
+              Book A Call
+            </button>
+            <button
+              className="aof-btn-outline"
+              onClick={() => document.getElementById("testimonials")?.scrollIntoView({ behavior: "smooth" })}
             >
-              <p className="mb-2" style={{ fontFamily: "'Bebas Neue', sans-serif", color: "#07b4ba", letterSpacing: "0.1em", fontSize: "1.2rem" }}>
-                Our Promise
-              </p>
-              <p className="text-sm leading-relaxed" style={{ color: "rgba(255,255,255,0.7)" }}>
-                If you show up, put in the work, and follow the system — you will improve. We don't just coach, we invest in your journey. Every session, every rep, every round is built around making you better.
+              See Results
+            </button>
+          </div>
+        </div>
+      </section>
+
+      {/* ── TICKER ── */}
+      <div className="aof-ticker-wrap">
+        <div className="aof-ticker-inner">
+          {[0, 1, 2].map((i) => (
+            <React.Fragment key={i}>
+              <span className="aof-ticker-item">🛡 PERSONALISED PROGRAM</span>
+              <span className="aof-ticker-item">🏆 PROVEN FIGHT SYSTEM</span>
+              <span className="aof-ticker-item">👤 DIRECT COACH ACCESS</span>
+            </React.Fragment>
+          ))}
+        </div>
+      </div>
+
+      {/* ── PAIN POINTS ── */}
+      <section style={{ backgroundColor: "#0a0a0a", padding: "80px 48px" }}>
+        <div
+          className="aof-two-col"
+          style={{ maxWidth: 1100, margin: "0 auto", display: "flex", gap: 48, alignItems: "flex-start", flexWrap: "wrap" }}
+        >
+          <div style={{ flex: "0 0 420px", maxWidth: "100%" }}>
+            <img
+              src="https://images.unsplash.com/photo-1555597673-b21d5c935865?w=700&q=80"
+              alt="MMA fighters"
+              style={{ width: "100%", borderRadius: 10, objectFit: "cover", maxHeight: 320, display: "block" }}
+            />
+          </div>
+          <div style={{ flex: 1, minWidth: 260 }}>
+            <Reveal>
+              <p style={{ color: "#00bcd4", fontSize: 18, fontWeight: 700, marginBottom: 8 }}>Sound's Familiar ?</p>
+              <h2 style={{ fontSize: 22, fontWeight: 800, marginBottom: 26 }}>
+                You're Putting In The Work,
+                <br />
+                But Not Seeing The Results.
+              </h2>
+              {painPoints.map((item, i) => (
+                <div key={i} style={{ display: "flex", alignItems: "flex-start", gap: 11, marginBottom: 13 }}>
+                  <span style={{ color: "#e53935", fontSize: 17, flexShrink: 0, marginTop: 1 }}>✕</span>
+                  <span style={{ color: "#ccc", fontSize: 15 }}>{item}</span>
+                </div>
+              ))}
+            </Reveal>
+          </div>
+        </div>
+      </section>
+
+      {/* ══ SECTION 2 — AOF METHOD ══ */}
+      <section style={{ backgroundColor: "#0f0f0f", padding: "80px 48px" }}>
+        <div style={{ maxWidth: 1100, margin: "0 auto" }}>
+          <Reveal>
+            <div style={{ textAlign: "center", marginBottom: 48 }}>
+              <p style={{ color: "#00bcd4", fontSize: 15, fontWeight: 700 }}>The AOF Method</p>
+              <h2 style={{ fontSize: "clamp(24px,4vw,40px)", fontWeight: 900, marginTop: 6 }}>
+                A Proven System.
+                <br />
+                <span style={{ color: "#00bcd4" }}>Real Transformation.</span>
+              </h2>
+              <div style={{ width: 140, height: 2, background: "#00bcd4", margin: "18px auto 0" }} />
+            </div>
+          </Reveal>
+
+          <div
+            className="aof-two-col"
+            style={{ display: "flex", gap: 48, alignItems: "flex-start", flexWrap: "wrap" }}
+          >
+            <div style={{ flex: "0 0 420px", maxWidth: "100%" }}>
+              <img
+                src="https://images.unsplash.com/photo-1483058712412-4245e9b90334?w=700&q=80"
+                alt="Boxing gloves"
+                style={{ width: "100%", borderRadius: 10, border: "1px solid #333", display: "block" }}
+              />
+            </div>
+            <div style={{ flex: 1, minWidth: 240 }}>
+              {methodItems.map((item, i) => (
+                <Reveal key={i}>
+                  <div className="aof-method-row">
+                    <span style={{ fontSize: 20, flexShrink: 0, marginTop: 2 }}>{item.icon}</span>
+                    <div>
+                      <h4 style={{ fontWeight: 800, fontSize: 15, marginBottom: 4 }}>{item.title}</h4>
+                      <p style={{ color: "#999", fontSize: 13, lineHeight: 1.55 }}>{item.desc}</p>
+                    </div>
+                  </div>
+                </Reveal>
+              ))}
+            </div>
+          </div>
+
+          {/* What You Get */}
+          <Reveal style={{ marginTop: 52 }}>
+            <h3 style={{ textAlign: "center", fontSize: 20, fontWeight: 800, marginBottom: 24 }}>What You Get</h3>
+            <div style={{ display: "flex", gap: 14, flexWrap: "wrap" }}>
+              {whatCards.map((c, i) => (
+                <div key={i} className="aof-what-card">
+                  <div style={{ fontSize: 24, marginBottom: 10 }}>{c.icon}</div>
+                  <h4 style={{ fontSize: 13, fontWeight: 700, color: "#fff" }}>{c.label}</h4>
+                </div>
+              ))}
+            </div>
+          </Reveal>
+
+          {/* Our Promise */}
+          <Reveal>
+            <div className="aof-promise">
+              <h4 style={{ color: "#00bcd4", fontWeight: 800, fontSize: 16, marginBottom: 8 }}>Our Promise</h4>
+              <p style={{ color: "#ccc", fontSize: 14, lineHeight: 1.65 }}>
+                If you follow the program and don't see measurable improvement in your first 30 days, we'll extend your
+                coaching at no extra cost. We succeed when you succeed — that's not a slogan, it's our commitment.
               </p>
             </div>
           </Reveal>
         </div>
       </section>
 
-      {/* SECTION 3 — YOUR COACH */}
-      <section className="py-20 px-6 md:px-12" style={{ backgroundColor: "#111111" }}>
-        <div className="max-w-6xl mx-auto">
-          <button
-            onClick={scrollToForm}
-            className="w-full py-3 rounded-lg mb-14 text-base transition-opacity hover:opacity-90"
-            style={{ backgroundColor: "#07b4ba", color: "#000", fontFamily: "'Bebas Neue', sans-serif", letterSpacing: "0.15em" }}
-          >
-            Book A Call
-          </button>
-
-          <Reveal>
-            <p className="text-sm uppercase tracking-widest mb-8" style={{ color: "rgba(255,255,255,0.45)" }}>
-              Your Coach
-            </p>
-          </Reveal>
-
-          <div className="grid md:grid-cols-2 gap-12 items-start mb-14">
-            <Reveal delay={0}>
-              <img
-                src="https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?w=400&q=80"
-                alt="Head Coach"
-                className="rounded-xl object-cover object-top"
-                style={{ width: "200px", height: "200px", border: "2px solid rgba(7,180,186,0.3)" }}
-              />
-            </Reveal>
-            <Reveal delay={150}>
-              <div>
-                <h2 style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: "2rem", color: "#fff" }}>Head Coach</h2>
-                <div className="mt-2 mb-6" style={{ width: "60px", borderTop: "2px dashed rgba(7,180,186,0.6)" }} />
-                <ul className="space-y-4">
-                  {[
-                    "10+ years of professional MMA coaching experience",
-                    "Former regional champion with 30+ competitive fights",
-                    "Certified strength and conditioning specialist",
-                    "Trained over 200 amateur and professional fighters",
-                  ].map((text, i) => (
-                    <li key={i} className="flex items-start gap-3">
-                      <Star className="w-4 h-4 shrink-0 mt-0.5" style={{ color: "#07b4ba" }} fill="#07b4ba" />
-                      <span className="text-sm" style={{ color: "#07b4ba" }}>{text}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </Reveal>
+      {/* ══ SECTION 3 — YOUR COACH ══ */}
+      <section style={{ backgroundColor: "#111111", padding: "80px 48px" }}>
+        <div style={{ maxWidth: 1100, margin: "0 auto" }}>
+          <div className="aof-ribbon">
+            <span style={{ color: "#000", fontWeight: 900, fontSize: 17, letterSpacing: 1 }}>Book A Call</span>
           </div>
-
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {[
-              { value: "1,000+", label: "Athletes Trained" },
-              { value: "10+", label: "Years Experience" },
-              { value: "50+", label: "Fight Camps Led" },
-              { value: "95%", label: "Client Retention" },
-            ].map(({ value, label }, i) => (
-              <Reveal key={i} delay={i * 80}>
-                <div
-                  className="rounded-xl p-5 text-center"
-                  style={{ backgroundColor: "rgba(255,255,255,0.04)", border: "1px solid #2a2a2a" }}
-                >
-                  <p style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: "1.8rem", color: "#07b4ba" }}>{value}</p>
-                  <p className="text-xs mt-1" style={{ color: "rgba(255,255,255,0.5)" }}>{label}</p>
+          <p style={{ fontSize: 13, color: "#888", fontWeight: 600, marginBottom: 18, letterSpacing: 0.5 }}>
+            Your Coach
+          </p>
+          <div
+            className="aof-two-col"
+            style={{ display: "flex", gap: 44, alignItems: "flex-start", flexWrap: "wrap" }}
+          >
+            <img
+              src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80"
+              alt="Head Coach"
+              style={{
+                width: 210,
+                height: 270,
+                objectFit: "cover",
+                borderRadius: 10,
+                flexShrink: 0,
+                display: "block",
+              }}
+            />
+            <div style={{ flex: 1 }}>
+              <h2 style={{ fontSize: 30, fontWeight: 900, marginBottom: 6 }}>Head Coach</h2>
+              <div style={{ width: 56, height: 2, background: "#00bcd4", marginBottom: 22 }} />
+              {coachCredentials.map((item, i) => (
+                <div key={i} className="aof-star-row">
+                  <span style={{ color: "#fff", fontSize: 15, flexShrink: 0 }}>★</span>
+                  <p style={{ color: "#ccc", fontSize: 14, lineHeight: 1.45 }}>{item}</p>
                 </div>
-              </Reveal>
-            ))}
+              ))}
+              <div style={{ display: "flex", gap: 14, flexWrap: "wrap", marginTop: 28 }}>
+                {stats.map((s, i) => (
+                  <div key={i} className="aof-stat-card">
+                    <h3 style={{ fontSize: 26, fontWeight: 900, color: "#00bcd4" }}>{s.val}</h3>
+                    <p style={{ fontSize: 12, color: "#888", marginTop: 4 }}>{s.label}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* SECTION 4 — TESTIMONIALS */}
-      <section className="py-20 px-6 md:px-12" style={{ backgroundColor: "#0f0f0f" }}>
-        <div className="max-w-6xl mx-auto">
+      {/* ══ SECTION 4 — TESTIMONIALS ══ */}
+      <section id="testimonials" style={{ backgroundColor: "#0f0f0f", padding: "80px 48px" }}>
+        <div style={{ maxWidth: 1100, margin: "0 auto" }}>
           <Reveal>
-            <div className="text-center mb-12">
-              <p className="text-sm uppercase tracking-widest mb-2" style={{ color: "#07b4ba" }}>Real People, Real Results</p>
-              <h2 style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: "clamp(2rem,5vw,3.5rem)", color: "#fff" }}>
-                Trusted By Fighters, <span style={{ color: "#07b4ba" }}>Proven Results</span>
+            <div style={{ textAlign: "center", marginBottom: 48 }}>
+              <p style={{ color: "#00bcd4", fontWeight: 700, fontSize: 14 }}>Real People , Real Results</p>
+              <h2 style={{ fontSize: "clamp(24px,4vw,40px)", fontWeight: 900, marginTop: 8 }}>
+                Trusted By Fighters,{" "}
+                <span style={{ color: "#00bcd4" }}>Proven Results</span>
               </h2>
-              <p className="text-sm mt-3" style={{ color: "rgba(255,255,255,0.45)" }}>
+              <p style={{ color: "#888", marginTop: 10, fontSize: 13 }}>
                 Here's What Athletes Say About Their Transformation With AOF
               </p>
             </div>
           </Reveal>
 
-          <div className="grid md:grid-cols-2 gap-10 items-center mb-14">
-            <Reveal delay={0}>
-              <div className="rounded-xl overflow-hidden" style={{ border: "1px solid #2a2a2a" }}>
-                <img
-                  src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?w=600&q=80"
-                  alt="Athlete"
-                  className="w-full object-cover object-top"
-                  style={{ height: "300px" }}
-                />
-              </div>
-            </Reveal>
-            <Reveal delay={150}>
-              <div>
-                <h3 style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: "clamp(1.6rem,3vw,2.5rem)", color: "#fff", lineHeight: 1.2 }}>
-                  AOF Changed The Way <span style={{ color: "#07b4ba" }}>I Train And Perform.</span>
-                </h3>
-                <p className="text-sm leading-relaxed mt-4" style={{ color: "rgba(255,255,255,0.65)" }}>
-                  The structure, the attention to detail, and the accountability took me to a level I never thought possible. I'm stronger, faster, and fight with more confidence than ever.
-                </p>
-              </div>
-            </Reveal>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-5">
-            {[
-              { name: "Arjun M.", role: "Amateur Fighter", text: "Best coaching decision I ever made. The personalised plan made all the difference — I finally feel like a real fighter." },
-              { name: "Syed K.", role: "Fitness Enthusiast", text: "AOF transformed how I train. The discipline, technique, and the family vibe all in one. Nothing comes close." },
-              { name: "Priya R.", role: "MMA Student", text: "As a beginner I was nervous, but the coach made it approachable and challenging at the same time. Incredible experience." },
-            ].map(({ name, role, text }, i) => (
-              <Reveal key={i} delay={i * 100}>
-                <div
-                  className="rounded-xl p-6"
-                  style={{ backgroundColor: "rgba(255,255,255,0.04)", border: "1px solid #2a2a2a" }}
+          <Reveal>
+            <div
+              className="aof-two-col"
+              style={{
+                display: "flex",
+                gap: 36,
+                alignItems: "flex-start",
+                marginBottom: 44,
+                flexWrap: "wrap",
+              }}
+            >
+              <img
+                className="aof-testi-img"
+                src="https://images.unsplash.com/photo-1552072092-7f9b8d63efcb?w=600&q=80"
+                alt="Featured athlete"
+                style={{ width: 340, borderRadius: 10, objectFit: "cover", flexShrink: 0, display: "block" }}
+              />
+              <div style={{ flex: 1 }}>
+                <h3
+                  style={{
+                    fontSize: "clamp(20px,3vw,32px)",
+                    fontWeight: 900,
+                    lineHeight: 1.2,
+                    marginBottom: 18,
+                  }}
                 >
-                  <p className="font-semibold text-sm mb-0.5" style={{ color: "#07b4ba" }}>{name}</p>
-                  <p className="text-xs mb-4" style={{ color: "rgba(255,255,255,0.35)" }}>{role}</p>
-                  <p className="text-sm leading-relaxed" style={{ color: "rgba(255,255,255,0.72)" }}>{text}</p>
+                  AOF Changed
+                  <br />
+                  The Way <span style={{ color: "#00bcd4" }}>I Train And Perform.</span>
+                </h3>
+                <p style={{ color: "#ccc", fontSize: 15, lineHeight: 1.68 }}>
+                  The structure, the attention to detail, and the accountability took me to a level I never thought
+                  possible. I'm stronger, faster, and fight with more confidence than ever.
+                </p>
+                <p style={{ marginTop: 14, color: "#00bcd4", fontWeight: 700 }}>— Alex M., Amateur MMA Fighter</p>
+              </div>
+            </div>
+          </Reveal>
+
+          <div style={{ display: "flex", gap: 16, flexWrap: "wrap" }}>
+            {feedbackCards.map((t, i) => (
+              <Reveal key={i}>
+                <div className="aof-feed-card">
+                  <p style={{ color: "#ccc", fontSize: 14, lineHeight: 1.6 }}>{t.text}</p>
+                  <p style={{ marginTop: 12, fontWeight: 700, color: "#fff", fontSize: 14 }}>{t.author}</p>
                 </div>
               </Reveal>
             ))}
@@ -384,88 +519,131 @@ const CoachingPage = () => {
         </div>
       </section>
 
-      {/* SECTION 5 — APPLY FORM */}
-      <section ref={formRef} className="py-20 px-6 md:px-12" style={{ backgroundColor: "#111111" }}>
-        <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-14 items-start">
-
-          <Reveal delay={0}>
-            <div>
-              <p className="text-xs uppercase tracking-widest mb-3" style={{ color: "#07b4ba" }}>Ready To Start?</p>
-              <h2 style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: "clamp(2rem,4vw,3rem)", color: "#fff", lineHeight: 1.1 }}>
-                Apply For Your<br />
-                <span style={{ color: "#07b4ba" }}>1-On-1 Coaching Spot</span>
-              </h2>
-              <p className="text-sm leading-relaxed mt-4 mb-8" style={{ color: "rgba(255,255,255,0.58)" }}>
-                Spots are limited. We only take on a small number of 1-on-1 students at a time to ensure every athlete gets the attention they deserve. Fill out the form and we'll reach out within 24 hours.
+      {/* ══ SECTION 5 — APPLY FORM ══ */}
+      <section style={{ backgroundColor: "#111111", padding: "80px 48px" }}>
+        <div
+          ref={formRef}
+          className="aof-two-col"
+          style={{
+            maxWidth: 1100,
+            margin: "0 auto",
+            display: "flex",
+            gap: 52,
+            alignItems: "flex-start",
+            flexWrap: "wrap",
+          }}
+        >
+          {/* Left */}
+          <div style={{ flex: 1, minWidth: 240 }}>
+            <Reveal>
+              <p style={{ color: "#00bcd4", fontSize: 12, fontWeight: 800, letterSpacing: 1, marginBottom: 10 }}>
+                READY TO START?
               </p>
-              <ul className="space-y-4 mb-10">
-                {[
-                  "No long-term contract — cancel anytime",
-                  "First session is a full assessment of your current level",
-                  "Custom roadmap built before your first training day",
-                  "Dedicated coach assigned to you from day one",
-                ].map((text, i) => (
-                  <li key={i} className="flex items-start gap-3">
-                    <CheckCircle className="w-5 h-5 shrink-0 mt-0.5" style={{ color: "#07b4ba" }} />
-                    <span className="text-sm" style={{ color: "rgba(255,255,255,0.72)" }}>{text}</span>
-                  </li>
-                ))}
-              </ul>
-              
-                href="https://wa.me/919999999999"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-3 px-6 py-3 rounded-lg font-semibold text-sm transition-opacity hover:opacity-90"
-                style={{ backgroundColor: "#25D366", color: "#fff", textDecoration: "none" }}
+              <h2
+                style={{
+                  fontSize: "clamp(26px,4vw,44px)",
+                  fontWeight: 900,
+                  lineHeight: 1.1,
+                  marginBottom: 18,
+                }}
               >
-                <WhatsAppIcon />
-                Contact Us on WhatsApp
-              </a>
-            </div>
-          </Reveal>
-
-          <Reveal delay={150}>
-            <div
-              className="rounded-2xl p-8"
-              style={{ backgroundColor: "#1a1a1a", border: "1px solid #2a2a2a" }}
-            >
-              <p className="font-semibold text-sm mb-6" style={{ color: "#07b4ba" }}>
-                Start Your Journey With AOF
+                APPLY FOR YOUR
+                <br />
+                <span style={{ color: "#00bcd4" }}>1-ON-1 COACHING SPOT</span>
+              </h2>
+              <p style={{ color: "#999", fontSize: 14, lineHeight: 1.65, marginBottom: 28, maxWidth: 360 }}>
+                Spots are limited. We only take on a small number of 1-on-1 students at a time to ensure every athlete
+                gets the attention they deserve. Fill out the form and we'll reach out within 24 hours.
               </p>
-              <div className="space-y-4">
-                {[
-                  { placeholder: "Full Name", type: "text" },
-                  { placeholder: "Phone Number", type: "tel" },
-                  { placeholder: "Main Goal", type: "text" },
-                ].map(({ placeholder, type }) => (
-                  <input
-                    key={placeholder}
-                    type={type}
-                    placeholder={placeholder}
-                    className="w-full px-4 py-3 rounded-lg text-sm focus:outline-none"
-                    style={{ backgroundColor: "rgba(255,255,255,0.07)", border: "1px solid #2a2a2a", color: "#fff" }}
-                  />
-                ))}
-                <input
-                  type="datetime-local"
-                  className="w-full px-4 py-3 rounded-lg text-sm focus:outline-none"
-                  style={{ backgroundColor: "rgba(255,255,255,0.07)", border: "1px solid #2a2a2a", color: "rgba(255,255,255,0.5)" }}
-                />
-                <button
-                  className="w-full py-3 rounded-lg text-sm font-semibold transition-opacity hover:opacity-90 mt-2"
-                  style={{ backgroundColor: "rgba(255,255,255,0.9)", color: "#000", fontFamily: "'Bebas Neue', sans-serif", letterSpacing: "0.1em" }}
-                >
-                  Submit
-                </button>
-              </div>
-            </div>
-          </Reveal>
+              {checklistItems.map((item, i) => (
+                <div key={i} className="aof-check-item">
+                  <span style={{ color: "#00bcd4", fontSize: 17, flexShrink: 0 }}>✓</span>
+                  <p style={{ color: "#ccc", fontSize: 14, lineHeight: 1.5 }}>{item}</p>
+                </div>
+              ))}
+              <button className="aof-whatsapp-btn">
+                <WhatsAppIcon />
+                Contact Us
+              </button>
+            </Reveal>
+          </div>
 
+          {/* Right — Form */}
+          <div style={{ flex: 1, minWidth: 280 }}>
+            <Reveal>
+              <div className="aof-form-box">
+                <h3 style={{ color: "#00bcd4", fontSize: 17, fontWeight: 800, marginBottom: 22 }}>
+                  Start Your Journey With AOF
+                </h3>
+                {submitted ? (
+                  <div style={{ textAlign: "center", padding: "40px 0" }}>
+                    <div style={{ fontSize: 48, marginBottom: 14 }}>✅</div>
+                    <h4 style={{ color: "#fff", fontSize: 19, marginBottom: 8 }}>Application Received!</h4>
+                    <p style={{ color: "#aaa", fontSize: 14 }}>We'll be in touch within 24 hours.</p>
+                  </div>
+                ) : (
+                  <>
+                    <input
+                      className="aof-input"
+                      type="text"
+                      name="name"
+                      placeholder="Full Name"
+                      value={form.name}
+                      onChange={handleInputChange}
+                    />
+                    <input
+                      className="aof-input"
+                      type="tel"
+                      name="phone"
+                      placeholder="Phone Number"
+                      value={form.phone}
+                      onChange={handleInputChange}
+                    />
+                    <select
+                      className="aof-select"
+                      name="goal"
+                      value={form.goal}
+                      onChange={handleSelectChange}
+                    >
+                      <option value="">Main Goal</option>
+                      <option value="technique">Improve Technique</option>
+                      <option value="competition">Competition Prep</option>
+                      <option value="fitness">Fitness &amp; Conditioning</option>
+                      <option value="beginner">Learn MMA from Scratch</option>
+                    </select>
+                    <select
+                      className="aof-select"
+                      name="time"
+                      value={form.time}
+                      onChange={handleSelectChange}
+                    >
+                      <option value="">Schedule A Time</option>
+                      <option value="morning">Morning (6am – 12pm)</option>
+                      <option value="afternoon">Afternoon (12pm – 5pm)</option>
+                      <option value="evening">Evening (5pm – 9pm)</option>
+                    </select>
+                    <button className="aof-submit" onClick={handleSubmit}>
+                      Submit
+                    </button>
+                  </>
+                )}
+              </div>
+            </Reveal>
+          </div>
         </div>
       </section>
 
+      {/* Footer */}
+      <footer
+        style={{
+          backgroundColor: "#0a0a0a",
+          borderTop: "1px solid #1e1e1e",
+          padding: "22px 48px",
+          textAlign: "center",
+        }}
+      >
+        <p style={{ color: "#444", fontSize: 13 }}>© 2025 AOF Academy. All rights reserved.</p>
+      </footer>
     </div>
   );
-};
-
-export default CoachingPage;
+}
