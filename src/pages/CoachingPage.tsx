@@ -291,7 +291,7 @@ export default function CoachingPage() {
     zIndex: 2,
     width: "100%",
     padding: "100px 0",
-    marginLeft: "60px"   // 🔥 LEFT ALIGN CONTROL
+    marginLeft: "0px"   // 🔥 LEFT ALIGN CONTROL
   }}>
     
     <div style={{ maxWidth: 520 }}>
@@ -331,7 +331,7 @@ export default function CoachingPage() {
       {/* BUTTONS */}
       <div style={{
         display: "flex",
-        gap: 0,
+        gap: 30,
         alignItems: "center"
       }}>
         <button
