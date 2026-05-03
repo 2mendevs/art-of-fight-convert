@@ -380,7 +380,7 @@ export default function CoachingPage() {
         >
           <div style={{ flex: "0 0 440px", maxWidth: "100%" }}>
             <img
-              src="https://images.unsplash.com/photo-1555597673-b21d5c935865?w=700&q=80"
+              src="/images/Problem.png"
               alt="MMA fighters"
               style={{ width: "100%", borderRadius: 10, objectFit: "cover", maxHeight: 320 }}
             />
@@ -422,7 +422,7 @@ export default function CoachingPage() {
           <div className="two-col" style={{ display: "flex", gap: 48, alignItems: "flex-start", flexWrap: "wrap" }}>
             <div style={{ flex: "0 0 420px", maxWidth: "100%" }}>
               <img
-                src="https://images.unsplash.com/photo-1483058712412-4245e9b90334?w=700&q=80"
+                src="/images/AOF_method.png"
                 alt="Boxing gloves"
                 style={{ width: "100%", borderRadius: 10, border: "1px solid #333" }}
               />
@@ -490,7 +490,7 @@ export default function CoachingPage() {
 
           <div className="two-col" style={{ display: "flex", gap: 48, alignItems: "flex-start", flexWrap: "wrap" }}>
             <img
-              src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80"
+              src="/images/Conor.png"
               alt="Head Coach"
               style={{ width: 220, height: 280, objectFit: "cover", borderRadius: 10, flexShrink: 0 }}
             />
@@ -536,7 +536,7 @@ export default function CoachingPage() {
           <Reveal>
             <div className="testimonial-main">
               <img
-                src="https://images.unsplash.com/photo-1552072092-7f9b8d63efcb?w=600&q=80"
+                src="/images/Testimonials.png"
                 alt="Featured athlete"
               />
               <div style={{ flex: 1 }}>
