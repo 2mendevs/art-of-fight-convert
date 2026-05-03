@@ -1,4 +1,4 @@
-import boxBg from "@/assets/Box.png";
+import boxBg from "@/images/CTA_BG";
 
 const CtaPairSection = () => {
   return (
