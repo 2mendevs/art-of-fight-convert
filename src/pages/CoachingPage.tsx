@@ -291,7 +291,7 @@ export default function CoachingPage() {
     zIndex: 2,
     width: "100%",
     padding: "100px 0",
-    marginLeft: "0px"   // 🔥 LEFT ALIGN CONTROL
+    marginLeft: "10px"   // 🔥 LEFT ALIGN CONTROL
   }}>
     
     <div style={{ maxWidth: 520 }}>
