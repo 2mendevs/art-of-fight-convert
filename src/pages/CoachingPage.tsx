@@ -410,16 +410,29 @@ export default function CoachingPage() {
           </div>
         </nav>
 
-        {/* ── SECTION 1: HERO ── */}
+{/* ── SECTION 1: HERO ── */}
 <section className="hero">
-  <div className="hero-bg" />
+  
+  {/* 🔥 CUSTOM BACKGROUND */}
+  <div
+    className="hero-bg"
+    style={{
+      background: `
+        linear-gradient(to right, #0a0a0a 35%, rgba(10,10,10,0.6) 60%, transparent 100%),
+        url("https://drive.google.com/uc?export=view&id=1CxBCfE_Kh9nBKWIPImAkd7Ujav_EU-mt") center right / cover no-repeat
+      `
+    }}
+  />
+
   <div className="hero-overlay" />
 
-  {/* 🔥 FIXED LEFT ALIGN */}
+  {/* 🔥 HARD LEFT ALIGN */}
   <div
     className="hero-content"
     style={{
-      marginLeft: "10px" // 🔥 LEFT ALIGN CONTROL
+      marginLeft: "0px",     // pushed fully left
+      paddingLeft: "40px",   // controlled gutter like Figma
+      maxWidth: "520px"      // keeps text tight
     }}
   >
     <Reveal>
