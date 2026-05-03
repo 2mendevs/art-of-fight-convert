@@ -579,55 +579,120 @@ export default function CoachingPage() {
           </div>
         </div>
 
-        {/* ── SECTION 3: YOUR COACH ── */}
-        <div className="coach-section">
-          <div className="book-banner">
-            <a href="#apply" onClick={(e) => { e.preventDefault(); scrollToForm(); }}>Book A Call</a>
-          </div>
-          <div className="section">
-            <Reveal>
-              <p style={{ fontSize: 13, color: "#aaa", fontWeight: 600, marginBottom: 24, letterSpacing: 1, textTransform: "uppercase" }}>
-                Your Coach
-              </p>
-              <div className="two-col">
-                <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
-                  <img
-                    className="coach-photo"
-                    src="/head-coach.jpg"
-                    alt="Head Coach"
-                    onError={(e) => { (e.target as HTMLImageElement).src = "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?w=400&q=80"; }}
-                  />
-                  <div className="stat-cards">
-                    {stats.map((s, i) => (
-                      <div className="stat-card" key={i}>
-                        <h3>{s.val}</h3>
-                        <p>{s.label}</p>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-                <div style={{ flex: 1 }}>
-                  <h2 style={{ fontSize: 32, fontWeight: 900, marginBottom: 8, color: "#fff" }}>Head Coach</h2>
-                  <div className="teal-divider" />
-                  {coachCredentials.map((item, i) => (
-                    <div className="coach-star-row" key={i}>
-                      <span className="star">★</span>
-                      <p>{item}</p>
-                    </div>
-                  ))}
-                  <button
-                    className="btn-primary"
-                    style={{ marginTop: 32 }}
-                    onClick={scrollToForm}
-                  >
-                    Train With This Coach
-                  </button>
-                </div>
-              </div>
-            </Reveal>
-          </div>
+      {/* ── SECTION 3: YOUR COACH ── */}
+<div className="coach-section">
+  <div className="book-banner">
+    <a href="#apply" onClick={(e) => { e.preventDefault(); scrollToForm(); }}>
+      Book A Call
+    </a>
+  </div>
+
+  <div className="section">
+    <Reveal>
+      <p style={{
+        fontSize: 13,
+        color: "#aaa",
+        fontWeight: 600,
+        marginBottom: 24,
+        letterSpacing: 1,
+        textTransform: "uppercase"
+      }}>
+        Your Coach
+      </p>
+
+      {/* MAIN ROW */}
+      <div style={{
+        display: "flex",
+        gap: 60,
+        alignItems: "flex-start",
+        flexWrap: "wrap"
+      }}>
+
+        {/* LEFT — IMAGE */}
+        <div>
+          <img
+            className="coach-photo"
+            src="/head-coach.jpg"
+            alt="Head Coach"
+            style={{
+              width: 260,
+              height: 320,
+              objectFit: "cover",
+              borderRadius: 12,
+              border: "1px solid rgba(255,255,255,0.1)"
+            }}
+            onError={(e) => {
+              (e.target as HTMLImageElement).src =
+                "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?w=400&q=80";
+            }}
+          />
         </div>
 
+        {/* RIGHT — CONTENT */}
+        <div style={{ flex: 1, minWidth: 280 }}>
+          <h2 style={{
+            fontSize: 34,
+            fontWeight: 900,
+            marginBottom: 10
+          }}>
+            Head Coach
+          </h2>
+
+          <div style={{
+            width: 60,
+            height: 2,
+            background: "#07b4ba",
+            marginBottom: 24
+          }} />
+
+          {coachCredentials.map((item, i) => (
+            <div key={i} style={{
+              display: "flex",
+              gap: 12,
+              marginBottom: 18
+            }}>
+              <span style={{ color: "#07b4ba" }}>★</span>
+              <p style={{
+                color: "#ccc",
+                fontSize: 14,
+                lineHeight: 1.6
+              }}>
+                {item}
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* STATS ROW (BOTTOM LIKE FIGMA) */}
+      <div style={{
+        display: "flex",
+        gap: 24,
+        marginTop: 40,
+        flexWrap: "wrap"
+      }}>
+        {stats.map((s, i) => (
+          <div key={i} style={{
+            flex: "1 1 180px",
+            background: "#d9d9d9",
+            borderRadius: 16,
+            padding: "28px 20px",
+            textAlign: "center"
+          }}>
+            <h3 style={{
+              color: "#07b4ba",
+              fontWeight: 900,
+              fontSize: 28
+            }}>
+              {s.val}
+            </h3>
+          </div>
+        ))}
+      </div>
+
+    </Reveal>
+  </div>
+</div>
        {/* ── SECTION 4: TESTIMONIALS ── */}
 <div id="testimonials" style={{ background: "#05070a" }}>
   <div className="section">
