@@ -1,10 +1,10 @@
 import React, { useEffect, useRef, useState, CSSProperties, ReactNode } from "react";
 import { useNavigate } from "react-router-dom";
- 
+
 /* ─── TYPES ─────────────────────────────────────────────────────────────────── */
 interface RevealProps { children: ReactNode; style?: CSSProperties; }
 interface FormState { name: string; phone: string; goal: string; time: string; }
- 
+
 /* ─── REVEAL ON SCROLL ───────────────────────────────────────────────────────── */
 function Reveal({ children, style = {} }: RevealProps) {
   const ref = useRef<HTMLDivElement>(null);
@@ -32,7 +32,7 @@ function Reveal({ children, style = {} }: RevealProps) {
     </div>
   );
 }
- 
+
 /* ─── ICONS ──────────────────────────────────────────────────────────────────── */
 const WhatsAppIcon = () => (
   <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
@@ -40,7 +40,7 @@ const WhatsAppIcon = () => (
     <path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.118 1.528 5.845L0 24l6.335-1.508A11.954 11.954 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.9 0-3.681-.513-5.21-1.408l-.374-.222-3.876.922.978-3.769-.244-.387A9.959 9.959 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/>
   </svg>
 );
- 
+
 /* ─── DATA ───────────────────────────────────────────────────────────────────── */
 const painPoints = [
   "You train 4–5 days a week but your technique isn't improving",
@@ -49,7 +49,7 @@ const painPoints = [
   "Coaches at your gym don't give you personal attention",
   "You don't know what to fix or where to even start",
 ];
- 
+
 const methodItems = [
   { icon: "🎯", title: "Personalised Fight Plan",    desc: "A roadmap built entirely around your body type, skill level, and competition goals." },
   { icon: "⚡", title: "High-Intensity Drilling",    desc: "Focused repetition drills that embed proper technique into muscle memory fast." },
@@ -57,7 +57,7 @@ const methodItems = [
   { icon: "👤", title: "1-on-1 Accountability",      desc: "Your coach tracks every session, reviews footage, and adjusts the plan in real time." },
   { icon: "🏆", title: "Competition Preparation",    desc: "Full camp-style peaking for tournaments — physically and mentally ready to win." },
 ];
- 
+
 const whatCards = [
   { icon: "📋", label: "Custom Training Plan" },
   { icon: "🎥", label: "Video Analysis" },
@@ -65,49 +65,49 @@ const whatCards = [
   { icon: "📊", label: "Progress Tracking" },
   { icon: "🥊", label: "Sparring Strategy" },
 ];
- 
+
 const coachCredentials = [
   "Former Professional MMA Fighter — 12+ Years Ring Experience",
   "Trained athletes who compete at national and international level",
   "Specialist in striking, grappling transitions and mental conditioning",
   "Coaches remotely across 3 continents with proven results",
 ];
- 
+
 const stats = [
   { val: "1,000+", label: "Athletes Coached" },
   { val: "10+",    label: "Years Experience" },
   { val: "50+",    label: "Champions Trained" },
   { val: "3",      label: "Continents" },
 ];
- 
+
 const feedbackCards = [
   { text: "In 8 weeks my footwork completely changed. My coach saw things I couldn't see myself and fixed them immediately.", author: "— Jordan K." },
   { text: "I was plateau'd for over a year. AOF broke that within the first month. The personalised approach is unlike anything else.", author: "— Priya S." },
   { text: "Best investment I've made in my fight career. The plan, the feedback, the accountability — it's all dialled in perfectly.", author: "— Carlos R." },
 ];
- 
+
 const checklistItems = [
   "Free 30-minute strategy call included",
   "No long-term contracts — cancel anytime",
   "Results guaranteed or coaching extended free",
   "Start within 48 hours of approval",
 ];
- 
+
 /* ─── STYLES ─────────────────────────────────────────────────────────────────── */
 const css = `
   @import url('https://fonts.googleapis.com/css2?family=Barlow:wght@400;600;700;800;900&family=Barlow+Condensed:wght@700;900&display=swap');
- 
+
   * { box-sizing: border-box; margin: 0; padding: 0; }
- 
+
   body { background: #0a0a0a; }
- 
+
   .coaching-page {
     background: #0a0a0a;
     font-family: 'Barlow', sans-serif;
     color: #fff;
     overflow-x: hidden;
   }
- 
+
   /* NAVBAR */
   .navbar {
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
@@ -134,7 +134,7 @@ const css = `
     border: none; cursor: pointer; transition: background 0.2s;
   }
   .book-btn:hover { background: #059a9f; }
- 
+
   /* HERO */
   .hero {
     position: relative; min-height: 100vh;
@@ -186,7 +186,7 @@ const css = `
     border: 2px solid #07b4ba; cursor: pointer; transition: all 0.2s;
   }
   .btn-outline:hover { background: rgba(7,180,186,0.1); }
- 
+
   /* TICKER */
   .ticker {
     position: relative; z-index: 2;
@@ -200,7 +200,7 @@ const css = `
     color: #000; font-weight: 800; font-size: 12px;
     text-transform: uppercase; letter-spacing: 1.5px;
   }
- 
+
   /* SOUNDS FAMILIAR */
   .section { max-width: 1100px; margin: 0 auto; padding: 80px 40px; }
   .two-col {
@@ -221,7 +221,7 @@ const css = `
   }
   .pain-x { color: #e53e3e; font-size: 18px; flex-shrink: 0; margin-top: 2px; }
   .pain-item p { color: rgba(255,255,255,0.65); font-size: 15px; line-height: 1.6; }
- 
+
   /* METHOD SECTION */
   .method-section { background: #0d0d0d; }
   .section-heading { text-align: center; margin-bottom: 56px; }
@@ -261,7 +261,7 @@ const css = `
     background: rgba(7,180,186,0.05); padding: 36px 40px;
     text-align: center; margin-top: 48px;
   }
- 
+
   /* COACH */
   .coach-section { background: #0a0a0a; }
   .book-banner {
@@ -288,7 +288,7 @@ const css = `
   }
   .stat-card h3 { color: #07b4ba; font-weight: 900; font-size: 24px; }
   .stat-card p { color: rgba(255,255,255,0.5); font-size: 11px; margin-top: 4px; text-transform: uppercase; letter-spacing: 0.5px; }
- 
+
   /* TESTIMONIALS */
   .testimonials-section { background: #0d0d0d; }
   .featured-testimonial {
@@ -316,7 +316,7 @@ const css = `
   .stars { color: #07b4ba; font-size: 14px; letter-spacing: 2px; margin-bottom: 12px; }
   .feedback-card p { color: rgba(255,255,255,0.65); font-size: 14px; line-height: 1.65; margin-bottom: 14px; }
   .feedback-card .author { color: #07b4ba; font-weight: 700; font-size: 13px; }
- 
+
   /* APPLY */
   .apply-section { background: #0a0a0a; }
   .form-section {
@@ -353,7 +353,7 @@ const css = `
     font-family: 'Barlow', sans-serif; transition: background 0.2s;
   }
   .submit-btn:hover { background: #07b4ba; color: #fff; }
- 
+
   /* FOOTER */
   .footer {
     background: #060606; border-top: 1px solid rgba(255,255,255,0.06);
@@ -362,10 +362,10 @@ const css = `
   }
   .footer-logo { color: #07b4ba; font-weight: 900; font-size: 20px; letter-spacing: 3px; }
   .footer p { color: rgba(255,255,255,0.3); font-size: 13px; }
- 
+
   /* DIVIDER */
   .teal-divider { width: 56px; height: 2px; background: #07b4ba; margin-bottom: 24px; }
- 
+
   @media (max-width: 700px) {
     .navbar { padding: 14px 20px; }
     .section { padding: 56px 20px; }
@@ -381,22 +381,22 @@ const css = `
     .form-section { padding: 28px 20px; }
   }
 `;
- 
+
 /* ─── PAGE COMPONENT ─────────────────────────────────────────────────────────── */
 export default function CoachingPage() {
   const navigate = useNavigate();
   const formRef = useRef<HTMLDivElement>(null);
   const [form, setForm] = useState<FormState>({ name: "", phone: "", goal: "", time: "" });
   const [submitted, setSubmitted] = useState(false);
- 
+
   const scrollToForm = () => formRef.current?.scrollIntoView({ behavior: "smooth" });
   const handleSubmit = () => { if (form.name && form.phone) setSubmitted(true); };
- 
+
   return (
     <>
       <style>{css}</style>
       <div className="coaching-page">
- 
+
         {/* ── NAVBAR ── */}
         <nav className="navbar">
           <span className="navbar-logo">AOF</span>
@@ -409,106 +409,34 @@ export default function CoachingPage() {
             </button>
           </div>
         </nav>
- 
-      {/* SECTION 1 — HERO */}
-<section style={{
-  position: "relative",
-  minHeight: "92vh",
-  display: "flex",
-  alignItems: "center",
-  overflow: "hidden"
-}}>
-  
-  {/* BACKGROUND */}
-  <div style={{
-    position: "absolute",
-    inset: 0,
-    background: `
-      linear-gradient(to right, rgba(0,0,0,0.95) 38%, rgba(0,0,0,0.6) 65%, rgba(0,0,0,0.2) 100%),
-      url('https://images.unsplash.com/photo-1549476464-37392f717541?w=1600&q=80') center/cover no-repeat
-    `
-  }} />
 
-  {/* CONTENT */}
-  <div style={{
-    position: "relative",
-    zIndex: 2,
-    width: "100%",
-    padding: "100px 0",
-    marginLeft: "15px"   // 🔥 LEFT ALIGN CONTROL
-  }}>
-    
-    <div style={{ maxWidth: 520 }}>
-      
-      {/* TAG */}
-      <p style={{
-        color: "#07b4ba",
-        fontSize: 16,
-        fontWeight: 600,
-        marginBottom: 18
-      }}>
-        AOF Academy–1 On 1 Coaching
-      </p>
+        {/* ── SECTION 1: HERO ── */}
+        <section className="hero">
+          <div className="hero-bg" />
+          <div className="hero-overlay" />
+          <div className="hero-content">
+            <Reveal>
+              <p className="hero-tag">AOF Academy – 1 On 1 Coaching</p>
+              <h1 className="hero-headline">
+                Train Like A<br />
+                <span>Champion.</span><br />
+                Fight Like One
+              </h1>
+              <p className="hero-desc">
+                Stop training in the crowd. Get a personalized coaching program built around your body, your goals, and your timeline — guided by coaches who have been in the ring.
+              </p>
+              <div className="hero-btns">
+                <button className="btn-primary" onClick={scrollToForm}>Book A Call</button>
+                <button
+                  className="btn-outline"
+                  onClick={() => document.getElementById("testimonials")?.scrollIntoView({ behavior: "smooth" })}
+                >
+                  See Results
+                </button>
+              </div>
+            </Reveal>
+          </div>
 
-      {/* HEADLINE */}
-      <h1 style={{
-        fontSize: "clamp(44px,6vw,76px)",
-        fontWeight: 900,
-        lineHeight: 1.05,
-        marginBottom: 24
-      }}>
-        TRAIN LIKE A <br />
-        <span style={{ color: "#07b4ba" }}>CHAMPION.</span><br />
-        FIGHT LIKE ONE
-      </h1>
-
-      {/* DESCRIPTION */}
-      <p style={{
-        fontSize: 17,
-        color: "#ddd",
-        lineHeight: 1.7,
-        marginBottom: 36
-      }}>
-        Stop training in the crowd. Get a personalized coaching program built around your body, your goals, and your timeline — guided by coaches who have been in the ring.
-      </p>
-
-      {/* BUTTONS */}
-      <div style={{
-        display: "flex",
-        gap: 18,
-        alignItems: "center"
-      }}>
-        <button
-          className="btn-teal"
-          onClick={scrollToForm}
-          style={{
-            padding: "16px 34px",
-            borderRadius: 8,
-            fontSize: 16
-          }}
-        >
-          Book A Call
-        </button>
-
-        <button
-          className="btn-outline"
-          onClick={() =>
-            document.getElementById("testimonials")?.scrollIntoView({ behavior: "smooth" })
-          }
-          style={{
-            padding: "16px 34px",
-            borderRadius: 8,
-            fontSize: 16
-          }}
-        >
-          See Results
-        </button>
-      </div>
-
-    </div>
-  </div>
-</section>
- 
           {/* Feature Ticker */}
           <div className="ticker">
             {[
@@ -523,7 +451,7 @@ export default function CoachingPage() {
             ))}
           </div>
         </section>
- 
+
         {/* ── SOUNDS FAMILIAR ── */}
         <div style={{ background: "#111" }}>
           <div className="section">
@@ -550,7 +478,7 @@ export default function CoachingPage() {
             </Reveal>
           </div>
         </div>
- 
+
         {/* ── SECTION 2: AOF METHOD ── */}
         <div className="method-section">
           <div className="section">
@@ -562,7 +490,7 @@ export default function CoachingPage() {
                 <div className="divider" />
               </div>
             </Reveal>
- 
+
             <div className="two-col">
               <div style={{ flex: "0 0 420px", maxWidth: "100%" }}>
                 <img
@@ -586,7 +514,7 @@ export default function CoachingPage() {
                 ))}
               </div>
             </div>
- 
+
             {/* What You Get */}
             <Reveal style={{ marginTop: 56 }}>
               <h3 style={{ textAlign: "center", fontSize: 22, fontWeight: 800, marginBottom: 28, color: "#fff" }}>
@@ -601,7 +529,7 @@ export default function CoachingPage() {
                 ))}
               </div>
             </Reveal>
- 
+
             {/* Our Promise */}
             <Reveal>
               <div className="promise-box">
@@ -613,7 +541,7 @@ export default function CoachingPage() {
             </Reveal>
           </div>
         </div>
- 
+
         {/* ── SECTION 3: YOUR COACH ── */}
         <div className="coach-section">
           <div className="book-banner">
@@ -662,7 +590,7 @@ export default function CoachingPage() {
             </Reveal>
           </div>
         </div>
- 
+
         {/* ── SECTION 4: TESTIMONIALS ── */}
         <div className="testimonials-section" id="testimonials">
           <div className="section">
@@ -676,118 +604,49 @@ export default function CoachingPage() {
                 <div className="divider" />
               </div>
             </Reveal>
- 
-           // KEEP EVERYTHING ABOVE SAME — no changes until testimonials section
 
-{/* SECTION 4 — TESTIMONIALS */}
-<section id="testimonials" style={{ backgroundColor: "#05070a", padding: "100px 48px" }}>
-  <div style={{ maxWidth: 1100, margin: "0 auto" }}>
+            {/* Featured Testimonial */}
+            <Reveal>
+              <div className="featured-testimonial">
+                <img
+                  src="/testimonial-fighter.jpg"
+                  alt="Testimonial Fighter"
+                  onError={(e) => { (e.target as HTMLImageElement).src = "https://images.unsplash.com/photo-1555597673-b21d5c935865?w=600&q=80"; }}
+                />
+                <div className="featured-quote">
+                  <h3>
+                    AOF Changed<br />
+                    The Way <span>I Train And Perform.</span>
+                  </h3>
+                  <div style={{ width: 48, height: 2, background: "#07b4ba", margin: "16px 0" }} />
+                  <p style={{ color: "rgba(255,255,255,0.6)", fontSize: 15, lineHeight: 1.7, maxWidth: 480 }}>
+                    The structure, the attention to detail, and the accountability took me to a level I never thought possible. I'm stronger, faster, and fight with more confidence than ever.
+                  </p>
+                  <p style={{ color: "#07b4ba", fontWeight: 700, fontSize: 14, marginTop: 16 }}>— AOF Athlete</p>
+                </div>
+              </div>
+            </Reveal>
 
-    {/* HEADER */}
-    <div style={{ textAlign: "center", marginBottom: 60 }}>
-      <p style={{ color: "#07b4ba", fontWeight: 700, fontSize: 16 }}>
-        Real People , Real Results
-      </p>
-
-      <h2 style={{
-        fontSize: "clamp(32px,4vw,46px)",
-        fontWeight: 900,
-        marginTop: 10,
-        color: "#fff"
-      }}>
-        Trusted By Fighters,{" "}
-        <span style={{ color: "#07b4ba" }}>Proven Results</span>
-      </h2>
-
-      <p style={{ color: "#aaa", marginTop: 10, fontSize: 14 }}>
-        Here’s What Athletes Say About Their Transformation With AOF
-      </p>
-    </div>
-
-    {/* MAIN TESTIMONIAL */}
-    <div style={{
-      display: "flex",
-      gap: 40,
-      alignItems: "center",
-      marginBottom: 60,
-      flexWrap: "wrap"
-    }}>
-      
-      {/* LEFT IMAGE */}
-      <div style={{ flex: "0 0 420px", maxWidth: "100%" }}>
-        <img
-          src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?w=800&q=80"
-          alt="fighter"
-          style={{
-            width: "100%",
-            borderRadius: 4,
-            objectFit: "cover"
-          }}
-        />
-      </div>
-
-      {/* RIGHT CONTENT */}
-      <div style={{ flex: 1, minWidth: 280 }}>
-        <h3 style={{
-          fontSize: "clamp(26px,3vw,38px)",
-          fontWeight: 900,
-          lineHeight: 1.3,
-          marginBottom: 20,
-          color: "#fff"
-        }}>
-          AOF Changed <br />
-          The Way{" "}
-          <span style={{ color: "#07b4ba" }}>
-            I Train And Perform.
-          </span>
-        </h3>
-
-        <p style={{
-          color: "#ccc",
-          fontSize: 15,
-          lineHeight: 1.7,
-          maxWidth: 480
-        }}>
-          The structure, the attention to detail, and the accountability
-          took me to a level I never thought possible. I'm stronger,
-          faster, and fight with more confidence than ever.
-        </p>
-      </div>
-    </div>
-
-    {/* FEEDBACK CARDS */}
-    <div style={{
-      display: "flex",
-      gap: 24,
-      flexWrap: "wrap"
-    }}>
-      {feedbackCards.map((item, i) => (
-        <div key={i} style={{
-          flex: "1 1 300px",
-          background: "#d9d9d9",
-          borderRadius: 20,
-          padding: "50px 20px",
-          textAlign: "center"
-        }}>
-          <p style={{
-            color: "#07b4ba",
-            fontWeight: 700,
-            fontSize: 18
-          }}>
-            Feedback
-          </p>
+            {/* Feedback Cards */}
+            <div className="feedback-cards">
+              {feedbackCards.map(({ text, author }, i) => (
+                <Reveal key={i}>
+                  <div className="feedback-card">
+                    <div className="stars">★★★★★</div>
+                    <p>"{text}"</p>
+                    <p className="author">{author}</p>
+                  </div>
+                </Reveal>
+              ))}
+            </div>
+          </div>
         </div>
-      ))}
-    </div>
 
-  </div>
-</section>
- 
         {/* ── SECTION 5: APPLY FORM ── */}
         <div className="apply-section" id="apply" ref={formRef}>
           <div className="section">
             <div className="two-col" style={{ alignItems: "flex-start" }}>
- 
+
               {/* Left */}
               <div style={{ flex: 1, minWidth: 260 }}>
                 <Reveal>
@@ -813,7 +672,7 @@ export default function CoachingPage() {
                   </button>
                 </Reveal>
               </div>
- 
+
               {/* Right — Form */}
               <div style={{ flex: 1, minWidth: 300 }}>
                 <Reveal>
@@ -871,15 +730,14 @@ export default function CoachingPage() {
             </div>
           </div>
         </div>
- 
+
         {/* ── FOOTER ── */}
         <footer className="footer">
           <span className="footer-logo">AOF</span>
           <p>© {new Date().getFullYear()} Art of Fight. All rights reserved.</p>
         </footer>
- 
+
       </div>
     </>
   );
 }
- 
