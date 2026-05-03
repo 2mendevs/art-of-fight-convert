@@ -516,69 +516,158 @@ export default function CoachingPage() {
           </div>
         </div>
 
-        {/* ── SECTION 2: AOF METHOD ── */}
-        <div className="method-section">
-          <div className="section">
-            <Reveal>
-              <div className="section-heading">
-                <p className="label">The AOF Method</p>
-                <h2>A Proven System.</h2>
-                <h2 className="teal">Real Transformation.</h2>
-                <div className="divider" />
-              </div>
-            </Reveal>
+{/* ── SECTION 2: AOF METHOD ── */}
+<div className="method-section">
+  <div className="section" style={{ padding: "60px 40px" }}>
 
-            <div className="two-col">
-              <div style={{ flex: "0 0 420px", maxWidth: "100%" }}>
-                <img
-                  src="/boxing-gloves.jpg"
-                  alt="Boxing gloves"
-                  style={{ width: "100%", borderRadius: 10, border: "1px solid #333" }}
-                  onError={(e) => { (e.target as HTMLImageElement).src = "https://images.unsplash.com/photo-1578496781985-452d4a934d50?w=700&q=80"; }}
-                />
+    {/* HEADER */}
+    <Reveal>
+      <div style={{ textAlign: "center", marginBottom: 30 }}>
+        <p style={{ color: "#07b4ba", fontWeight: 700, fontSize: 15 }}>
+          The AOF Method
+        </p>
+
+        <h2 style={{ fontSize: "clamp(28px,4vw,42px)", fontWeight: 900 }}>
+          A Proven System.
+        </h2>
+
+        <h2 style={{ fontSize: "clamp(28px,4vw,42px)", fontWeight: 900, color: "#07b4ba" }}>
+          Real Transformation.
+        </h2>
+
+        <div style={{
+          width: 60,
+          height: 2,
+          background: "#07b4ba",
+          margin: "16px auto"
+        }} />
+      </div>
+    </Reveal>
+
+    {/* CONTENT */}
+    <div style={{
+      display: "flex",
+      gap: 50,
+      alignItems: "center",
+      flexWrap: "wrap"
+    }}>
+
+      {/* LEFT IMAGE */}
+      <div style={{ flex: "0 0 420px", maxWidth: "100%" }}>
+        <img
+          src="/boxing-gloves.jpg"
+          alt="Boxing gloves"
+          style={{
+            width: "100%",
+            borderRadius: 10,
+            border: "1px solid #333"
+          }}
+        />
+      </div>
+
+      {/* RIGHT BULLETS (CLEAN STYLE) */}
+      <div style={{ flex: 1, minWidth: 260 }}>
+        {methodItems.map((item, i) => (
+          <Reveal key={i}>
+            <div style={{
+              display: "flex",
+              alignItems: "center",
+              gap: 16,
+              marginBottom: 16
+            }}>
+
+              {/* ICON */}
+              <div style={{
+                color: "#07b4ba",
+                fontSize: 18,
+                width: 28
+              }}>
+                {item.icon}
               </div>
-              <div style={{ flex: 1, minWidth: 260 }}>
-                {methodItems.map((item, i) => (
-                  <Reveal key={i}>
-                    <div className="method-item">
-                      <div className="method-icon">{item.icon}</div>
-                      <div>
-                        <h4 style={{ fontWeight: 700, fontSize: 16, marginBottom: 4, color: "#fff" }}>{item.title}</h4>
-                        <p style={{ color: "#aaa", fontSize: 14, lineHeight: 1.55 }}>{item.desc}</p>
-                      </div>
-                    </div>
-                  </Reveal>
-                ))}
-              </div>
+
+              {/* SINGLE LINE TEXT */}
+              <p style={{
+                color: "#ccc",
+                fontSize: 14,
+                lineHeight: 1.6
+              }}>
+                {item.desc}
+              </p>
+
             </div>
+          </Reveal>
+        ))}
+      </div>
+    </div>
 
-            {/* What You Get */}
-            <Reveal style={{ marginTop: 56 }}>
-              <h3 style={{ textAlign: "center", fontSize: 22, fontWeight: 800, marginBottom: 28, color: "#fff" }}>
-                What You Get
-              </h3>
-              <div className="what-cards">
-                {whatCards.map((c, i) => (
-                  <div className="what-card" key={i}>
-                    <div className="icon">{c.icon}</div>
-                    <h4>{c.label}</h4>
-                  </div>
-                ))}
-              </div>
-            </Reveal>
+    {/* WHAT YOU GET */}
+    <Reveal>
+      <div style={{ marginTop: 40 }}>
+        <h3 style={{
+          textAlign: "center",
+          fontSize: 20,
+          fontWeight: 800,
+          marginBottom: 20
+        }}>
+          What You Get
+        </h3>
 
-            {/* Our Promise */}
-            <Reveal>
-              <div className="promise-box">
-                <h4 style={{ color: "#07b4ba", fontWeight: 800, fontSize: 17, marginBottom: 10 }}>Our Promise</h4>
-                <p style={{ color: "#ddd", fontSize: 15, lineHeight: 1.65 }}>
-                  If you follow the program and don't see measurable improvement in your first 30 days, we'll extend your coaching at no extra cost. We succeed when you succeed — that's not a slogan, it's our commitment.
-                </p>
-              </div>
-            </Reveal>
-          </div>
+        <div style={{
+          display: "flex",
+          gap: 14,
+          flexWrap: "wrap",
+          justifyContent: "center"
+        }}>
+          {whatCards.map((c, i) => (
+            <div key={i} style={{
+              width: 140,
+              height: 140,
+              borderRadius: 16,
+              background: "#2a2a2a",
+              border: "2px solid #07b4ba",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center"
+            }}>
+              {/* empty box like your design */}
+            </div>
+          ))}
         </div>
+      </div>
+    </Reveal>
 
+    {/* PROMISE */}
+    <Reveal>
+      <div style={{
+        marginTop: 40,
+        background: "#07b4ba",
+        borderRadius: 14,
+        padding: "28px",
+        textAlign: "center",
+        maxWidth: 700,
+        marginInline: "auto"
+      }}>
+        <h4 style={{
+          color: "#000",
+          fontWeight: 800,
+          marginBottom: 10
+        }}>
+          Our Promise
+        </h4>
+
+        <p style={{
+          color: "#000",
+          fontSize: 14,
+          lineHeight: 1.6
+        }}>
+          If you follow the program and don’t see measurable improvement in your first 30 days,
+          we’ll extend your coaching at no extra cost.
+        </p>
+      </div>
+    </Reveal>
+
+  </div>
+</div>
       {/* ── SECTION 3: YOUR COACH ── */}
 <div className="coach-section">
   <div className="book-banner">
