@@ -432,7 +432,7 @@ export default function CoachingPage() {
     style={{
       marginLeft: "0px",     // pushed fully left
       paddingLeft: "15px",   // controlled gutter like Figma
-      maxWidth: "520px"      // keeps text tight
+      maxWidth: "800px"      // keeps text tight
     }}
   >
     <Reveal>
