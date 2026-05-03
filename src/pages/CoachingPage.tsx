@@ -518,42 +518,42 @@ export default function CoachingPage() {
 
 {/* ── SECTION 2: AOF METHOD ── */}
 <div className="method-section">
-  <div className="section" style={{ padding: "60px 40px" }}>
+  <div className="section" style={{ padding: "50px 40px" }}> {/* 🔥 reduced height */}
 
     {/* HEADER */}
     <Reveal>
-      <div style={{ textAlign: "center", marginBottom: 30 }}>
-        <p style={{ color: "#07b4ba", fontWeight: 700, fontSize: 15 }}>
+      <div style={{ textAlign: "center", marginBottom: 24 }}>
+        <p style={{ color: "#07b4ba", fontWeight: 700, fontSize: 14 }}>
           The AOF Method
         </p>
 
-        <h2 style={{ fontSize: "clamp(28px,4vw,42px)", fontWeight: 900 }}>
+        <h2 style={{ fontSize: "clamp(26px,4vw,38px)", fontWeight: 900 }}>
           A Proven System.
         </h2>
 
-        <h2 style={{ fontSize: "clamp(28px,4vw,42px)", fontWeight: 900, color: "#07b4ba" }}>
+        <h2 style={{ fontSize: "clamp(26px,4vw,38px)", fontWeight: 900, color: "#07b4ba" }}>
           Real Transformation.
         </h2>
 
         <div style={{
-          width: 60,
+          width: 50,
           height: 2,
           background: "#07b4ba",
-          margin: "16px auto"
+          margin: "12px auto"
         }} />
       </div>
     </Reveal>
 
-    {/* CONTENT */}
+    {/* MAIN CONTENT */}
     <div style={{
       display: "flex",
-      gap: 50,
+      gap: 40,
       alignItems: "center",
       flexWrap: "wrap"
     }}>
 
-      {/* LEFT IMAGE */}
-      <div style={{ flex: "0 0 420px", maxWidth: "100%" }}>
+      {/* IMAGE */}
+      <div style={{ flex: "0 0 380px", maxWidth: "100%" }}>
         <img
           src="/boxing-gloves.jpg"
           alt="Boxing gloves"
@@ -565,49 +565,41 @@ export default function CoachingPage() {
         />
       </div>
 
-      {/* RIGHT BULLETS (CLEAN STYLE) */}
+      {/* BULLETS */}
       <div style={{ flex: 1, minWidth: 260 }}>
         {methodItems.map((item, i) => (
           <Reveal key={i}>
             <div style={{
               display: "flex",
               alignItems: "center",
-              gap: 16,
-              marginBottom: 16
+              gap: 14,
+              marginBottom: 14
             }}>
-
-              {/* ICON */}
-              <div style={{
-                color: "#07b4ba",
-                fontSize: 18,
-                width: 28
-              }}>
+              <div style={{ color: "#07b4ba", fontSize: 18 }}>
                 {item.icon}
               </div>
 
-              {/* SINGLE LINE TEXT */}
               <p style={{
                 color: "#ccc",
                 fontSize: 14,
-                lineHeight: 1.6
+                lineHeight: 1.5
               }}>
                 {item.desc}
               </p>
-
             </div>
           </Reveal>
         ))}
       </div>
     </div>
 
-    {/* WHAT YOU GET */}
+    {/* WHAT YOU GET (MMA CARDS) */}
     <Reveal>
-      <div style={{ marginTop: 40 }}>
+      <div style={{ marginTop: 30 }}>
         <h3 style={{
           textAlign: "center",
-          fontSize: 20,
+          fontSize: 18,
           fontWeight: 800,
-          marginBottom: 20
+          marginBottom: 18
         }}>
           What You Get
         </h3>
@@ -618,20 +610,41 @@ export default function CoachingPage() {
           flexWrap: "wrap",
           justifyContent: "center"
         }}>
-          {whatCards.map((c, i) => (
+
+          {[
+            { title: "Fight IQ", desc: "Smarter decisions inside the cage" },
+            { title: "Striking", desc: "Precision & knockout setups" },
+            { title: "Grappling", desc: "Control, escapes & submissions" },
+            { title: "Conditioning", desc: "Elite stamina for all rounds" },
+            { title: "Game Plan", desc: "Opponent-specific strategies" }
+          ].map((card, i) => (
             <div key={i} style={{
-              width: 140,
-              height: 140,
-              borderRadius: 16,
+              width: 150,
+              padding: "16px 12px",
+              borderRadius: 14,
               background: "#2a2a2a",
               border: "2px solid #07b4ba",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center"
+              textAlign: "center"
             }}>
-              {/* empty box like your design */}
+              <h4 style={{
+                color: "#07b4ba",
+                fontSize: 14,
+                fontWeight: 800,
+                marginBottom: 6
+              }}>
+                {card.title}
+              </h4>
+
+              <p style={{
+                color: "#ccc",
+                fontSize: 12,
+                lineHeight: 1.4
+              }}>
+                {card.desc}
+              </p>
             </div>
           ))}
+
         </div>
       </div>
     </Reveal>
@@ -639,29 +652,28 @@ export default function CoachingPage() {
     {/* PROMISE */}
     <Reveal>
       <div style={{
-        marginTop: 40,
+        marginTop: 28,
         background: "#07b4ba",
-        borderRadius: 14,
-        padding: "28px",
+        borderRadius: 12,
+        padding: "20px",
         textAlign: "center",
-        maxWidth: 700,
+        maxWidth: 600,
         marginInline: "auto"
       }}>
         <h4 style={{
           color: "#000",
           fontWeight: 800,
-          marginBottom: 10
+          marginBottom: 6
         }}>
           Our Promise
         </h4>
 
         <p style={{
           color: "#000",
-          fontSize: 14,
-          lineHeight: 1.6
+          fontSize: 13,
+          lineHeight: 1.5
         }}>
-          If you follow the program and don’t see measurable improvement in your first 30 days,
-          we’ll extend your coaching at no extra cost.
+          Follow the system for 30 days. If you don’t improve, we extend your coaching — free.
         </p>
       </div>
     </Reveal>
