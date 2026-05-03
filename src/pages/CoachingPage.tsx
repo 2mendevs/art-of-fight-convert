@@ -117,10 +117,18 @@ const FontLoader = () => (
     .coach-star-row .star { color: #07b4ba; font-size: 16px; flex-shrink: 0; }
     .coach-star-row p { color: #ccc; font-size: 15px; line-height: 1.45; }
 
+    .back-link {
+      color: #ccc; font-size: 15px; display: flex; align-items: center;
+      gap: 8px; text-decoration: none;
+    }
+    .back-link:hover { color: #fff; }
+
     @media (max-width: 768px) {
       .testimonial-main { flex-direction: column; }
       .testimonial-main img { width: 100%; }
       .two-col { flex-direction: column; }
+      nav { padding: 16px 20px !important; }
+      section { padding: 60px 20px !important; }
     }
   `}</style>
 );
@@ -155,6 +163,12 @@ function Reveal({ children, style = {} }: RevealProps) {
     </div>
   );
 }
+
+const ArrowLeftIcon = () => (
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M19 12H5M12 5l-7 7 7 7" />
+  </svg>
+);
 
 const WhatsAppIcon = () => (
   <svg width="22" height="22" fill="currentColor" viewBox="0 0 24 24">
@@ -238,11 +252,9 @@ export default function CoachingPage() {
       }}>
         <span style={{ fontSize: 22, fontWeight: 900, color: "#07b4ba", letterSpacing: 1 }}>AOF</span>
         <div style={{ display: "flex", alignItems: "center", gap: 24 }}>
-          
-            href="/"
-            style={{ color: "#ccc", fontSize: 15, display: "flex", alignItems: "center", gap: 8, textDecoration: "none" }}
-          >
-            <span style={{ fontSize: 18 }}>←</span> Back To Home
+          <a href="/" className="back-link">
+            <ArrowLeftIcon />
+            Back To Home
           </a>
           <button
             className="btn-teal"
@@ -616,7 +628,7 @@ export default function CoachingPage() {
 
       {/* FOOTER */}
       <footer style={{ backgroundColor: "#0a0a0a", borderTop: "1px solid #1e1e1e", padding: "24px 48px", textAlign: "center" }}>
-        <p style={{ color: "#555", fontSize: 13 }}>© 2025 AOF Academy. All rights reserved.</p>
+        <p style={{ color: "#555", fontSize: 13 }}>2025 AOF Academy. All rights reserved.</p>
       </footer>
     </div>
   );
