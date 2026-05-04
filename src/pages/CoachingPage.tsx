@@ -95,7 +95,7 @@ const checklistItems = [
 
 /* ─── STYLES ─────────────────────────────────────────────────────────────────── */
 const css = `
-  @import url('https://fonts.googleapis.com/css2?family=Barlow:wght@400;600;700;800;900&family=Barlow+Condensed:wght@700;900&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Barlow:wght@400;600;700&display=swap');
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -153,17 +153,22 @@ const css = `
     position: relative; z-index: 2;
     max-width: 1100px; margin: 0 auto; width: 100%;
     padding: 140px 40px 60px;
-  }
   .hero-tag {
-    color: #07b4ba; font-size: 13px; font-weight: 700;
-    text-transform: uppercase; letter-spacing: 2px; margin-bottom: 16px;
-  }
+  font-family: 'Barlow', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #07b4ba;
+}
   .hero-headline {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: clamp(48px, 7vw, 88px);
-    font-weight: 900; line-height: 0.95;
-    text-transform: uppercase; margin-bottom: 24px;
-  }
+  font-family: 'Oswald', sans-serif; /* 🔥 MATCHES YOUR IMAGE */
+  font-size: clamp(56px, 7vw, 96px);
+  font-weight: 700;
+  line-height: 0.9;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
   .hero-headline span { color: #07b4ba; }
   .hero-desc {
     color: rgba(255,255,255,0.65); font-size: 16px;
