@@ -597,15 +597,20 @@ export default function CoachingPage() {
           ),
         },
         {
-          title: "Nutrition Guidance",
-          desc: "Simple, effective nutrition advice to support performance, recovery, and body composition",
-          icon: (
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#07b4ba" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M12 2a7 7 0 0 1 7 7c0 5-7 13-7 13S5 14 5 9a7 7 0 0 1 7-7z" />
-              <circle cx="12" cy="9" r="2.5" />
-            </svg>
-          ),
-        },
+  title: "Nutrition Guidance",
+  desc: "Simple, effective nutrition advice to support performance, recovery, and body composition",
+  icon: (
+    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#07b4ba" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M12 2c0 0-1 3-1 6s1 5 1 5" />
+      <path d="M12 13c0 0 1-2 1-5s-1-6-1-6" />
+      <path d="M12 6c0 0-3-1-5 1s-2 5-2 5" />
+      <path d="M12 6c0 0 3-1 5 1s2 5 2 5" />
+      <path d="M12 10c0 0-3 1-4 3s0 4 0 4" />
+      <path d="M12 10c0 0 3 1 4 3s0 4 0 4" />
+      <line x1="12" y1="2" x2="12" y2="22" />
+    </svg>
+  ),
+},
         {
           title: "Progress Tracking",
           desc: "We track your progress, adjust the plan and keep you moving in the right direction",
