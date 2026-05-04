@@ -601,13 +601,17 @@ export default function CoachingPage() {
   desc: "Simple, effective nutrition advice to support performance, recovery, and body composition",
   icon: (
     <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#07b4ba" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M12 2c0 0-1 3-1 6s1 5 1 5" />
-      <path d="M12 13c0 0 1-2 1-5s-1-6-1-6" />
-      <path d="M12 6c0 0-3-1-5 1s-2 5-2 5" />
-      <path d="M12 6c0 0 3-1 5 1s2 5 2 5" />
-      <path d="M12 10c0 0-3 1-4 3s0 4 0 4" />
-      <path d="M12 10c0 0 3 1 4 3s0 4 0 4" />
-      <line x1="12" y1="2" x2="12" y2="22" />
+      {/* Left leaf */}
+      <path d="M12 20 C12 20 4 16 4 9 C4 9 8 6 12 10" />
+      <path d="M12 10 C12 10 8 5 12 2 C12 2 16 5 12 10" />
+      {/* Right leaf */}
+      <path d="M12 20 C12 20 20 16 20 9 C20 9 16 6 12 10" />
+      {/* Center stem */}
+      <path d="M12 20 C12 20 12 14 12 10" />
+      {/* Left leaf vein */}
+      <path d="M8 10 C9 11 11 12 12 14" strokeWidth="1" opacity="0.6" />
+      {/* Right leaf vein */}
+      <path d="M16 10 C15 11 13 12 12 14" strokeWidth="1" opacity="0.6" />
     </svg>
   ),
 },
