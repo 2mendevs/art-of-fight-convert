@@ -564,40 +564,108 @@ export default function CoachingPage() {
       </div>
     </div>
 
-    {/* WHAT YOU GET */}
-    <Reveal>
-      <div style={{ marginTop: 40 }}>
-        <h3 style={{ textAlign: "center", fontSize: 18, fontWeight: 800, marginBottom: 6 }}>
-          What You Get
-        </h3>
-        <div style={{ display: "flex", gap: 14, flexWrap: "wrap", justifyContent: "center", marginTop: 18 }}>
-          {[
-            { title: "Personalised Training Plan", desc: "Custom program built around your goals, schedule, and current level" },
-            { title: "Direct Coach Access", desc: "WhatsApp access for questions, check-ins, and accountability between sessions" },
-            { title: "Nutrition Guidance", desc: "Simple, effective nutrition advice to support performance, recovery, and body composition" },
-            { title: "Progress Tracking", desc: "We track your progress, adjust the plan and keep you moving in the right direction" },
-            { title: "Game Plan", desc: "Opponent-based strategies tailored to your fight style" },
-          ].map((card, i) => (
-            <div key={i} style={{
-              width: 160,
-              padding: "20px 14px",
-              borderRadius: 14,
-              background: "#1a1a1a",
-              border: "2px solid #07b4ba",
-              textAlign: "center",
-            }}>
-              <h4 style={{ color: "#07b4ba", fontSize: 12, fontWeight: 800, marginBottom: 8, textTransform: "uppercase", letterSpacing: 0.5 }}>
-                {card.title}
-              </h4>
-              <p style={{ color: "rgba(255,255,255,0.55)", fontSize: 11, lineHeight: 1.5 }}>
-                {card.desc}
-              </p>
-            </div>
-          ))}
+   {/* WHAT YOU GET */}
+<Reveal>
+  <div style={{ marginTop: 40 }}>
+    <h3 style={{ textAlign: "center", fontSize: 18, fontWeight: 800, marginBottom: 6 }}>
+      What You Get
+    </h3>
+    <div style={{ display: "flex", gap: 14, flexWrap: "wrap", justifyContent: "center", marginTop: 18 }}>
+      {[
+        {
+          title: "Personalised Training Plan",
+          desc: "Custom program built around your goals, schedule, and current level",
+          icon: (
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#07b4ba" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+              <rect x="5" y="2" width="14" height="20" rx="2" />
+              <line x1="9" y1="7" x2="15" y2="7" />
+              <line x1="9" y1="11" x2="15" y2="11" />
+              <line x1="9" y1="15" x2="12" y2="15" />
+            </svg>
+          ),
+        },
+        {
+          title: "Direct Coach Access",
+          desc: "WhatsApp access for questions, check-ins, and accountability between sessions",
+          icon: (
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#07b4ba" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+              <circle cx="9" cy="10" r="0.5" fill="#07b4ba" />
+              <circle cx="12" cy="10" r="0.5" fill="#07b4ba" />
+              <circle cx="15" cy="10" r="0.5" fill="#07b4ba" />
+            </svg>
+          ),
+        },
+        {
+          title: "Nutrition Guidance",
+          desc: "Simple, effective nutrition advice to support performance, recovery, and body composition",
+          icon: (
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#07b4ba" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M12 2a7 7 0 0 1 7 7c0 5-7 13-7 13S5 14 5 9a7 7 0 0 1 7-7z" />
+              <circle cx="12" cy="9" r="2.5" />
+            </svg>
+          ),
+        },
+        {
+          title: "Progress Tracking",
+          desc: "We track your progress, adjust the plan and keep you moving in the right direction",
+          icon: (
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#07b4ba" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+              <line x1="3" y1="20" x2="21" y2="20" />
+              <polyline points="5,20 5,12 9,12 9,20" />
+              <polyline points="10,20 10,8 14,8 14,20" />
+              <polyline points="15,20 15,4 19,4 19,20" />
+            </svg>
+          ),
+        },
+        {
+          title: "Game Plan",
+          desc: "Opponent-based strategies tailored to your fight style",
+          icon: (
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#07b4ba" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+              <circle cx="12" cy="12" r="10" />
+              <line x1="2" y1="12" x2="22" y2="12" />
+              <path d="M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20" />
+              <line x1="12" y1="2" x2="12" y2="22" />
+            </svg>
+          ),
+        },
+      ].map((card, i) => (
+        <div key={i} style={{
+          width: 160,
+          padding: "24px 14px",
+          borderRadius: 14,
+          background: "#1a1a1a",
+          border: "2px solid #07b4ba",
+          textAlign: "center",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          gap: 10,
+        }}>
+          <div style={{
+            width: 52,
+            height: 52,
+            borderRadius: 10,
+            border: "1.5px solid rgba(7,180,186,0.4)",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            background: "rgba(7,180,186,0.06)",
+          }}>
+            {card.icon}
+          </div>
+          <h4 style={{ color: "#07b4ba", fontSize: 11, fontWeight: 800, textTransform: "uppercase", letterSpacing: 0.5, lineHeight: 1.4 }}>
+            {card.title}
+          </h4>
+          <p style={{ color: "rgba(255,255,255,0.5)", fontSize: 11, lineHeight: 1.5 }}>
+            {card.desc}
+          </p>
         </div>
-      </div>
-    </Reveal>
-
+      ))}
+    </div>
+  </div>
+</Reveal>
     {/* OUR PROMISE */}
     <Reveal>
       <div style={{
