@@ -526,43 +526,28 @@ export default function CoachingPage() {
         <p style={{ color: "#07b4ba", fontWeight: 700, fontSize: 14 }}>
           The AOF Method
         </p>
-
         <h2 style={{ fontSize: "clamp(26px,4vw,38px)", fontWeight: 900 }}>
           A Proven System.
         </h2>
-
         <h2 style={{ fontSize: "clamp(26px,4vw,38px)", fontWeight: 900, color: "#07b4ba" }}>
           Real Transformation.
         </h2>
-
-        <div style={{
-          width: 50,
-          height: 2,
-          background: "#07b4ba",
-          margin: "12px auto"
-        }} />
+        <p style={{ color: "rgba(255,255,255,0.45)", fontSize: 14, marginTop: 8, letterSpacing: 1 }}>
+          COMPLETE SUPPORT. EVERY STEP.
+        </p>
+        <div style={{ width: 50, height: 2, background: "#07b4ba", margin: "12px auto" }} />
       </div>
     </Reveal>
 
     {/* MAIN CONTENT */}
-    <div style={{
-      display: "flex",
-      gap: 40,
-      alignItems: "center",
-      flexWrap: "wrap"
-    }}>
+    <div style={{ display: "flex", gap: 40, alignItems: "center", flexWrap: "wrap" }}>
 
-      {/* 🔥 IMAGE (UPDATED) */}
+      {/* IMAGE */}
       <div style={{ flex: "0 0 380px", maxWidth: "100%" }}>
         <img
           src="https://images.unsplash.com/photo-1605296867424-35fc25c9212a?w=1000&q=80"
           alt="MMA Training"
-          style={{
-            width: "100%",
-            borderRadius: 10,
-            border: "1px solid #333",
-            objectFit: "cover"
-          }}
+          style={{ width: "100%", borderRadius: 10, border: "1px solid #333", objectFit: "cover" }}
         />
       </div>
 
@@ -570,76 +555,41 @@ export default function CoachingPage() {
       <div style={{ flex: 1, minWidth: 260 }}>
         {methodItems.map((item, i) => (
           <Reveal key={i}>
-            <div style={{
-              display: "flex",
-              alignItems: "center",
-              gap: 14,
-              marginBottom: 14
-            }}>
-              <div style={{ color: "#07b4ba", fontSize: 18 }}>
-                {item.icon}
-              </div>
-
-              <p style={{
-                color: "#ccc",
-                fontSize: 14,
-                lineHeight: 1.5
-              }}>
-                {item.desc}
-              </p>
+            <div style={{ display: "flex", alignItems: "center", gap: 14, marginBottom: 14 }}>
+              <div style={{ color: "#07b4ba", fontSize: 18 }}>{item.icon}</div>
+              <p style={{ color: "#ccc", fontSize: 14, lineHeight: 1.5 }}>{item.desc}</p>
             </div>
           </Reveal>
         ))}
       </div>
     </div>
 
-    {/* MMA CARDS */}
+    {/* WHAT YOU GET */}
     <Reveal>
-      <div style={{ marginTop: 30 }}>
-        <h3 style={{
-          textAlign: "center",
-          fontSize: 18,
-          fontWeight: 800,
-          marginBottom: 18
-        }}>
+      <div style={{ marginTop: 40 }}>
+        <h3 style={{ textAlign: "center", fontSize: 18, fontWeight: 800, marginBottom: 6 }}>
           What You Get
         </h3>
-
-        <div style={{
-          display: "flex",
-          gap: 14,
-          flexWrap: "wrap",
-          justifyContent: "center"
-        }}>
+        <div style={{ display: "flex", gap: 14, flexWrap: "wrap", justifyContent: "center", marginTop: 18 }}>
           {[
-            { title: "Fight IQ", desc: "Smarter decisions in the cage" },
-            { title: "Striking", desc: "Precision & timing mastery" },
-            { title: "Grappling", desc: "Control, escapes & submissions" },
-            { title: "Conditioning", desc: "Elite stamina & endurance" },
-            { title: "Game Plan", desc: "Opponent-based strategies" }
+            { title: "Personalised Training Plan", desc: "Custom program built around your goals, schedule, and current level" },
+            { title: "Direct Coach Access", desc: "WhatsApp access for questions, check-ins, and accountability between sessions" },
+            { title: "Nutrition Guidance", desc: "Simple, effective nutrition advice to support performance, recovery, and body composition" },
+            { title: "Progress Tracking", desc: "We track your progress, adjust the plan and keep you moving in the right direction" },
+            { title: "Game Plan", desc: "Opponent-based strategies tailored to your fight style" },
           ].map((card, i) => (
             <div key={i} style={{
-              width: 150,
-              padding: "16px 12px",
+              width: 160,
+              padding: "20px 14px",
               borderRadius: 14,
-              background: "#2a2a2a",
+              background: "#1a1a1a",
               border: "2px solid #07b4ba",
-              textAlign: "center"
+              textAlign: "center",
             }}>
-              <h4 style={{
-                color: "#07b4ba",
-                fontSize: 14,
-                fontWeight: 800,
-                marginBottom: 6
-              }}>
+              <h4 style={{ color: "#07b4ba", fontSize: 12, fontWeight: 800, marginBottom: 8, textTransform: "uppercase", letterSpacing: 0.5 }}>
                 {card.title}
               </h4>
-
-              <p style={{
-                color: "#ccc",
-                fontSize: 12,
-                lineHeight: 1.4
-              }}>
+              <p style={{ color: "rgba(255,255,255,0.55)", fontSize: 11, lineHeight: 1.5 }}>
                 {card.desc}
               </p>
             </div>
@@ -648,7 +598,7 @@ export default function CoachingPage() {
       </div>
     </Reveal>
 
-    {/* PROMISE */}
+    {/* OUR PROMISE */}
     <Reveal>
       <div style={{
         marginTop: 28,
@@ -657,22 +607,11 @@ export default function CoachingPage() {
         padding: "20px",
         textAlign: "center",
         maxWidth: 600,
-        marginInline: "auto"
+        marginInline: "auto",
       }}>
-        <h4 style={{
-          color: "#000",
-          fontWeight: 800,
-          marginBottom: 6
-        }}>
-          Our Promise
-        </h4>
-
-        <p style={{
-          color: "#000",
-          fontSize: 13,
-          lineHeight: 1.5
-        }}>
-          Follow the system for 30 days. If you don’t improve, we extend your coaching — free.
+        <h4 style={{ color: "#000", fontWeight: 800, marginBottom: 6 }}>Our Promise</h4>
+        <p style={{ color: "#000", fontSize: 13, lineHeight: 1.5 }}>
+          Follow the system for 30 days. If you don't improve, we extend your coaching — free.
         </p>
       </div>
     </Reveal>
