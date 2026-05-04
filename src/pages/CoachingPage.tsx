@@ -474,59 +474,111 @@ export default function CoachingPage() {
           </div>
         </div>
 
-        {/* SECTION 4 — TESTIMONIALS */}
-        <div id="testimonials" style={{ background: "#0d0d0d" }}>
-          <div className="section">
-            <Reveal>
-              <div style={{ textAlign: "center", marginBottom: 56 }}>
-                <p style={{ fontFamily: "'Barlow', sans-serif", color: "#07b4ba", fontWeight: 700, fontSize: 13, letterSpacing: 2.5, textTransform: "uppercase" }}>
-                  Real People, Real Results
-                </p>
-                <h2 style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: "clamp(36px,5vw,58px)", letterSpacing: 2, color: "#fff", marginTop: 8, lineHeight: 1 }}>
-                  Trusted By Fighters, <span style={{ color: "#07b4ba" }}>Proven Results</span>
-                </h2>
-                <p style={{ fontFamily: "'Barlow', sans-serif", color: "rgba(255,255,255,0.45)", marginTop: 10, fontSize: 14 }}>
-                  Here's What Athletes Say About Their Transformation With AOF
-                </p>
-              </div>
-            </Reveal>
+        {/* ── SECTION 4: TESTIMONIALS ── */}
+<div id="testimonials" style={{ background: "#05070a" }}>
+  <div className="section">
 
-            <Reveal>
-              <div style={{ display: "flex", gap: 48, alignItems: "center", marginBottom: 48, flexWrap: "wrap" }}>
-                <div style={{ flex: "0 0 420px", maxWidth: "100%" }}>
-                  <img src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?w=800&q=80" alt="fighter" style={{ width: "100%", borderRadius: 10, objectFit: "cover" }} />
-                </div>
-                <div style={{ flex: 1, minWidth: 280 }}>
-                  <h3 style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: "clamp(28px,3vw,44px)", letterSpacing: 1.5, lineHeight: 1.1, marginBottom: 16, color: "#fff" }}>
-                    AOF Changed The Way <span style={{ color: "#07b4ba" }}>I Train And Perform.</span>
-                  </h3>
-                  <p style={{ fontFamily: "'Barlow', sans-serif", color: "rgba(255,255,255,0.65)", fontSize: 15, lineHeight: 1.7 }}>
-                    The structure, the attention to detail, and the accountability took me to a level I never thought possible. I'm stronger, faster, and fight with more confidence than ever.
-                  </p>
-                  <p style={{ fontFamily: "'Barlow', sans-serif", marginTop: 14, color: "#07b4ba", fontWeight: 700, fontSize: 14 }}>
-                    — Alex M., Amateur MMA Fighter
-                  </p>
-                </div>
-              </div>
-            </Reveal>
+    {/* HEADER */}
+    <Reveal>
+      <div style={{ textAlign: "center", marginBottom: 60 }}>
+        <p style={{ color: "#07b4ba", fontWeight: 700, fontSize: 16 }}>
+          Real People , Real Results
+        </p>
 
-            <div style={{ display: "flex", gap: 20, flexWrap: "wrap" }}>
-              {feedbackCards.map((t, i) => (
-                <Reveal key={i}>
-                  <div style={{ flex: "1 1 280px", borderRadius: 14, background: "#161616", border: "1px solid rgba(255,255,255,0.08)", padding: "28px" }}>
-                    <p style={{ fontFamily: "'Barlow', sans-serif", color: "rgba(255,255,255,0.65)", fontSize: 14, lineHeight: 1.7, marginBottom: 14 }}>
-                      {t.text}
-                    </p>
-                    <p style={{ fontFamily: "'Barlow', sans-serif", color: "#07b4ba", fontWeight: 700, fontSize: 13 }}>
-                      {t.author}
-                    </p>
-                  </div>
-                </Reveal>
-              ))}
-            </div>
-          </div>
+        <h2 style={{
+          fontSize: "clamp(32px,4vw,46px)",
+          fontWeight: 900,
+          marginTop: 10
+        }}>
+          Trusted By Fighters,{" "}
+          <span style={{ color: "#07b4ba" }}>Proven Results</span>
+        </h2>
+
+        <p style={{ color: "#aaa", marginTop: 10, fontSize: 14 }}>
+          Here’s What Athletes Say About Their Transformation With AOF
+        </p>
+      </div>
+    </Reveal>
+
+    {/* MAIN TESTIMONIAL */}
+    <Reveal>
+      <div style={{
+        display: "flex",
+        gap: 48,
+        alignItems: "center",
+        marginBottom: 60,
+        flexWrap: "wrap"
+      }}>
+        
+        {/* IMAGE */}
+        <div style={{ flex: "0 0 420px", maxWidth: "100%" }}>
+          <img
+            src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?w=800&q=80"
+            alt="fighter"
+            style={{
+              width: "100%",
+              borderRadius: 6,
+              objectFit: "cover"
+            }}
+          />
         </div>
 
+        {/* TEXT */}
+        <div style={{ flex: 1, minWidth: 280 }}>
+          <h3 style={{
+            fontSize: "clamp(26px,3vw,38px)",
+            fontWeight: 900,
+            lineHeight: 1.25,
+            marginBottom: 20
+          }}>
+            AOF Changed <br />
+            The Way{" "}
+            <span style={{ color: "#07b4ba" }}>
+              I Train And Perform.
+            </span>
+          </h3>
+
+          <p style={{
+            color: "#ccc",
+            fontSize: 15,
+            lineHeight: 1.7,
+            maxWidth: 480
+          }}>
+            The structure, the attention to detail, and the accountability
+            took me to a level I never thought possible. I'm stronger,
+            faster, and fight with more confidence than ever.
+          </p>
+        </div>
+      </div>
+    </Reveal>
+
+    {/* FEEDBACK CARDS */}
+    <div style={{
+      display: "flex",
+      gap: 24,
+      flexWrap: "wrap"
+    }}>
+      {feedbackCards.map((_, i) => (
+        <div key={i} style={{
+          flex: "1 1 300px",
+          background: "#d9d9d9",
+          borderRadius: 20,
+          padding: "60px 20px",
+          textAlign: "center"
+        }}>
+          <p style={{
+            color: "#07b4ba",
+            fontWeight: 700,
+            fontSize: 18
+          }}>
+            Feedback
+          </p>
+        </div>
+      ))}
+    </div>
+
+  </div>
+</div>
         {/* SECTION 5 — APPLY FORM */}
         <div className="apply-section" id="apply" ref={formRef}>
           <div className="section">
