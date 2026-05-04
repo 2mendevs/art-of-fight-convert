@@ -377,82 +377,106 @@ export default function CoachingPage() {
       </div>
     </div>
 
-    {/* WHAT YOU GET (UNCHANGED BUT TIGHTER) */}
-    <Reveal>
-      <div style={{ marginTop: 28 }}>
-        <h3 style={{
-          textAlign: "center",
-          fontFamily: "'Bebas Neue', sans-serif",
-          fontSize: 26,
-          letterSpacing: 2,
-          marginBottom: 14
-        }}>
-          What You Get
-        </h3>
-
-        <div style={{
-          display: "flex",
-          gap: 12,
-          flexWrap: "wrap",
-          justifyContent: "center"
-        }}>
-          {[
-            "Fight IQ",
-            "Striking",
-            "Grappling",
-            "Conditioning",
-            "Game Plan"
-          ].map((item, i) => (
-            <div key={i} style={{
-              padding: "14px 18px",
-              borderRadius: 10,
-              background: "#1a1a1a",
-              border: "1px solid #07b4ba",
-              fontFamily: "'Bebas Neue', sans-serif",
-              letterSpacing: 1.5,
-              fontSize: 14
-            }}>
-              {item}
-            </div>
-          ))}
+                {/* WHAT YOU GET */}
+            <Reveal>
+              <div style={{ marginTop: 52 }}>
+                <h3 style={{ textAlign: "center", fontFamily: "'Bebas Neue', sans-serif", fontSize: 30, letterSpacing: 2, color: "#fff", marginBottom: 20 }}>
+                  What You Get
+                </h3>
+                <div style={{ display: "flex", gap: 14, flexWrap: "wrap", justifyContent: "center" }}>
+                  {[
+                    {
+                      title: "Personalised Training Plan",
+                      desc: "Custom program built around your goals, schedule, and current level",
+                      icon: (
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#07b4ba" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                          <rect x="5" y="2" width="14" height="20" rx="2" />
+                          <line x1="9" y1="7" x2="15" y2="7" />
+                          <line x1="9" y1="11" x2="15" y2="11" />
+                          <line x1="9" y1="15" x2="12" y2="15" />
+                        </svg>
+                      ),
+                    },
+                    {
+                      title: "Direct Coach Access",
+                      desc: "WhatsApp access for questions, check-ins, and accountability between sessions",
+                      icon: (
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#07b4ba" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                          <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+                          <circle cx="9" cy="10" r="0.5" fill="#07b4ba" />
+                          <circle cx="12" cy="10" r="0.5" fill="#07b4ba" />
+                          <circle cx="15" cy="10" r="0.5" fill="#07b4ba" />
+                        </svg>
+                      ),
+                    },
+                    {
+                      title: "Nutrition Guidance",
+                      desc: "Simple, effective nutrition advice to support performance, recovery, and body composition",
+                      icon: (
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#07b4ba" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                          <path d="M12 20 C12 20 4 16 4 9 C4 9 8 6 12 10" />
+                          <path d="M12 10 C12 10 8 5 12 2 C12 2 16 5 12 10" />
+                          <path d="M12 20 C12 20 20 16 20 9 C20 9 16 6 12 10" />
+                          <path d="M12 20 C12 20 12 14 12 10" />
+                          <path d="M8 10 C9 11 11 12 12 14" strokeWidth="1" opacity="0.6" />
+                          <path d="M16 10 C15 11 13 12 12 14" strokeWidth="1" opacity="0.6" />
+                        </svg>
+                      ),
+                    },
+                    {
+                      title: "Progress Tracking",
+                      desc: "We track your progress, adjust the plan and keep you moving in the right direction",
+                      icon: (
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#07b4ba" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                          <line x1="3" y1="20" x2="21" y2="20" />
+                          <polyline points="5,20 5,12 9,12 9,20" />
+                          <polyline points="10,20 10,8 14,8 14,20" />
+                          <polyline points="15,20 15,4 19,4 19,20" />
+                        </svg>
+                      ),
+                    },
+                    {
+                      title: "Game Plan",
+                      desc: "Opponent-based strategies tailored to your fight style",
+                      icon: (
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#07b4ba" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                          <circle cx="12" cy="12" r="10" />
+                          <line x1="2" y1="12" x2="22" y2="12" />
+                          <path d="M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20" />
+                          <line x1="12" y1="2" x2="12" y2="22" />
+                        </svg>
+                      ),
+                    },
+                  ].map((card, i) => (
+                    <div key={i} style={{ width: 165, padding: "24px 14px", borderRadius: 14, background: "#1a1a1a", border: "2px solid #07b4ba", textAlign: "center", display: "flex", flexDirection: "column", alignItems: "center", gap: 10 }}>
+                      <div style={{ width: 52, height: 52, borderRadius: 10, border: "1.5px solid rgba(7,180,186,0.4)", display: "flex", alignItems: "center", justifyContent: "center", background: "rgba(7,180,186,0.06)" }}>
+                        {card.icon}
+                      </div>
+                      <h4 style={{ fontFamily: "'Bebas Neue', sans-serif", color: "#07b4ba", fontSize: 13, letterSpacing: 0.8, lineHeight: 1.3 }}>
+                        {card.title}
+                      </h4>
+                      <p style={{ fontFamily: "'Barlow', sans-serif", color: "rgba(255,255,255,0.5)", fontSize: 11, lineHeight: 1.5 }}>
+                        {card.desc}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </Reveal>
+ 
+            {/* OUR PROMISE */}
+            <Reveal>
+              <div style={{ marginTop: 32, background: "#07b4ba", borderRadius: 12, padding: "22px 32px", textAlign: "center", maxWidth: 600, marginInline: "auto" }}>
+                <h4 style={{ fontFamily: "'Bebas Neue', sans-serif", color: "#000", fontSize: 24, letterSpacing: 2, marginBottom: 8 }}>
+                  Our Promise
+                </h4>
+                <p style={{ fontFamily: "'Barlow', sans-serif", color: "#000", fontSize: 14, lineHeight: 1.6 }}>
+                  Follow the system for 30 days. If you don't improve, we extend your coaching — free.
+                </p>
+              </div>
+            </Reveal>
+          </div>
         </div>
-      </div>
-    </Reveal>
-
-    {/* PROMISE */}
-    <Reveal>
-      <div style={{
-        marginTop: 24,
-        background: "#07b4ba",
-        borderRadius: 10,
-        padding: "16px 20px",
-        textAlign: "center",
-        maxWidth: 520,
-        marginInline: "auto"
-      }}>
-        <h4 style={{
-          fontFamily: "'Bebas Neue', sans-serif",
-          color: "#000",
-          fontSize: 20,
-          letterSpacing: 1.5,
-          marginBottom: 6
-        }}>
-          Our Promise
-        </h4>
-
-        <p style={{
-          fontFamily: "'Barlow', sans-serif",
-          color: "#000",
-          fontSize: 13,
-          lineHeight: 1.5
-        }}>
-          Follow the system for 30 days. If you don’t improve, we extend your coaching — free.
-        </p>
-      </div>
-    </Reveal>
-
-  </div>
-</div>
 
         {/* SECTION 3 — YOUR COACH */}
         <div className="coach-section">
