@@ -81,9 +81,26 @@ const stats = [
 ];
 
 const feedbackCards = [
-  { text: "In 8 weeks my footwork completely changed. My coach saw things I couldn't see myself and fixed them immediately.", author: "— Jordan K." },
-  { text: "I was plateau'd for over a year. AOF broke that within the first month. The personalised approach is unlike anything else.", author: "— Priya S." },
-  { text: "Best investment I've made in my fight career. The plan, the feedback, the accountability — it's all dialled in perfectly.", author: "— Carlos R." },
+  {
+    text: "My striking improved faster in 6 weeks than it did in the last year. The structure actually works.",
+    author: "— Arjun M."
+  },
+  {
+    text: "I finally understand what I’m doing wrong during sparring. Small fixes made a huge difference.",
+    author: "— Kevin R."
+  },
+  {
+    text: "The accountability alone changed everything. I train with purpose now, not randomly.",
+    author: "— Rahul S."
+  },
+  {
+    text: "Conditioning went to another level. I don’t gas out anymore even in hard rounds.",
+    author: "— Daniel K."
+  },
+  {
+    text: "Every session feels intentional. I’ve never had this level of guidance before.",
+    author: "— Vishal P."
+  }
 ];
 
 const checklistItems = [
