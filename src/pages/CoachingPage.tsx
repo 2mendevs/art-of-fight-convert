@@ -103,7 +103,7 @@ const css = `
 
   .coaching-page {
     background: #0a0a0a;
-    font-family: 'Barlow', sans-serif;
+    font-family: 'Bebas Neue', Bebas Neue;
     color: #fff;
     overflow-x: hidden;
   }
