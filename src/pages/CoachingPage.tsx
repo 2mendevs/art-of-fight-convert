@@ -247,11 +247,20 @@ const css = `
   }
 
   /* SECTION WRAPPER */
-  .cp-section { max-width: 1100px; margin: 0 auto; padding: 64px 40px; }
+  .cp-section {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 48px 20px; /* 🔥 reduced side gap */
+}
 
   /* PAIN SECTION */
-  .cp-pain-grid { display: flex; gap: 48px; align-items: flex-start; flex-wrap: wrap; }
-  .cp-pain-media { flex: 0 0 520px; max-width: 100%; border-radius: 14px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); }
+  .cp-pain-grid {
+  display: flex;
+  gap: 28px; /* 🔥 tighter */
+  align-items: center; /* 🔥 vertically aligned */
+  flex-wrap: wrap;
+}
+  .cp-pain-media { flex: 0 0 460px; max-width: 100%; border-radius: 14px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); }
   .cp-pain-media img { width: 100%; display: block; aspect-ratio: 16/10; object-fit: cover; }
   .cp-pain-right { flex: 1; min-width: 260px; padding-top: 8px; }
   .cp-pain-label { color: #07b4ba; font-family: 'Barlow', sans-serif; font-weight: 700; font-size: 18px; margin-bottom: 8px; }
@@ -262,8 +271,30 @@ const css = `
     border-radius: 2px;
     box-shadow: 0 0 10px rgba(229,62,62,0.7), 0 0 24px rgba(229,62,62,0.35);
   }
-  .cp-pain-item { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 16px; }
-  .cp-pain-item p { color: rgba(255,255,255,0.65); font-family: 'Barlow', sans-serif; font-size: 15px; line-height: 1.6; }
+  
+  .cp-pain-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 14px;
+}
+.cp-pain-item::before {
+  content: "";
+  width: 3px;
+  height: 18px;
+  background: #ff2d2d;
+  border-radius: 2px;
+
+  box-shadow:
+    0 0 6px rgba(255,45,45,0.9),
+    0 0 16px rgba(255,45,45,0.6),
+    0 0 28px rgba(255,45,45,0.3);
+}
+  .cp-pain-item p {
+  color: rgba(255,255,255,0.7);
+  font-size: 14px;
+  line-height: 1.5;
+}
 
   /* METHOD SECTION */
   .cp-method-bg { background: #0d0d0d; }
@@ -572,11 +603,11 @@ export default function CoachingPage() {
           <div className="cp-hero-content">
             <Reveal>
               <p className="cp-hero-tag">AOF Academy — 1 On 1 Coaching</p>
-              <h1 className="cp-hero-h1">
+              <h2 className="cp-hero-h2">
                 Train Like A<br />
                 <span>Champion.</span><br />
                 Fight Like One
-              </h1>
+              </h2>
               <p className="cp-hero-desc">
                 Stop training in the crowd. Get a personalized coaching program built around your body, your goals, and your timeline — guided by coaches who have been in the ring.
               </p>
