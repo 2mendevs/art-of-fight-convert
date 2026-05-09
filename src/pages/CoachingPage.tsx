@@ -1284,7 +1284,7 @@ useEffect(() => {
         { text: "From beginner to ring-ready in months.", author: "Karthik" },
         { text: "Training feels structured now.", author: "Arjun" },
         { text: "Confidence is way higher now.", author: "Vijay" },
-      ];
+     { text: "My performance improved drastically in just a few weeks.", author: "Rahul" }, ];
 
       const pages = [];
       for (let i = 0; i < feedbackCards.length; i += visibleCount) {
