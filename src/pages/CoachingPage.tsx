@@ -218,19 +218,19 @@ const css = `
 
   /* HERO */
   .cp-hero {
-    position: relative; min-height: 100vh;
-    display: flex; flex-direction: column; overflow: hidden;
-  }
+  position: relative;
+  min-height: calc(100vh + 70px); /* 🔥 ADD TRUST HEIGHT */
+  padding-bottom: 70px;           /* 🔥 ensures visibility */
+}
   .cp-hero-bg { position: absolute; inset: 0; z-index: 0; }
   .cp-hero-overlay {
-    position: absolute; inset: 0; z-index: 1;
-    background: linear-gradient(to right, #0a0a0a 42%, rgba(10,10,10,0.72) 65%, transparent 100%);
-  }
+  background: linear-gradient(to right, #0a0a0a 35%, rgba(10,10,10,0.55) 60%, transparent 100%);
+}
   .cp-hero-content { position: relative; z-index: 2; max-width: 800px; padding: 120px 40px 60px; }
   .cp-hero-tag { color: #07b4ba; font-family: 'Barlow', sans-serif; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 3px; margin-bottom: 16px; }
   .cp-hero-h1 {
   font-family: 'Bebas Neue', sans-serif;
-  font-size: clamp(64px, 8vw, 110px);  /* 🔥 BIGGER LIKE IMAGE */
+  font-size: clamp(42px, 5.5vw, 72px);  /* 🔥 BIGGER LIKE IMAGE */
   line-height: 0.9;
   letter-spacing: 2px; line-height: 0.95; text-transform: uppercase; color: #fff; margin-bottom: 20px; }
   .cp-hero-h1 span { color: #07b4ba; }
