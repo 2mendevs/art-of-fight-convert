@@ -975,10 +975,28 @@ useEffect(() => {
 
   const scrollToForm = () => formRef.current?.scrollIntoView({ behavior: "smooth" });
 
-  const handleLeadSubmit = () => {
-    if (lead.name.trim() && lead.phone.trim()) setStage(2);
-  };
+const handleLeadSubmit = async () => {
+  if (!lead.name.trim() || !lead.phone.trim()) return;
 
+  try {
+    await fetch("https://script.google.com/macros/s/AKfycbzVwJMFLL2PkIw256b-aZWNHADftqZ_-J2QGkfX_LZDkglkF62JujPQr-_ztOBCPG9t/exec", {
+      method: "POST",
+      body: JSON.stringify({
+        name: lead.name,
+        phone: lead.phone,
+        goal: lead.goal,
+      }),
+    });
+
+    console.log("Lead saved to Google Sheets");
+
+    setStage(2); // 👉 show calendar after saving
+
+  } catch (err) {
+    console.error("Error saving lead:", err);
+    setStage(2); // still move forward
+  }
+};
   const handleBookingConfirm = (_date: string, _time: string) => {
     setStage(3);
   };
