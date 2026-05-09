@@ -256,7 +256,7 @@ const css = `
   /* PAIN SECTION */
   .cp-pain-grid {
   display: flex;
-  gap: 60px; /* 🔥 tighter */
+  gap: 100px; /* 🔥 tighter */
   align-items: center; /* 🔥 vertically aligned */
   flex-wrap: wrap;
 }
