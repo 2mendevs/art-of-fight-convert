@@ -360,14 +360,43 @@ const css = `
     text-align: center; padding: 0 20px;
     position: relative;
   }
-  .cp-promise-quote-mark {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 72px; line-height: 0.6;
-    color: #07b4ba; opacity: 0.5;
-    display: block; margin-bottom: 8px;
-  }
+  .cp-promise-text {
+  font-family: 'Barlow', sans-serif;
+  color: rgba(255,255,255,0.7);
+
+  font-size: 15px;
+  line-height: 1.7;
+
+  font-style: italic;
+
+  max-width: 520px;
+  margin: 0 auto;
+
+  position: relative;
+}
   .cp-promise h4 { font-family: 'Bebas Neue', sans-serif; color: #07b4ba; font-size: 22px; letter-spacing: 2px; margin-bottom: 10px; }
-  .cp-promise p { font-family: 'Barlow', sans-serif; color: rgba(255,255,255,0.6); font-size: 15px; line-height: 1.7; font-style: italic; }
+  .cp-promise-text {
+  font-family: 'Barlow', sans-serif;
+  color: rgba(255,255,255,0.7);
+  font-size: 15px;
+  line-height: 1.7;
+  font-style: italic;
+  max-width: 520px;
+  margin: 0 auto;
+}
+.cp-promise-text::before {
+  content: "“";
+  color: #07b4ba;
+  font-size: 22px;
+  margin-right: 6px;
+}
+
+.cp-promise-text::after {
+  content: "”";
+  color: #07b4ba;
+  font-size: 22px;
+  margin-left: 4px;
+}
 
   /* COACH */
   .cp-coach-bg { background: #0a0a0a; }
@@ -751,14 +780,14 @@ export default function CoachingPage() {
 
             {/* OUR PROMISE — premium quote style */}
             <Reveal>
-              <div className="cp-promise">
-                <span className="cp-promise-quote-mark">"</span>
-                <h4>Our Promise</h4>
-                <p>
-                  Follow the system for 30 days. If you don't improve, we extend your coaching — free.
-                  We succeed when you succeed. That's not a slogan, it's our commitment.
-                </p>
-              </div>
+<div className="cp-promise">
+  <h4>Our Promise</h4>
+
+  <p className="cp-promise-text">
+  Follow the system for 30 days. If you don't improve, we extend your coaching — free.
+  We succeed when you succeed. That's not a slogan, it's our commitment.
+</p>
+</div>
             </Reveal>
           </div>
         </div>
