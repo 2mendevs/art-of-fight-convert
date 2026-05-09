@@ -1,11 +1,9 @@
-import boxBg from "@/assets/Box.png";
-
 const CtaPairSection = () => {
   return (
     <section
       className="relative w-full overflow-hidden"
       style={{
-        backgroundImage: `url(${boxBg})`,
+        backgroundImage: `url('/Box.png')`,
         backgroundSize: "cover",
         backgroundPosition: "center center",
         backgroundRepeat: "no-repeat",
