@@ -621,8 +621,62 @@ const css = `
 .cp-what-card p {
   font-size: 12px;
 }
+/* 🔥 MOBILE TRUST STRIP FIX */
+.cp-trust {
+  position: relative;        /* remove absolute behavior */
+  height: auto;
+
+  flex-direction: row;
+  justify-content: space-between;
+
+  padding: 12px 14px;
+  gap: 10px;
+}
+
+.cp-trust-item {
+  flex: 1;
+  justify-content: center;
+  gap: 6px;
+}
+
+.cp-trust-item span {
+  font-size: 10px;
+  letter-spacing: 1px;
+  color: #fff;   /* black text like your image */
+}
+
+.trust-icon-box {
+  width: 24px;
+  height: 24px;
+}
+
+.trust-icon-box svg {
+  width: 16px;
+  height: 16px;
+  stroke: #fff;   /* black icons */
+}
     .cp-trust { padding: 0 20px; }
     .cp-section { padding: 48px 10px; }
+    /* 🔥 MOBILE TESTIMONIAL FIX */
+.cp-feedback-track {
+  display: flex;
+}
+
+.cp-feedback-card {
+  min-width: calc(100% / 3);   /* 🔥 3 cards visible */
+  max-width: calc(100% / 3);
+
+  margin-right: 10px;
+  padding: 14px;
+}
+
+.cp-feedback-card p {
+  font-size: 12px;
+}
+
+.cp-feedback-card .author {
+  font-size: 11px;
+}
     .cp-pain-grid { flex-direction: column; gap: 35px; }
     .cp-pain-media { flex: unset; width: 100%; }
     .cp-method-grid { flex-direction: column; gap: 35px; }
