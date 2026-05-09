@@ -219,7 +219,7 @@ const css = `
   /* HERO */
   .cp-hero {
   position: relative;
-  min-height: calc(100vh + 70px); /* 🔥 ADD TRUST HEIGHT */
+  min-height:80vh; /* 🔥 ADD TRUST HEIGHT */
   padding-bottom: 70px;           /* 🔥 ensures visibility */
 }
   .cp-hero-bg { position: absolute; inset: 0; z-index: 0; }
@@ -244,7 +244,7 @@ const css = `
   /* TRUST STRIP */
  .cp-trust {
   position: absolute;     /* 🔥 attach to hero */
-  bottom: 55px;              /* 🔥 stick to bottom */
+  bottom: 52px;              /* 🔥 stick to bottom */
   left: 0;
   width: 100%;
 
