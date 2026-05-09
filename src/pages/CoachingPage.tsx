@@ -309,7 +309,7 @@ const css = `
   gap: 12px;
 
   margin-bottom: 10px;       /* 🔥 tighter spacing */
-  padding: 15px 10px;         /* 🔥 reduced height */
+  padding: 16px 10px;         /* 🔥 reduced height */
 
   border-radius: 6px;
 
