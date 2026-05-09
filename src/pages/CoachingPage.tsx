@@ -250,7 +250,7 @@ const css = `
   .cp-section {
   max-width: 1100px;
   margin: 0 auto;
-  padding: 48px 20px; /* 🔥 reduced side gap */
+  padding: 48px 15px; /* 🔥 reduced side gap */
 }
 
   /* PAIN SECTION */
@@ -438,11 +438,11 @@ const css = `
     .cp-nav { padding: 14px 20px; }
     .cp-hero-content { padding: 100px 20px 48px; }
     .cp-trust { padding: 0 20px; }
-    .cp-section { padding: 48px 20px; }
-    .cp-pain-grid { flex-direction: column; gap: 28px; }
+    .cp-section { padding: 48px 15px; }
+    .cp-pain-grid { flex-direction: column; gap: 35px; }
     .cp-pain-media { flex: unset; width: 100%; }
-    .cp-method-grid { flex-direction: column; gap: 28px; }
-    .cp-method-image { order: 1; width: 100%; flex: unset; }
+    .cp-method-grid { flex-direction: column; gap: 35px; }
+    .cp-method-image { order: 1; width: 120%; flex: unset; }
     .cp-method-text { order: 2; }
     .cp-testi-main { flex-direction: column; }
     .cp-testi-img { flex: unset; width: 100%; }
