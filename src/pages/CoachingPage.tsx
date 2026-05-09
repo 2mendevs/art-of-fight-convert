@@ -601,6 +601,46 @@ const css = `
 .cp-feedback-wrapper {
   overflow: hidden;
 }
+/* 🔥 FIX MOBILE TESTIMONIAL CLEAN LAYOUT */
+
+.cp-feedback-page {
+  min-width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  padding: 0 6px;
+}
+
+/* uniform card size */
+.cp-feedback-card {
+  width: 100%;
+  min-height: 90px;   /* 🔥 keeps equal height */
+  padding: 16px;
+
+  border-radius: 12px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* text cleanup */
+.cp-feedback-card p {
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.cp-feedback-card .author {
+  font-size: 12px;
+  margin-top: 8px;
+}
+
+/* smoother page switch */
+.cp-feedback-pages {
+  display: flex;
+  transition: transform 0.4s ease-in-out;
+}
 
 .cp-feedback-pages {
   display: flex;
@@ -1285,14 +1325,14 @@ useEffect(() => {
             }}
           >
             {pages.map((page, i) => (
-              <div className="cp-feedback-page" key={i}>
-                {page.map((t, idx) => (
-                  <div className="cp-feedback-card" key={idx}>
-                    <p>{t.text}</p>
-                    <p className="author">— {t.author}</p>
-                  </div>
-                ))}
-              </div>
+             <div className="cp-feedback-page" key={i}>
+  {page.map((t, idx) => (
+    <div className="cp-feedback-card" key={idx}>
+      <p>{t.text}</p>
+      <span className="author">— {t.author}</span>
+    </div>
+  ))}
+</div>
             ))}
           </div>
 
