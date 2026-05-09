@@ -696,18 +696,18 @@ const handleMouseMove = (e: React.MouseEvent) => {
 
   sliderRef.current.scrollLeft = scrollLeft - walk;
 };
-  useEffect(() => {
+useEffect(() => {
   const slider = sliderRef.current;
   if (!slider) return;
 
   let animationFrame: number;
-  let isUserInteracting = false;
+  let isPaused = false;
 
   const autoScroll = () => {
-    if (!isUserInteracting) {
-      slider.scrollLeft += 0.5; // 🔥 speed control
+    if (!isPaused) {
+      slider.scrollLeft += 0.6;
 
-      // infinite loop effect
+      // infinite loop
       if (slider.scrollLeft >= slider.scrollWidth / 2) {
         slider.scrollLeft = 0;
       }
@@ -718,28 +718,25 @@ const handleMouseMove = (e: React.MouseEvent) => {
 
   autoScroll();
 
-  const stopInteraction = () => (isUserInteracting = true);
-  const resumeInteraction = () => {
+  // pause on interaction
+  const stop = () => (isPaused = true);
+
+  // resume after delay
+  const resume = () => {
     setTimeout(() => {
-      isUserInteracting = false;
-    }, 800); // delay before auto resumes
+      isPaused = false;
+    }, 800);
   };
 
-  slider.addEventListener("mousedown", stopInteraction);
-  slider.addEventListener("touchstart", stopInteraction);
+  slider.addEventListener("mousedown", stop);
+  slider.addEventListener("touchstart", stop);
 
-  slider.addEventListener("mouseup", resumeInteraction);
-  slider.addEventListener("mouseleave", resumeInteraction);
-  slider.addEventListener("touchend", resumeInteraction);
+  slider.addEventListener("mouseup", resume);
+  slider.addEventListener("mouseleave", resume);
+  slider.addEventListener("touchend", resume);
 
   return () => {
     cancelAnimationFrame(animationFrame);
-
-    slider.removeEventListener("mousedown", stopInteraction);
-    slider.removeEventListener("touchstart", stopInteraction);
-    slider.removeEventListener("mouseup", resumeInteraction);
-    slider.removeEventListener("mouseleave", resumeInteraction);
-    slider.removeEventListener("touchend", resumeInteraction);
   };
 }, []);
   const [lead, setLead] = useState<LeadForm>({ name: "", phone: "", goal: "" });
@@ -1010,15 +1007,15 @@ const handleMouseMove = (e: React.MouseEvent) => {
               </div>
             </Reveal>
 
-   <div className="cp-feedback-slider">
-  <div
-    className="cp-feedback-track"
+   <div className="cp-feedback-slider"
     ref={sliderRef}
     onMouseDown={handleMouseDown}
     onMouseLeave={handleMouseLeave}
     onMouseUp={handleMouseUp}
     onMouseMove={handleMouseMove}
   >
+  <div
+    className="cp-feedback-track">
     {[...feedbackCards, ...feedbackCards].map((t, i) => (
       <div className="cp-feedback-card" key={i}>
         <p>{t.text}</p>
