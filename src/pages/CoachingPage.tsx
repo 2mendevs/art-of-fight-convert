@@ -816,7 +816,7 @@ useEffect(() => {
                 Train Like A<br />
                 <span>Champion.</span><br />
                 Fight Like One
-              </h2>
+              </h1>
               <p className="cp-hero-desc">
                 Stop training in the crowd. Get a personalized coaching program built around your body, your goals, and your timeline — guided by coaches who have been in the ring.
               </p>
