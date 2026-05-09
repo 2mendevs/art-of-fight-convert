@@ -855,16 +855,27 @@ useEffect(() => {
   const slider = sliderRef.current;
   if (!slider) return;
 
-  let animationFrame: number;
+  let animationFrame;
   let isPaused = false;
+
+  const isMobile = window.innerWidth <= 768;
 
   const autoScroll = () => {
     if (!isPaused) {
-      slider.scrollLeft += 0.6;
+      if (isMobile) {
+        // 🔥 VERTICAL LOOP
+        slider.scrollTop += 0.5;
 
-      // ✅ CORRECT LOOP POINT
-      if (slider.scrollLeft >= slider.scrollWidth / 2) {
-        slider.scrollLeft -= slider.scrollWidth / 2;
+        if (slider.scrollTop >= slider.scrollHeight / 2) {
+          slider.scrollTop -= slider.scrollHeight / 2;
+        }
+      } else {
+        // desktop stays horizontal
+        slider.scrollLeft += 0.6;
+
+        if (slider.scrollLeft >= slider.scrollWidth / 2) {
+          slider.scrollLeft -= slider.scrollWidth / 2;
+        }
       }
     }
 
@@ -880,7 +891,6 @@ useEffect(() => {
 
   slider.addEventListener("mousedown", stop);
   slider.addEventListener("touchstart", stop);
-
   slider.addEventListener("mouseup", resume);
   slider.addEventListener("mouseleave", resume);
   slider.addEventListener("touchend", resume);
