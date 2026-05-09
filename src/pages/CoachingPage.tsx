@@ -266,11 +266,14 @@ const css = `
 
   background: rgba(0,0,0,0.0);   /* subtle glass look */
 }
-  .cp-trust-item span {
-    font-family: 'Bebas Neue', sans-serif; color: #fff;
-    font-size: clamp(15px,2.2vw,21px); letter-spacing: 2px;
-    white-space: nowrap;
-  }
+  .cp-trust-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  font-family: 'Bebas Neue', sans-serif;
+  letter-spacing: 2px;
+}
 
   /* SECTION WRAPPER */
   .cp-section {
@@ -844,10 +847,37 @@ useEffect(() => {
           {/* TRUST STRIP — same as home page */}
           <div className="cp-trust">
             {[
-              { icon: <IconShield />, label: "Personalised Program" },
-              { icon: <IconTrophy />, label: "Proven Fight System" },
-              { icon: <IconUsers />, label: "Direct Coach Access" },
-            ].map(({ icon, label }) => (
+  {
+    icon: (
+      <div className="trust-icon-box">
+        <svg viewBox="0 0 24 24">
+          <path d="M12 2l8 4v6c0 5-3.8 9.7-8 10-4.2-.3-8-5-8-10V6l8-4z" />
+        </svg>
+      </div>
+    ),
+    label: "Proven System",
+  },
+  {
+    icon: (
+      <div className="trust-icon-box">
+        <svg viewBox="0 0 24 24">
+          <circle cx="12" cy="7" r="4" />
+          <path d="M5.5 21a6.5 6.5 0 0 1 13 0" />
+        </svg>
+      </div>
+    ),
+    label: "Tamil Team",
+  },
+  {
+    icon: (
+      <div className="trust-icon-box">
+        <svg viewBox="0 0 24 24">
+          <path d="M7 4h10v3a5 5 0 0 1-10 0V4zM8 21h8M12 17v4" />
+        </svg>
+      </div>
+    ),
+    label: "Real Results",
+  },].map(({ icon, label }) => (
               <div className="cp-trust-item" key={label}>
                 {icon}
                 <span>{label}</span>
