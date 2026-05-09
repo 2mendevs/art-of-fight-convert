@@ -256,13 +256,18 @@ const css = `
   /* PAIN SECTION */
   .cp-pain-grid {
   display: flex;
-  gap: 28px; /* 🔥 tighter */
+  gap: 60px; /* 🔥 tighter */
   align-items: center; /* 🔥 vertically aligned */
   flex-wrap: wrap;
 }
   .cp-pain-media { flex: 0 0 460px; max-width: 100%; border-radius: 14px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); }
   .cp-pain-media img { width: 100%; display: block; aspect-ratio: 16/10; object-fit: cover; }
-  .cp-pain-right { flex: 1; min-width: 260px; padding-top: 8px; }
+  .cp-pain-right {
+  flex: 1;
+  min-width: 260px;
+  padding-top: 8px;
+  padding-left: 10px;   /* 🔥 pushes text slightly right */
+}
   .cp-pain-label { color: #07b4ba; font-family: 'Barlow', sans-serif; font-weight: 700; font-size: 18px; margin-bottom: 8px; }
   .cp-pain-heading { color: #fff; font-family: 'Bebas Neue', sans-serif; font-size: clamp(24px,3vw,32px); letter-spacing: 1px; margin-bottom: 16px; line-height: 1.1; }
   .cp-red-divider {
