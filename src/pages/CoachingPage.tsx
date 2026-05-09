@@ -738,20 +738,16 @@ const handleMouseMove = (e: React.MouseEvent) => {
 
   slider.scrollLeft = scrollLeft - walk;
 
-  // 🔥 LOOP FIX DURING DRAG
-  if (slider.scrollLeft >= slider.scrollWidth) {
-    slider.scrollLeft = slider.scrollWidth / 2;
-  }
-  if (slider.scrollLeft <= 0) {
-    slider.scrollLeft = slider.scrollWidth / 2;
+ if (slider.scrollLeft >= slider.scrollWidth / 2) {
+  slider.scrollLeft -= slider.scrollWidth / 2;
+}
+if (slider.scrollLeft <= 0) {
+  slider.scrollLeft += slider.scrollWidth / 2;
   }
 };
 useEffect(() => {
   const slider = sliderRef.current;
   if (!slider) return;
-
-  // 🔥 START FROM MIDDLE (IMPORTANT FOR LOOP)
-  slider.scrollLeft = slider.scrollWidth / 2;
 
   let animationFrame: number;
   let isPaused = false;
@@ -760,9 +756,9 @@ useEffect(() => {
     if (!isPaused) {
       slider.scrollLeft += 0.6;
 
-      // 🔥 PERFECT LOOP
-      if (slider.scrollLeft >= slider.scrollWidth) {
-        slider.scrollLeft = slider.scrollWidth / 2;
+      // ✅ CORRECT LOOP POINT
+      if (slider.scrollLeft >= slider.scrollWidth / 2) {
+        slider.scrollLeft -= slider.scrollWidth / 2;
       }
     }
 
