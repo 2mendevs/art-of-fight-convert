@@ -980,14 +980,16 @@ const handleLeadSubmit = async () => {
 
   try {
     await fetch("https://script.google.com/macros/s/AKfycbzVwJMFLL2PkIw256b-aZWNHADftqZ_-J2QGkfX_LZDkglkF62JujPQr-_ztOBCPG9t/exec", {
-      method: "POST",
-      body: JSON.stringify({
-        name: lead.name,
-        phone: lead.phone,
-        goal: lead.goal,
-      }),
-    });
-
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify({
+    name: lead.name,
+    phone: lead.phone,
+    goal: lead.goal,
+  }),
+});
     console.log("Lead saved to Google Sheets");
 
     setStage(2); // 👉 show calendar after saving
