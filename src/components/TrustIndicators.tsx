@@ -14,13 +14,13 @@ const TrustIndicators = () => (
     {indicators.map((item) => (
       <div key={item.title} className="flex items-center justify-center gap-2 text-center">
         <item.icon
-          style={{ width: "20px", height: "20px", color: "#fff", flexShrink: 0 }}
+          style={{ width: "25px", height: "25px", color: "#fff", flexShrink: 0 }}
         />
         <span
           style={{
             fontFamily: "'Bebas Neue', sans-serif",
             color: "#fff",
-            fontSize: "clamp(20px, 2vw, 25px)",
+            fontSize: "clamp(20px, 2vw, 20px)",
             letterSpacing: "0.12em",
             whiteSpace: "nowrap",
           }}
