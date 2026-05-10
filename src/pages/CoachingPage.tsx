@@ -409,11 +409,15 @@ const css = `
   gap: 18px;
 }
  .cp-what-card-icon {
-  width: 78px;
-  height: 78px;
+  width: 110px;
+  height: 110px;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+.cp-what-card-icon svg {
+  width: 52px;
+  height: 52px;
 }
   .cp-what-card h4 { font-family: 'Bebas Neue', sans-serif; color: #07b4ba; font-size: 16px; letter-spacing: 0.8px; line-height: 1.3; }
   .cp-what-card p { font-family: 'Barlow', sans-serif; color: rgba(255,255,255,0.5); font-size: 14px; line-height: 1.5; }
