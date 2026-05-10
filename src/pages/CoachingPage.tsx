@@ -389,8 +389,8 @@ const css = `
   /* WHAT YOU GET */
   .cp-what-cards { display: flex; gap: 45px; flex-wrap: wrap; justify-content: center; }
  .cp-what-card {
-  width: 150px;              /* 🔥 bigger card width */
-  min-height: 450px;         /* 🔥 taller cards */
+  width: 175px;              /* 🔥 bigger card width */
+  min-height: 320px;         /* 🔥 taller cards */
 
   padding: 11px 6px;        /* 🔥 more spacing inside */
 
@@ -414,8 +414,6 @@ const css = `
   display: flex;
   align-items: center;
   justify-content: center;
-
-  background: rgba(7,180,186,0.06);
 }
   .cp-what-card h4 { font-family: 'Bebas Neue', sans-serif; color: #07b4ba; font-size: 16px; letter-spacing: 0.8px; line-height: 1.3; }
   .cp-what-card p { font-family: 'Barlow', sans-serif; color: rgba(255,255,255,0.5); font-size: 14px; line-height: 1.5; }
