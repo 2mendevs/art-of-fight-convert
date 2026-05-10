@@ -239,10 +239,57 @@ const css = `
   .cp-hero-h1 span { color: #07b4ba; }
   .cp-hero-desc { color: rgba(255,255,255,0.62); font-family: 'Barlow', sans-serif; font-size: 16px; line-height: 1.7; max-width: 480px; margin-bottom: 32px; }
   .cp-hero-btns { display: flex; gap: 14px; flex-wrap: wrap; }
-  .cp-btn-primary { padding: 14px 34px; border-radius: 7px; background: #07b4ba; color: #000; font-family: 'Bebas Neue', sans-serif; font-size: 19px; letter-spacing: 2px; border: none; cursor: pointer; transition: background 0.2s; }
-  .cp-btn-primary:hover { background: #059a9f; }
-  .cp-btn-outline { padding: 14px 34px; border-radius: 7px; background: transparent; color: #fff; font-family: 'Bebas Neue', sans-serif; font-size: 19px; letter-spacing: 2px; border: 2px solid #07b4ba; cursor: pointer; transition: all 0.2s; }
-  .cp-btn-outline:hover { background: rgba(7,180,186,0.1); }
+  .cp-btn-primary {
+  min-width: 260px;
+  height: 58px;
+  padding: 0 34px;
+
+  border-radius: 8px;
+  background: #07b4ba;
+  color: #fff;
+
+  font-family: 'Barlow', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+
+  border: none;
+  cursor: pointer;
+
+  transition: all 0.25s ease;
+}
+
+.cp-btn-primary:hover {
+  background: #059aa0;
+  transform: translateY(-2px);
+}
+
+.cp-btn-outline {
+  min-width: 260px;
+  height: 58px;
+  padding: 0 34px;
+
+  border-radius: 8px;
+  background: transparent;
+  color: #07b4ba;
+
+  font-family: 'Barlow', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+
+  border: 2px solid #07b4ba;
+  cursor: pointer;
+
+  transition: all 0.25s ease;
+}
+
+.cp-btn-outline:hover {
+  background: rgba(7,180,186,0.12);
+  transform: translateY(-2px);
+}
 
   /* TRUST STRIP */
  .cp-trust {
@@ -1035,7 +1082,7 @@ const handleLeadSubmit = async () => {
       duration-300
     "
   >
-    1 on 1 Coaching
+    Book A Call
   </button>
 
   <button
