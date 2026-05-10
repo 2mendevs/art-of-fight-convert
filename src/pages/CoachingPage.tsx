@@ -388,19 +388,41 @@ const css = `
 
   /* WHAT YOU GET */
   .cp-what-cards { display: flex; gap: 45px; flex-wrap: wrap; justify-content: center; }
-  .cp-what-card {
-    width: 170px; padding: 18px 12px; border-radius: 14px;
-    background: #1a1a1a; border: 2px solid #07b4ba;
-    text-align: center; display: flex; flex-direction: column;
-    align-items: center; gap: 10px;
-  }
-  .cp-what-card-icon {
-    width: 50px; height: 50px; border-radius: 10px;
-    border: 1.5px solid rgba(7,180,186,0.35);
-    display: flex; align-items: center; justify-content: center;
-    background: rgba(7,180,186,0.06);
-  }
-  .cp-what-card h4 { font-family: 'Bebas Neue', sans-serif; color: #07b4ba; font-size: 13px; letter-spacing: 0.8px; line-height: 1.3; }
+ .cp-what-card {
+  width: 240px;              /* 🔥 bigger card width */
+  min-height: 260px;         /* 🔥 taller cards */
+
+  padding: 28px 20px;        /* 🔥 more spacing inside */
+
+  border-radius: 18px;
+
+  background: #1a1a1a;
+  border: 2px solid #07b4ba;
+
+  text-align: center;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  gap: 18px;
+}
+ .cp-what-card-icon {
+  width: 68px;
+  height: 68px;
+
+  border-radius: 14px;
+
+  border: 1.5px solid rgba(7,180,186,0.35);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: rgba(7,180,186,0.06);
+}
+  .cp-what-card h4 { font-family: 'Bebas Neue', sans-serif; color: #07b4ba; font-size: 16px; letter-spacing: 0.8px; line-height: 1.3; }
   .cp-what-card p { font-family: 'Barlow', sans-serif; color: rgba(255,255,255,0.5); font-size: 11px; line-height: 1.5; }
 
   /* OUR PROMISE — quote style */
