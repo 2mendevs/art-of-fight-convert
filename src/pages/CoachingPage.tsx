@@ -44,8 +44,8 @@ const ArrowLeftIcon = () => (
 
 const WhatsAppIcon = () => (
   <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
-    <path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.118 1.528 5.845L0 24l6.335-1.508A11.954 11.954 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.9 0-3.681-.513-5.21-1.408l-.374-.222-3.876.922.978-3.769-.244-.387A9.959 9.959 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/>
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.[...]
+    <path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.118 1.528 5.845L0 24l6.335-1.508A11.954 11.954 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.9 0-3.681-.513-5.21-1.408l-.374-.222-3.[...]
   </svg>
 );
 
@@ -218,7 +218,7 @@ const css = `
   /* HERO */
   .cp-hero {
   position: relative;
-  min-height:50vh; /* 🔥 ADD TRUST HEIGHT */
+  min-height: 35vh;
   padding-bottom: 70px;           /* 🔥 ensures visibility */
 }
   .cp-hero-bg { position: absolute; inset: 0; z-index: 0; }
@@ -235,9 +235,9 @@ const css = `
   .cp-hero-h1 span { color: #07b4ba; }
   .cp-hero-desc { color: rgba(255,255,255,0.62); font-family: 'Barlow', sans-serif; font-size: 16px; line-height: 1.7; max-width: 480px; margin-bottom: 32px; }
   .cp-hero-btns { display: flex; gap: 14px; flex-wrap: wrap; }
-  .cp-btn-primary { padding: 14px 34px; border-radius: 7px; background: #07b4ba; color: #000; font-family: 'Bebas Neue', sans-serif; font-size: 19px; letter-spacing: 2px; border: none; cursor: pointer; transition: background 0.2s; }
+  .cp-btn-primary { padding: 14px 34px; border-radius: 7px; background: #07b4ba; color: #000; font-family: 'Bebas Neue', sans-serif; font-size: 19px; letter-spacing: 2px; border: none; cursor: po[...]
   .cp-btn-primary:hover { background: #059a9f; }
-  .cp-btn-outline { padding: 14px 34px; border-radius: 7px; background: transparent; color: #fff; font-family: 'Bebas Neue', sans-serif; font-size: 19px; letter-spacing: 2px; border: 2px solid #07b4ba; cursor: pointer; transition: all 0.2s; }
+  .cp-btn-outline { padding: 14px 34px; border-radius: 7px; background: transparent; color: #fff; font-family: 'Bebas Neue', sans-serif; font-size: 19px; letter-spacing: 2px; border: 2px solid #0[...]
   .cp-btn-outline:hover { background: rgba(7,180,186,0.1); }
 
   /* TRUST STRIP */
@@ -453,7 +453,7 @@ const css = `
   margin: 0 auto;
 }
 .cp-promise-text::before {
-  content: "“";
+  content: """;
   color: #07b4ba;
   font-size: 50px;
   margin-right: 6px;
@@ -827,9 +827,9 @@ function CalendarPicker({ onConfirm }: { onConfirm: (date: string, time: string)
     <div>
       {/* Month nav */}
       <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 14 }}>
-        <button onClick={prevMonth} style={{ background: "none", border: "1px solid rgba(255,255,255,0.1)", color: "#fff", width: 32, height: 32, borderRadius: 6, cursor: "pointer", fontSize: 16 }}>&#8249;</button>
+        <button onClick={prevMonth} style={{ background: "none", border: "1px solid rgba(255,255,255,0.1)", color: "#fff", width: 32, height: 32, borderRadius: 6, cursor: "pointer", fontSize: 16 [...]
         <span style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: 18, letterSpacing: 2, color: "#fff" }}>{months[month]} {year}</span>
-        <button onClick={nextMonth} style={{ background: "none", border: "1px solid rgba(255,255,255,0.1)", color: "#fff", width: 32, height: 32, borderRadius: 6, cursor: "pointer", fontSize: 16 }}>&#8250;</button>
+        <button onClick={nextMonth} style={{ background: "none", border: "1px solid rgba(255,255,255,0.1)", color: "#fff", width: 32, height: 32, borderRadius: 6, cursor: "pointer", fontSize: 16 [...]
       </div>
 
       {/* Day labels */}
@@ -1426,7 +1426,7 @@ const handleLeadSubmit = async () => {
                     <span style={{ color: "#07b4ba" }}>1-On-1 Coaching Spot</span>
                   </h2>
                   <p style={{ fontFamily: "'Barlow', sans-serif", color: "rgba(255,255,255,0.52)", fontSize: 14, lineHeight: 1.7, marginBottom: 28, maxWidth: 380 }}>
-                    Spots are limited. We only take on a small number of students at a time to ensure every athlete gets the attention they deserve. Fill out the form and we'll reach out within 24 hours.
+                    Spots are limited. We only take on a small number of students at a time to ensure every athlete gets the attention they deserve. Fill out the form and we'll reach out within [...]
                   </p>
                   {checklistItems.map((item, i) => (
                     <div className="cp-checklist-item" key={i}>
