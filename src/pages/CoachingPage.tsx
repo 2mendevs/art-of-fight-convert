@@ -1269,7 +1269,7 @@ export default function CoachingPage() {
                 <p className="cp-promise-text">
                   We don't just hand you a plan and disappear. Every session is tracked,
                   every milestone is celebrated, and every setback is coached through.
-                  You will not plateau with AOF.
+                  <br />You will not plateau with AOF.
                 </p>
               </div>
             </Reveal>
