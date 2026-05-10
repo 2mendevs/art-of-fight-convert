@@ -240,8 +240,8 @@ const css = `
   .cp-hero-desc { color: rgba(255,255,255,0.62); font-family: 'Barlow', sans-serif; font-size: 16px; line-height: 1.7; max-width: 480px; margin-bottom: 32px; }
   .cp-hero-btns { display: flex; gap: 14px; flex-wrap: wrap; }
   .cp-btn-primary {
-  min-width: 300px;
-  height: 48px;
+  min-width: 380px;
+  height: 38px;
   padding: 0 34px;
 
   border-radius: 8px;
@@ -266,8 +266,8 @@ const css = `
 }
 
 .cp-btn-outline {
-  min-width: 300px;
-  height: 48px;
+  min-width: 380px;
+  height: 38px;
   padding: 0 34px;
 
   border-radius: 8px;
