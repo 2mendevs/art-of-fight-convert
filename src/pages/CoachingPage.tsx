@@ -243,7 +243,7 @@ const css = `
   /* TRUST STRIP */
  .cp-trust {
   position: absolute;     /* 🔥 attach to hero */
-  bottom: 17px;              /* 🔥 stick to bottom */
+  bottom: 0px;              /* 🔥 stick to bottom */
   left: 0;
   width: 100%;
 
