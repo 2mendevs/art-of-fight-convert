@@ -44,8 +44,8 @@ const ArrowLeftIcon = () => (
 
 const WhatsAppIcon = () => (
   <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.65-2.059-.17-.297-.347-.348-.644-.105-.297.242-.767.966-.94 1.164-.173.199-.422.348-.644.105-.297-.242-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.65-2.059-.17-.297-.348-.348-.644.105-.297.242-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.65-2.059" />
-    <path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.118 1.528 5.845L0 24l6.335-1.508A11.954 11.954 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.9 0-3.681-.513-5.21-1.408l-.374-.222-3.871.923.923-3.871-.222-.374C2.513 15.681 2 13.9 2 12c0-5.523 4.477-10 10-10s10 4.477 10 10-4.477 10-10 10z" />
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.[...]
+    <path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.118 1.528 5.845L0 24l6.335-1.508A11.954 11.954 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.9 0-3.681-.513-5.21-1.408l-.374-.222-3.[...]
   </svg>
 );
 
@@ -433,6 +433,10 @@ const css = `
   align-items: center;
   justify-content: center;
   gap: 18px;
+  background-image:
+    linear-gradient(hsl(7, 93%, 38% / 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, hsl(7, 93%, 38% / 0.04) 1px, transparent 1px);
+  background-size: 32px 32px;
 }
  .cp-what-card-icon {
   width: 70px;
@@ -463,7 +467,7 @@ const css = `
   max-width: 520px;
   margin: 0 auto;
 }
-.cp-promise-text::before {content: "“";color: #07b4ba;font-size: 50px;margin-right: 6px;}
+.cp-promise-text::before {content: """;color: #07b4ba;font-size: 50px;margin-right: 6px;}
 .cp-promise-text::before {
   content: """;
   color: #07b4ba;
@@ -499,7 +503,14 @@ const css = `
 
   /* APPLY */
   .cp-apply-bg { background: #0a0a0a; }
-  .cp-form-box { background: #161616; border: 1px solid rgba(255,255,255,0.1); border-radius: 16px; padding: 40px; }
+  .cp-form-box { 
+    background: #161616; 
+    border: 1px solid rgba(255,255,255,0.1); 
+    border-radius: 16px; 
+    padding: 40px; 
+    background-image: radial-gradient(hsl(40, 20%, 95% / 0.06) 1px, transparent 1px);
+    background-size: 18px 18px;
+  }
   .cp-form-box h3 { color: #07b4ba; font-family: 'Barlow', sans-serif; font-weight: 700; font-size: 15px; margin-bottom: 6px; }
   .cp-form-stage-label { color: rgba(255,255,255,0.35); font-family: 'Barlow', sans-serif; font-size: 12px; margin-bottom: 20px; letter-spacing: 1px; }
   .cp-input {
@@ -1529,7 +1540,7 @@ const handleLeadSubmit = async () => {
                     <span style={{ color: "#07b4ba" }}>1-On-1 Coaching Spot</span>
                   </h2>
                   <p style={{ fontFamily: "'Barlow', sans-serif", color: "rgba(255,255,255,0.52)", fontSize: 14, lineHeight: 1.7, marginBottom: 28, maxWidth: 380 }}>
-                    Spots are limited. We only take on a small number of students at a time to ensure every athlete gets the attention they deserve. Fill out the form and we'll reach out within 24 hours.
+                    Spots are limited. We only take on a small number of students at a time to ensure every athlete gets the attention they deserve. Fill out the form and we'll reach out within [...]
                   </p>
                   {checklistItems.map((item, i) => (
                     <div className="cp-checklist-item" key={i}>
