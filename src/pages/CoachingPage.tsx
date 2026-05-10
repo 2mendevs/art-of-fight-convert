@@ -1276,8 +1276,9 @@ export default function CoachingPage() {
         background: "linear-gradient(180deg,#181818 0%, #121212 100%)",
         border: "1px solid rgba(255,255,255,0.08)",
         borderRadius: 14,
-        padding: "18px 22px",
-        minWidth: 130,
+        width: 160,
+height: 140,
+padding: "18px 16px",
         textAlign: "center",
         boxShadow: "0 0 14px rgba(0,0,0,0.18)",
       }}
