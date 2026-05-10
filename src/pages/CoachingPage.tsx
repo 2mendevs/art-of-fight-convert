@@ -495,6 +495,10 @@ body { background: #0a0a0a; }
   font-family: 'Bebas Neue', sans-serif; font-size: 16px;
   letter-spacing: 1px; color: #fff; margin-bottom: 4px;
 }
+.cp-promise-text br {
+  display: block;
+  margin-bottom: 10px;
+}
 .cp-method-item p {
   font-family: 'Barlow', sans-serif; color: rgba(255,255,255,0.52);
   font-size: 13px; line-height: 1.55;
