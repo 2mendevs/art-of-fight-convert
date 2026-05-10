@@ -1230,8 +1230,8 @@ const handleLeadSubmit = async () => {
           </div>
           <div className="cp-section" style={{ paddingBottom: 40 }}>
             <Reveal>
-              <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 12, color: "#aaa", fontWeight: 700, marginBottom: 24, letterSpacing: 2, textTransform: "uppercase" }}>
-                Your Coach
+              <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 12, color: "#07b4ba", fontWeight: 700, marginBottom: 24, letterSpacing: 2, textTransform: }}>
+                Led By
               </p>
               <div style={{ display: "flex", gap: 56, alignItems: "flex-start", flexWrap: "wrap" }}>
                 <img
