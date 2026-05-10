@@ -1315,194 +1315,332 @@ export default function CoachingPage() {
         </div>
 
         {/* ── SECTION 4: TESTIMONIALS ── */}
-        <div id="cp-testimonials" className="cp-testi-bg">
-          <div className="cp-section" style={{ paddingTop: 48 }}>
-            <Reveal>
-              <div style={{ textAlign: "center", marginBottom: 44 }}>
-                <p
-                  style={{
-                    fontFamily: "'Barlow', sans-serif", color: "#07b4ba", fontWeight: 700,
-                    fontSize: 12, letterSpacing: 3, textTransform: "uppercase",
-                  }}
-                >
-                  Real People, Real Results
-                </p>
-                <h2
-                  style={{
-                    fontFamily: "'Bebas Neue', sans-serif", fontSize: "clamp(34px,5vw,56px)",
-                    letterSpacing: 2, color: "#fff", marginTop: 8, lineHeight: 1,
-                  }}
-                >
-                  Trusted By Fighters,{" "}
-                  <span style={{ color: "#07b4ba" }}>Proven Results</span>
-                </h2>
-                <p
-                  style={{
-                    fontFamily: "'Barlow', sans-serif", color: "rgba(255,255,255,0.42)",
-                    marginTop: 8, fontSize: 14,
-                  }}
-                >
-                  Here's What Athletes Say About Their Transformation With AOF
-                </p>
-              </div>
-            </Reveal>
+<div id="cp-testimonials" className="cp-testi-bg">
+  <div className="cp-section" style={{ paddingTop: 48 }}>
 
-            <Reveal>
-              <div className="cp-testi-main">
-                <div className="cp-testi-img">
-                  <img
-                    src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?w=900&q=80"
-                    alt="Athlete"
-                  />
-                </div>
-                <div style={{ flex: 1, minWidth: 260 }}>
-                  <h3
+    <Reveal>
+      <div style={{ textAlign: "center", marginBottom: 44 }}>
+        <p
+          style={{
+            fontFamily: "'Barlow', sans-serif",
+            color: "#07b4ba",
+            fontWeight: 700,
+            fontSize: 12,
+            letterSpacing: 3,
+            textTransform: "uppercase",
+          }}
+        >
+          Real People, Real Results
+        </p>
+
+        <h2
+          style={{
+            fontFamily: "'Bebas Neue', sans-serif",
+            fontSize: "clamp(34px,5vw,56px)",
+            letterSpacing: 2,
+            color: "#fff",
+            marginTop: 8,
+            lineHeight: 1,
+          }}
+        >
+          Trusted By Fighters,{" "}
+          <span style={{ color: "#07b4ba" }}>
+            Proven Results
+          </span>
+        </h2>
+
+        <p
+          style={{
+            fontFamily: "'Barlow', sans-serif",
+            color: "rgba(255,255,255,0.42)",
+            marginTop: 8,
+            fontSize: 14,
+          }}
+        >
+          Here's What Athletes Say About Their Transformation With AOF
+        </p>
+      </div>
+    </Reveal>
+
+    <Reveal>
+      <div className="cp-testi-main">
+
+        <div className="cp-testi-img">
+          <img
+            src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?w=900&q=80"
+            alt="Athlete"
+          />
+        </div>
+
+        <div style={{ flex: 1, minWidth: 260 }}>
+
+          <h3
+            style={{
+              fontFamily: "'Bebas Neue', sans-serif",
+              fontSize: "clamp(28px,3vw,42px)",
+              letterSpacing: 1.5,
+              lineHeight: 1.1,
+              marginBottom: 16,
+              color: "#fff",
+            }}
+          >
+            AOF Changed The Way{" "}
+            <span style={{ color: "#07b4ba" }}>
+              I Train And Perform.
+            </span>
+          </h3>
+
+          <p
+            style={{
+              fontFamily: "'Barlow', sans-serif",
+              color: "rgba(255,255,255,0.65)",
+              fontSize: 15,
+              lineHeight: 1.75,
+            }}
+          >
+            The structure, the attention to detail,
+            and the accountability took me to a level
+            I never thought possible. I'm stronger,
+            faster, and fight with more confidence than ever.
+          </p>
+
+          <p
+            style={{
+              fontFamily: "'Barlow', sans-serif",
+              marginTop: 14,
+              color: "#07b4ba",
+              fontWeight: 700,
+              fontSize: 14,
+            }}
+          >
+            — Alex M., Amateur MMA Fighter
+          </p>
+
+        </div>
+      </div>
+    </Reveal>
+
+    {/* 📱 MOBILE VERSION */}
+    {isMobile ? (
+
+      <div className="cp-feedback-wrapper">
+
+        <div
+          className="cp-feedback-pages"
+          style={{
+            transform: `translateX(-${mobileIndex * 100}%)`
+          }}
+        >
+          {pages.map((page, i) => (
+
+            <div className="cp-feedback-page" key={i}>
+
+              {page.map((t, idx) => (
+
+                <div className="cp-feedback-card" key={idx}>
+
+                  {/* STARS */}
+                  <div
                     style={{
-                      fontFamily: "'Bebas Neue', sans-serif",
-                      fontSize: "clamp(28px,3vw,42px)", letterSpacing: 1.5,
-                      lineHeight: 1.1, marginBottom: 16, color: "#fff",
+                      display: "flex",
+                      gap: 6,
+                      marginBottom: 14,
+                      color: "#07b4ba",
+                      fontSize: 16,
                     }}
                   >
-                    AOF Changed The Way{" "}
-                    <span style={{ color: "#07b4ba" }}>I Train And Perform.</span>
-                  </h3>
+                    <span>★</span>
+                    <span>★</span>
+                    <span>★</span>
+                    <span>★</span>
+                    <span>★</span>
+                  </div>
+
+                  {/* TEXT */}
                   <p
                     style={{
-                      fontFamily: "'Barlow', sans-serif", color: "rgba(255,255,255,0.65)",
-                      fontSize: 15, lineHeight: 1.75,
+                      color: "rgba(255,255,255,0.72)",
+                      fontSize: 13,
+                      lineHeight: 1.7,
+                      fontStyle: "italic",
+                      marginBottom: 18,
                     }}
                   >
-                    The structure, the attention to detail, and the accountability took me to a level
-                    I never thought possible. I'm stronger, faster, and fight with more confidence than ever.
+                    "{t.text}"
                   </p>
-                  <p
-                    style={{
-                      fontFamily: "'Barlow', sans-serif", marginTop: 14,
-                      color: "#07b4ba", fontWeight: 700, fontSize: 14,
-                    }}
-                  >
-                    — Alex M., Amateur MMA Fighter
-                  </p>
-                </div>
-              </div>
-            </Reveal>
 
-            {/* Mobile vs Desktop testimonial slider */}
-            {isMobile ? (
-              /* 📱 MOBILE VERSION */
-              <div className="cp-feedback-wrapper">
-                <div
-                  className="cp-feedback-pages"
-                  style={{ transform: `translateX(-${mobileIndex * 100}%)` }}
-                >
-                  {pages.map((page, i) => (
-                    <div className="cp-feedback-page" key={i}>
-                      {page.map((t, idx) => (
-                        <div className="cp-feedback-card" key={idx}>
-                          <p>{t.text}</p>
-                          <p className="author">— {t.author}</p>
-                        </div>
-                      ))}
+                  {/* PROFILE */}
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      gap: 12,
+                    }}
+                  >
+                    <div
+                      style={{
+                        width: 44,
+                        height: 44,
+                        borderRadius: "50%",
+                        background: "#202533",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        color: "#8d96a8",
+                        fontSize: 18,
+                        flexShrink: 0,
+                      }}
+                    >
+                      👤
                     </div>
-                  ))}
+
+                    <div>
+                      <p
+                        style={{
+                          color: "#fff",
+                          fontWeight: 700,
+                          fontSize: 15,
+                          marginBottom: 2,
+                        }}
+                      >
+                        {t.author}
+                      </p>
+
+                      <span
+                        style={{
+                          color: "rgba(255,255,255,0.45)",
+                          fontSize: 12,
+                        }}
+                      >
+                        Member
+                      </span>
+                    </div>
+                  </div>
+
                 </div>
-                <div className="cp-feedback-nav">
-                  <button onClick={prevSlide}>‹</button>
-                  <button onClick={nextSlide}>›</button>
-                </div>
-              </div>
-            ) : (
-              /* 💻 DESKTOP VERSION */
+
+              ))}
+
+            </div>
+
+          ))}
+        </div>
+
+        <div className="cp-feedback-nav">
+          <button onClick={prevSlide}>‹</button>
+          <button onClick={nextSlide}>›</button>
+        </div>
+
+      </div>
+
+    ) : (
+
+      /* 💻 DESKTOP VERSION */
+      <div
+        className="cp-feedback-slider"
+        ref={sliderRef}
+        onMouseDown={handleMouseDown}
+        onMouseLeave={handleMouseLeave}
+        onMouseUp={handleMouseUp}
+        onMouseMove={handleMouseMove}
+      >
+
+        <div className="cp-feedback-track">
+
+          {[...feedbackCards, ...feedbackCards].map((t, i) => (
+
+            <div className="cp-feedback-card" key={i}>
+
+              {/* STARS */}
               <div
-                className="cp-feedback-slider"
-                ref={sliderRef}
-                onMouseDown={handleMouseDown}
-                onMouseLeave={handleMouseLeave}
-                onMouseUp={handleMouseUp}
-                onMouseMove={handleMouseMove}
+                style={{
+                  display: "flex",
+                  gap: 6,
+                  marginBottom: 18,
+                  color: "#07b4ba",
+                  fontSize: 18,
+                }}
               >
-                <div className="cp-feedback-track">
-                  {[...feedbackCards, ...feedbackCards].map((t, i) => (
-                   <div className="cp-feedback-card" key={i}>
+                <span>★</span>
+                <span>★</span>
+                <span>★</span>
+                <span>★</span>
+                <span>★</span>
+              </div>
 
-  {/* ⭐ STARS */}
-  <div
-    style={{
-      display: "flex",
-      gap: 6,
-      marginBottom: 18,
-      color: "#07b4ba",
-      fontSize: 18,
-    }}
-  >
-    <span>★</span>
-    <span>★</span>
-    <span>★</span>
-    <span>★</span>
-    <span>★</span>
+              {/* FEEDBACK */}
+              <p
+                style={{
+                  color: "rgba(255,255,255,0.72)",
+                  fontSize: 15,
+                  lineHeight: 1.8,
+                  fontStyle: "italic",
+                  marginBottom: 22,
+                }}
+              >
+                "{t.text}"
+              </p>
+
+              {/* PROFILE */}
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: 14,
+                }}
+              >
+                <div
+                  style={{
+                    width: 52,
+                    height: 52,
+                    borderRadius: "50%",
+                    background: "#202533",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    color: "#8d96a8",
+                    fontSize: 22,
+                    flexShrink: 0,
+                  }}
+                >
+                  👤
+                </div>
+
+                <div>
+                  <p
+                    style={{
+                      color: "#fff",
+                      fontWeight: 700,
+                      fontSize: 18,
+                      marginBottom: 2,
+                    }}
+                  >
+                    {t.author}
+                  </p>
+
+                  <span
+                    style={{
+                      color: "rgba(255,255,255,0.45)",
+                      fontSize: 14,
+                    }}
+                  >
+                    Member
+                  </span>
+                </div>
+
+              </div>
+
+            </div>
+
+          ))}
+
+        </div>
+
+      </div>
+
+    )}
+
   </div>
-
-  {/* FEEDBACK */}
-  <p
-    style={{
-      color: "rgba(255,255,255,0.72)",
-      fontSize: 15,
-      lineHeight: 1.8,
-      fontStyle: "italic",
-      marginBottom: 22,
-    }}
-  >
-    "{t.text}"
-  </p>
-
-  {/* PROFILE */}
-  <div
-    style={{
-      display: "flex",
-      alignItems: "center",
-      gap: 14,
-    }}
-  >
-    <div
-      style={{
-        width: 52,
-        height: 52,
-        borderRadius: "50%",
-        background: "#202533",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        color: "#8d96a8",
-        fontSize: 22,
-        flexShrink: 0,
-      }}
-    >
-      👤
-    </div>
-
-    <div>
-      <p
-        style={{
-          color: "#fff",
-          fontWeight: 700,
-          fontSize: 18,
-          marginBottom: 2,
-        }}
-      >
-        {t.author}
-      </p>
-
-      <span
-        style={{
-          color: "rgba(255,255,255,0.45)",
-          fontSize: 14,
-        }}
-      >
-        Member
-      </span>
-    </div>
-  </div>
-
 </div>
         {/* ── SECTION 5: APPLY FORM ── */}
         <div className="cp-apply-bg" ref={formRef}>
