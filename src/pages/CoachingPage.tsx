@@ -636,7 +636,7 @@ body { background: #0a0a0a; }
 .cp-feedback-card {
   min-width: 320px; max-width: 320px; border-radius: 18px;
   background: linear-gradient(180deg, #1a1d27 0%, #121212 100%);
-  border: 1px solid rgba(255,255,255,0.08); padding: 24px;
+  border: 1px solid rgba(255,255,255,0.08); padding: 16px;
   flex-shrink: 0; margin-right: 20px; position: relative; overflow: hidden;
 }
 .cp-feedback-card p { color: rgba(255,255,255,0.7); font-size: 14px; line-height: 1.6; }
@@ -648,9 +648,11 @@ body { background: #0a0a0a; }
   .cp-hero-content { padding: 100px 20px 48px; }
 
 .cp-what-cards {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  display: flex;
+  flex-direction: column;
+
   gap: 14px;
+
   padding: 0 8px;
 }
 
@@ -663,7 +665,7 @@ body { background: #0a0a0a; }
   min-width: unset;
   max-width: 100%;
 
-  min-height: 170px;
+  min-height: 120px;
 
   margin-bottom: 10px;
 
@@ -1526,9 +1528,9 @@ padding: "18px 16px",
                     style={{
                       color: "rgba(255,255,255,0.72)",
                       fontSize: 13,
-                      lineHeight: 1.7,
+                      lineHeight: 1.45,
                       fontStyle: "italic",
-                      marginBottom: 18,
+                      marginBottom: 12,
                     }}
                   >
                     "{t.text}"
@@ -1638,9 +1640,9 @@ padding: "18px 16px",
                 style={{
                   color: "rgba(255,255,255,0.72)",
                   fontSize: 15,
-                  lineHeight: 1.8,
+                  lineHeight: 1.5,
                   fontStyle: "italic",
-                  marginBottom: 22,
+                  marginBottom: 13,
                 }}
               >
                 "{t.text}"
