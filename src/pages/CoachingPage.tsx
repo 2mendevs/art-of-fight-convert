@@ -490,13 +490,9 @@ body { background: #0a0a0a; }
 }
 .cp-method-item-icon { margin-top: 3px; flex-shrink: 0; }
 .cp-method-item-icon svg { width: 34px; height: 34px; }
-.cp-method-item h4 {
-  font-family: 'Bebas Neue', sans-serif; font-size: 16px;
-  letter-spacing: 1px; color: #fff; margin-bottom: 4px;
-}
 .cp-method-item p {
   font-family: 'Barlow', sans-serif; color: rgba(255,255,255,0.52);
-  font-size: 15px; line-height: 1.55;
+  font-size: 14px; line-height: 1.4;
 }
 
 /* WHAT YOU GET */
@@ -1312,7 +1308,6 @@ export default function CoachingPage() {
                     <div className="cp-method-item">
                       <div className="cp-method-item-icon">{item.icon}</div>
                       <div>
-                        <h4>{item.title}</h4>
                         <p>{item.desc}</p>
                       </div>
                     </div>
