@@ -598,7 +598,7 @@ body { background: #0a0a0a; }
 /* CHECKLIST & WHATSAPP */
 .cp-checklist-item { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 14px; }
 .cp-checklist-item .check { color: #07b4ba; font-size: 16px; flex-shrink: 0; margin-top: 2px; }
-.cp-checklist-item p { color: rgba(255,255,255,0.65); font-family: 'Barlow', sans-serif; font-size: 14px; line-height: 1.55; }
+.cp-checklist-item p { color: rgba(255,255,255,0.65); font-family: 'Barlow', sans-serif; font-size: 15px; line-height: 1.55; }
 .cp-wa-label { color: rgba(255,255,255,0.45); font-family: 'Barlow', sans-serif; font-size: 13px; margin-bottom: 8px; letter-spacing: 0.5px; }
 .cp-wa-btn {
   display: inline-flex; align-items: center; gap: 10px;
