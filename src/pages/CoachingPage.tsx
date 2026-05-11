@@ -398,7 +398,7 @@ body { background: #0a0a0a; }
 .cp-hero-overlay {
   background: linear-gradient(to right, #0a0a0a 35%, rgba(10,10,10,0.55) 60%, transparent 100%);
 }
-.cp-hero-content { position: relative; z-index: 2; max-width: 780px; padding: 120px 40px 50px; }
+.cp-hero-content { position: relative; z-index: 2; max-width: 740px; padding: 95px 40px 30px; }
 .cp-hero-tag {
   color: #07b4ba; font-family: 'Barlow', sans-serif; font-size: 12px;
   font-weight: 700; text-transform: uppercase; letter-spacing: 3px; margin-bottom: 16px;
