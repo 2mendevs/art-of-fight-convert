@@ -640,6 +640,96 @@ body { background: #0a0a0a; }
 }
 .cp-feedback-card p { color: rgba(255,255,255,0.7); font-size: 14px; line-height: 1.6; }
 .cp-feedback-card .author { color: #07b4ba; font-weight: 700; margin-top: 10px; font-size: 13px; }
+/* ───────── PREMIUM TEXTURES ───────── */
+
+/* AOF METHOD — GRID LINES */
+.cp-method-bg {
+  position: relative;
+  overflow: hidden;
+  background-color: #0b0b0b;
+
+  background-image:
+    linear-gradient(rgba(7,180,186,0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(7,180,186,0.07) 1px, transparent 1px);
+
+  background-size: 42px 42px;
+}
+
+.cp-method-bg::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background:
+    radial-gradient(
+      circle at top right,
+      rgba(7,180,186,0.08),
+      transparent 40%
+    );
+
+  pointer-events: none;
+}
+
+/* TESTIMONIALS — DIAGONAL LINES */
+.cp-testi-bg {
+  position: relative;
+  overflow: hidden;
+  background-color: #0b0b0b;
+
+  background-image:
+    repeating-linear-gradient(
+      -45deg,
+      rgba(7,180,186,0.05) 0px,
+      rgba(7,180,186,0.05) 2px,
+      transparent 2px,
+      transparent 24px
+    );
+}
+
+.cp-testi-bg::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background:
+    radial-gradient(
+      circle at top left,
+      rgba(7,180,186,0.06),
+      transparent 45%
+    );
+
+  pointer-events: none;
+}
+
+/* APPLY FORM — DOTTED GRID */
+.cp-apply-bg {
+  position: relative;
+  overflow: hidden;
+  background-color: #0a0a0a;
+
+  background-image:
+    radial-gradient(
+      rgba(7,180,186,0.18) 1.3px,
+      transparent 1.3px
+    );
+
+  background-size: 28px 28px;
+}
+
+.cp-apply-bg::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background:
+    radial-gradient(
+      circle at bottom right,
+      rgba(7,180,186,0.07),
+      transparent 45%
+    );
+
+  pointer-events: none;
+}
 
 /* RESPONSIVE */
 @media (max-width: 768px) {
