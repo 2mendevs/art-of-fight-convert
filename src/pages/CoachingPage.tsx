@@ -119,7 +119,6 @@ const whatCards = [
   { icon: <IconGlobe />, title: "Game Plan", desc: "Opponent-based strategies tailored to your fight style" },
 ];
 
-/* CHANGE: removed "Coaches remotely across 3 continents with proven results" */
 const coachCredentials = [
   "Former Professional MMA Fighter — 12+ Years Ring Experience",
   "Trained athletes who compete at national and international level",
@@ -133,10 +132,15 @@ const stats = [
   { val: "3", label: "Continents" },
 ];
 
+// ── CHANGE 1: 7 feedback cards for the carousel ──
 const feedbackCards = [
   { text: "In 8 weeks my footwork completely changed. My coach saw things I couldn't see myself and fixed them immediately.", author: "Jordan K." },
   { text: "I was plateau'd for over a year. AOF broke that within the first month. The personalised approach is unlike anything else.", author: "Priya S." },
   { text: "Best investment I've made in my fight career. The plan, the feedback, the accountability — it's all dialled in perfectly.", author: "Carlos R." },
+  { text: "The mental conditioning alone was worth it. I walk into every fight calm, focused, and completely prepared.", author: "Marcus T." },
+  { text: "My conditioning improved dramatically in 6 weeks. I was gassing out in round 2 — now I'm strong through round 5.", author: "Lena W." },
+  { text: "Having a coach review my sparring footage and give real feedback changed everything. It's like having a corner in your pocket.", author: "Dami O." },
+  { text: "The nutrition guidance was simple and actually worked. Lost 4kg before my fight and felt stronger than ever on fight night.", author: "Ryan P." },
 ];
 
 const checklistItems = [
@@ -195,7 +199,6 @@ const css = `
   }
   .cp-back:hover { color: #fff; }
 
-  /* CHANGE: Book A Call button — white text matching home page */
   .cp-book-nav {
     padding: 10px 24px; border-radius: 6px;
     background: #07b4ba; color: #fff;
@@ -215,7 +218,6 @@ const css = `
   .cp-hero-desc { color: rgba(255,255,255,0.62); font-family: 'Barlow', sans-serif; font-size: 16px; line-height: 1.7; max-width: 480px; margin-bottom: 32px; }
   .cp-hero-btns { display: flex; gap: 14px; flex-wrap: wrap; }
 
-  /* CHANGE: all buttons white text, home page size */
   .cp-btn-primary {
     padding: 14px 34px; border-radius: 7px;
     background: #07b4ba; color: #fff;
@@ -274,7 +276,6 @@ const css = `
   /* COACH */
   .cp-coach-bg { background: #0a0a0a; }
   .cp-book-strip { background: #07b4ba; padding: 0; display: flex; align-items: center; justify-content: center; }
-  /* CHANGE: Book A Call strip button — white text */
   .cp-book-strip button {
     width: 100%; padding: 14px;
     background: none; border: none; cursor: pointer;
@@ -289,14 +290,31 @@ const css = `
   .cp-testi-img { flex: 0 0 460px; max-width: 100%; }
   .cp-testi-img img { width: 100%; border-radius: 10px; object-fit: cover; }
 
-  /* CHANGE: 3 cards in 4 cards space — min-width larger so 3 fill the row */
-  .cp-feedback-cards { display: flex; gap: 16px; flex-wrap: wrap; }
-  .cp-feedback-card {
-    flex: 1; min-width: 280px; max-width: calc(33.33% - 12px);
-    border-radius: 14px; background: #161616;
-    border: 1px solid rgba(255,255,255,0.08); padding: 28px;
+  /* ── CHANGE 1: FEEDBACK CAROUSEL ── */
+  .cp-carousel-wrapper {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    padding: 8px 0 16px;
   }
-  /* CHANGE: feedback fonts matching home page Barlow style */
+  .cp-carousel-track {
+    display: flex;
+    gap: 16px;
+    transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform;
+  }
+  .cp-feedback-card {
+    flex: 0 0 calc(33.333% - 11px);
+    border-radius: 14px;
+    background: #161616;
+    border: 1px solid rgba(255,255,255,0.08);
+    padding: 28px;
+    transition: border-color 0.3s, transform 0.3s;
+  }
+  .cp-feedback-card:hover {
+    border-color: rgba(7,180,186,0.35);
+    transform: translateY(-2px);
+  }
   .cp-feedback-card p {
     font-family: 'Barlow', sans-serif;
     color: rgba(255,255,255,0.68);
@@ -307,6 +325,25 @@ const css = `
     font-family: 'Barlow', sans-serif;
     color: #07b4ba; font-weight: 700;
     font-size: 14px; letter-spacing: 0.5px;
+  }
+  .cp-carousel-dots {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 20px;
+  }
+  .cp-carousel-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.18);
+    transition: background 0.3s, transform 0.3s;
+    cursor: pointer;
+    border: none;
+    padding: 0;
+  }
+  .cp-carousel-dot.active {
+    background: #07b4ba;
+    transform: scale(1.3);
   }
 
   /* APPLY */
@@ -319,7 +356,6 @@ const css = `
   .cp-input:focus { border-color: #07b4ba; }
   .cp-input option { background: #222; }
 
-  /* CHANGE: submit button white text */
   .cp-submit { width: 100%; padding: 15px; border-radius: 8px; background: #07b4ba; color: #fff; font-family: 'Bebas Neue', sans-serif; font-size: 20px; letter-spacing: 2px; border: none; cursor: pointer; transition: background 0.2s; margin-top: 4px; }
   .cp-submit:hover { background: #059a9f; }
 
@@ -339,19 +375,52 @@ const css = `
   .cp-wa-btn { display: inline-flex; align-items: center; gap: 10px; background: #25D366; color: #fff; padding: 14px 28px; border-radius: 40px; font-family: 'Barlow', sans-serif; font-weight: 800; font-size: 15px; border: none; cursor: pointer; transition: background 0.2s; }
   .cp-wa-btn:hover { background: #1ebe57; }
 
-  /* FAQ */
-  .cp-faq { max-width: 760px; margin: 56px auto 0; }
-  .cp-faq-title { font-family: 'Bebas Neue', sans-serif; font-size: 28px; letter-spacing: 2px; color: #fff; margin-bottom: 24px; text-align: center; }
+  /* ── CHANGE 2: FAQ — full-width centred, bigger ── */
+  .cp-faq {
+    width: 100%;
+    max-width: 900px;
+    margin: 64px auto 0;
+    padding: 0 20px;
+  }
+  .cp-faq-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(32px, 4vw, 44px);
+    letter-spacing: 3px;
+    color: #fff;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+  .cp-faq-subtitle {
+    font-family: 'Barlow', sans-serif;
+    color: rgba(255,255,255,0.38);
+    font-size: 14px;
+    text-align: center;
+    letter-spacing: 1px;
+    margin-bottom: 32px;
+  }
   .cp-faq-item { border-bottom: 1px solid rgba(255,255,255,0.08); }
   .cp-faq-q {
     width: 100%; display: flex; align-items: center; justify-content: space-between;
-    padding: 18px 0; background: none; border: none; cursor: pointer;
-    text-align: left; gap: 16px;
+    padding: 22px 0; background: none; border: none; cursor: pointer;
+    text-align: left; gap: 20px;
   }
-  .cp-faq-q span { font-family: 'Barlow', sans-serif; font-size: 15px; font-weight: 700; color: #fff; line-height: 1.4; }
+  .cp-faq-q span {
+    font-family: 'Barlow', sans-serif;
+    font-size: 17px;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.4;
+  }
   .cp-faq-chevron { flex-shrink: 0; color: #07b4ba; transition: transform 0.3s ease; }
   .cp-faq-chevron.open { transform: rotate(180deg); }
-  .cp-faq-a { font-family: 'Barlow', sans-serif; font-size: 14px; color: rgba(255,255,255,0.58); line-height: 1.75; padding-bottom: 18px; padding-right: 32px; }
+  .cp-faq-a {
+    font-family: 'Barlow', sans-serif;
+    font-size: 15px;
+    color: rgba(255,255,255,0.58);
+    line-height: 1.8;
+    padding-bottom: 22px;
+    padding-right: 40px;
+  }
 
   /* FOOTER */
   .cp-footer { background: #060606; border-top: 1px solid rgba(255,255,255,0.06); padding: 28px 40px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
@@ -371,9 +440,10 @@ const css = `
     .cp-method-text { order: 2; }
     .cp-testi-main { flex-direction: column; }
     .cp-testi-img { flex: unset; width: 100%; }
-    .cp-feedback-card { max-width: 100%; }
+    .cp-feedback-card { flex: 0 0 calc(80vw - 40px); }
     .cp-form-box { padding: 24px 18px; }
     .cp-footer { flex-direction: column; text-align: center; }
+    .cp-faq { padding: 0 4px; }
   }
 `;
 
@@ -431,12 +501,13 @@ function CalendarPicker({ onConfirm }: { onConfirm: (date: string, time: string)
   );
 }
 
-/* ── FAQ COMPONENT ── */
+/* ── CHANGE 2: FAQ COMPONENT — centred, bigger ── */
 function FAQ() {
   const [open, setOpen] = useState<number | null>(null);
   return (
     <div className="cp-faq">
       <p className="cp-faq-title">Frequently Asked Questions</p>
+      <p className="cp-faq-subtitle">EVERYTHING YOU NEED TO KNOW BEFORE YOU START</p>
       {faqItems.map((item, i) => (
         <div key={i} className="cp-faq-item">
           <button className="cp-faq-q" onClick={() => setOpen(open === i ? null : i)}>
@@ -448,6 +519,94 @@ function FAQ() {
           {open === i && <p className="cp-faq-a">{item.a}</p>}
         </div>
       ))}
+    </div>
+  );
+}
+
+/* ── CHANGE 1: FEEDBACK CAROUSEL COMPONENT ── */
+function FeedbackCarousel() {
+  const VISIBLE = 3;
+  const TOTAL = feedbackCards.length; // 7
+  const [startIndex, setStartIndex] = useState(0);
+  const [animating, setAnimating] = useState(false);
+  const [direction, setDirection] = useState<"next" | "prev">("next");
+  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
+
+  // We render VISIBLE + 1 cards: current window + one peeking card for transition
+  // Track offset: 0 = showing cards at startIndex, -1 = mid-slide
+  const [offset, setOffset] = useState(0);
+
+  const advance = () => {
+    if (animating) return;
+    setAnimating(true);
+    setDirection("next");
+    // Slide left by one card width + gap
+    setOffset(-1);
+    setTimeout(() => {
+      setStartIndex(prev => (prev + 1) % TOTAL);
+      setOffset(0);
+      setAnimating(false);
+    }, 700);
+  };
+
+  useEffect(() => {
+    intervalRef.current = setInterval(advance, 3200);
+    return () => { if (intervalRef.current) clearInterval(intervalRef.current); };
+  }, [animating, startIndex]);
+
+  // Build the visible set: always render VISIBLE+1 cards for smooth looping
+  const getCards = () => {
+    const cards = [];
+    for (let i = 0; i < VISIBLE + 1; i++) {
+      cards.push(feedbackCards[(startIndex + i) % TOTAL]);
+    }
+    return cards;
+  };
+
+  const cardWidthPercent = 100 / VISIBLE;
+  const gapPx = 16;
+  // translate: 0 = showing 0..VISIBLE-1, offset=-1 = showing 1..VISIBLE
+  const translateX = offset * (cardWidthPercent + (gapPx / (VISIBLE * 3)));
+
+  return (
+    <div>
+      <div className="cp-carousel-wrapper">
+        <div
+          className="cp-carousel-track"
+          style={{
+            transform: `translateX(calc(${translateX}% - ${offset !== 0 ? gapPx * offset / VISIBLE : 0}px))`,
+            transition: animating ? "transform 0.7s cubic-bezier(0.4, 0, 0.2, 1)" : "none",
+          }}
+        >
+          {getCards().map((card, i) => (
+            <div
+              key={`${startIndex}-${i}`}
+              className="cp-feedback-card"
+              style={{
+                flex: `0 0 calc(${cardWidthPercent}% - ${gapPx * (VISIBLE - 1) / VISIBLE}px)`,
+              }}
+            >
+              <p>{card.text}</p>
+              <p className="author">— {card.author}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Dot indicators */}
+      <div className="cp-carousel-dots">
+        {feedbackCards.map((_, i) => (
+          <button
+            key={i}
+            className={`cp-carousel-dot${i === startIndex ? " active" : ""}`}
+            onClick={() => {
+              if (!animating) {
+                setStartIndex(i);
+              }
+            }}
+          />
+        ))}
+      </div>
     </div>
   );
 }
@@ -502,7 +661,6 @@ export default function CoachingPage() {
               <p className="cp-hero-desc">
                 Stop training in the crowd. Get a personalized coaching program built around your body, your goals, and your timeline — guided by coaches who have been in the ring.
               </p>
-              {/* CHANGE: removed "See Results" button — Book A Call only */}
               <div className="cp-hero-btns">
                 <button className="cp-btn-primary" onClick={scrollToForm}>Book A Call</button>
               </div>
@@ -604,7 +762,6 @@ export default function CoachingPage() {
           </div>
           <div className="cp-section" style={{ paddingBottom: 40 }}>
             <Reveal>
-              {/* CHANGE: "LED BY" full caps, font size increased */}
               <p style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: 16, color: "#aaa", fontWeight: 700, marginBottom: 24, letterSpacing: 2, textTransform: "uppercase" }}>
                 LED BY
               </p>
@@ -617,7 +774,6 @@ export default function CoachingPage() {
                 <div style={{ flex: 1, minWidth: 280 }}>
                   <h2 style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: 48, letterSpacing: 2, color: "#fff", marginBottom: 10 }}>Head Coach</h2>
                   <div style={{ width: 60, height: 2, background: "#07b4ba", marginBottom: 22 }} />
-                  {/* CHANGE: only 3 credentials, removed "Coaches remotely across 3 continents" */}
                   {coachCredentials.map((item, i) => (
                     <div key={i} style={{ display: "flex", gap: 12, marginBottom: 14 }}>
                       <span style={{ color: "#07b4ba", fontSize: 16, flexShrink: 0 }}>★</span>
@@ -667,17 +823,10 @@ export default function CoachingPage() {
               </div>
             </Reveal>
 
-            {/* CHANGE: 3 cards only, filling same space as 4 */}
-            <div className="cp-feedback-cards">
-              {feedbackCards.map((t, i) => (
-                <Reveal key={i}>
-                  <div className="cp-feedback-card">
-                    <p>{t.text}</p>
-                    <p className="author">— {t.author}</p>
-                  </div>
-                </Reveal>
-              ))}
-            </div>
+            {/* CHANGE 1: Auto-scrolling carousel replaces static cards */}
+            <Reveal>
+              <FeedbackCarousel />
+            </Reveal>
           </div>
         </div>
 
@@ -744,7 +893,7 @@ export default function CoachingPage() {
                   </div>
                 </Reveal>
 
-                {/* FAQ — under form */}
+                {/* CHANGE 2: FAQ — now full-width centred below form */}
                 <Reveal style={{ marginTop: 0 }}>
                   <FAQ />
                 </Reveal>
