@@ -399,6 +399,11 @@ const faqItems = [
     answer:
       "No long-term contracts. You can cancel anytime. We are confident enough in our results that we don't need to lock you in. We also back that up with a results guarantee — if you don't see measurable progress, we'll extend your coaching for free until you do.",
   },
+  {
+  question: "How many sessions should I train per week?",
+  answer:
+    "Most athletes train between 3–6 sessions per week depending on their goals, recovery capacity, and schedule. Your coach will create the optimal structure for you to ensure consistent improvement without burnout.",
+},
 ];
 
 /* ── CSS ── */
@@ -740,9 +745,9 @@ body { background: #0a0a0a; }
   pointer-events: none;
 }
 .cp-faq-inner {
-  max-width: 780px;
+  max-width: 1180px;
   margin: 0 auto;
-  padding: 72px 20px;
+  padding: 72px 18px;
   text-align: center;
   position: relative;
   z-index: 1;
