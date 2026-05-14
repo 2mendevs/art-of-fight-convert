@@ -1467,7 +1467,7 @@ function FAQSection() {
   };
 
   return (
-    <div className="cp-faq-bg">
+    <div id="faq" className="cp-faq-bg">
       <div className="cp-faq-inner">
         <Reveal>
           <p className="cp-faq-label">Got Questions?</p>
@@ -1650,7 +1650,7 @@ export default function CoachingPage() {
 
         {/* ── SECTION 2: AOF METHOD ── */}
         <div className="cp-method-bg">
-          <div className="cp-section">
+          <div id="method" className="cp-method-bg">
             <Reveal>
               <div style={{ textAlign: "center", marginBottom: 40 }}>
                 <p
@@ -1972,7 +1972,7 @@ export default function CoachingPage() {
         </div>
 
         {/* ── SECTION 5: APPLY FORM ── */}
-        <div className="cp-apply-bg" ref={formRef}>
+        <div id="contact" className="cp-apply-bg" ref={formRef}>
           <div className="cp-section">
             <div style={{ display: "flex", gap: 56, alignItems: "flex-start", flexWrap: "wrap" }}>
 
