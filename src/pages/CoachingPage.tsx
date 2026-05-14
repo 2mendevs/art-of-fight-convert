@@ -659,21 +659,119 @@ body { background: #0a0a0a; }
 .cp-checklist-item p { color: rgba(255,255,255,0.65); font-family: 'Barlow', sans-serif; font-size: 14px; line-height: 1.55; }
 .cp-wa-label { color: rgba(255,255,255,0.45); font-family: 'Barlow', sans-serif; font-size: 13px; margin-bottom: 8px; letter-spacing: 0.5px; }
 .cp-wa-btn {
-  display: inline-flex; align-items: center; gap: 10px;
+  display: flex; align-items: center; gap: 10px;
   background: #25D366; color: #fff; padding: 14px 28px; border-radius: 40px;
   font-family: 'Barlow', sans-serif; font-weight: 800; font-size: 15px;
   border: none; cursor: pointer; transition: background 0.2s;
 }
+.cp-wa-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 18px;
+}
 .cp-wa-btn:hover { background: #1ebe57; }
 
-/* FOOTER */
+//* ── NEW FOOTER ── */
 .cp-footer {
-  background: #060606; border-top: 1px solid rgba(255,255,255,0.06);
-  padding: 28px 40px; display: flex; align-items: center;
-  justify-content: space-between; flex-wrap: wrap; gap: 12px;
+  background: #060606;
+  border-top: 1px solid rgba(255,255,255,0.06);
+  padding: 70px 40px 30px;
 }
-.cp-footer-logo { color: #07b4ba; font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 4px; }
-.cp-footer p { color: rgba(255,255,255,0.28); font-family: 'Barlow', sans-serif; font-size: 13px; }
+
+.cp-footer-inner {
+  max-width: 1180px;
+  margin: 0 auto;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 80px;
+}
+
+.cp-footer-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 24px;
+  letter-spacing: 1px;
+  color: #fff;
+
+  margin-bottom: 24px;
+}
+
+.cp-footer-logo {
+  color: #07b4ba;
+}
+
+.cp-footer-links {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.cp-footer-links a,
+.cp-footer-contact p,
+.cp-footer-about p {
+  font-family: 'Barlow', sans-serif;
+  font-size: 17px;
+  color: rgba(255,255,255,0.52);
+
+  text-decoration: none;
+  transition: 0.2s;
+}
+
+.cp-footer-links a:hover {
+  color: #07b4ba;
+}
+
+.cp-footer-contact {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.cp-footer-about p {
+  line-height: 1.8;
+  max-width: 320px;
+}
+
+.cp-footer-bottom {
+  margin-top: 60px;
+  padding-top: 24px;
+
+  border-top: 1px solid rgba(255,255,255,0.06);
+
+  text-align: center;
+
+  font-family: 'Barlow', sans-serif;
+  font-size: 13px;
+
+  color: rgba(255,255,255,0.3);
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+
+  .cp-footer {
+    padding: 50px 20px 24px;
+  }
+
+  .cp-footer-inner {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .cp-footer-title {
+    margin-bottom: 16px;
+  }
+
+  .cp-footer-links a,
+  .cp-footer-contact p,
+  .cp-footer-about p {
+    font-size: 15px;
+  }
+
+  .cp-footer-bottom {
+    margin-top: 40px;
+  }
+}
 
 /* ── CHANGE 3: NEW FEEDBACK SLIDER — 3-card infinite horizontal scroll ── */
 .cp-feedback-slider-new {
@@ -1913,10 +2011,12 @@ export default function CoachingPage() {
                   ))}
                   <div style={{ marginTop: 32 }}>
                     <p className="cp-wa-label">Any Queries?</p>
-                    <button className="cp-wa-btn">
-                      <WhatsAppIcon />
-                      Contact Us on WhatsApp
-                    </button>
+                   <div className="cp-wa-wrapper">
+  <button className="cp-wa-btn">
+    <WhatsAppIcon />
+    Chat On WhatsApp
+  </button>
+</div>
                   </div>
                 </Reveal>
               </div>
@@ -1997,10 +2097,55 @@ export default function CoachingPage() {
         <FAQSection />
 
         {/* ── FOOTER ── */}
-        <footer className="cp-footer">
-          <span className="cp-footer-logo">AOF</span>
-          <p>© {new Date().getFullYear()} Art of Fight Academy. All rights reserved.</p>
-        </footer>
+     <footer className="cp-footer">
+  <div className="cp-footer-inner">
+
+    {/* CONTACT */}
+    <div>
+      <h3 className="cp-footer-title">
+        CONTACT
+      </h3>
+
+      <div className="cp-footer-contact">
+        <p>+91 00000 00000</p>
+        <p>info@aofacademy.com</p>
+        <p>Chennai, Tamil Nadu, India</p>
+      </div>
+    </div>
+
+    {/* NAVIGATION */}
+    <div>
+      <h3 className="cp-footer-title">
+        NAVIGATION
+      </h3>
+
+      <div className="cp-footer-links">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#program">Program</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+
+    {/* AOF */}
+    <div>
+      <h3 className="cp-footer-title cp-footer-logo">
+        AOF
+      </h3>
+
+      <div className="cp-footer-about">
+        <p>
+          Art of Fighting Academy — building champions through proven systems and disciplined training.
+        </p>
+      </div>
+    </div>
+
+  </div>
+
+  <div className="cp-footer-bottom">
+    © 2026 AOF Academy. All rights reserved.
+  </div>
+</footer>
       </div>
     </>
   );
