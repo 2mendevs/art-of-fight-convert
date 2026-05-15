@@ -536,7 +536,7 @@ body { background: #0a0a0a; }
   align-items: flex-start;
   flex-wrap: wrap;
 
-  max-width: 1100px;
+  max-width: 1200px;
   margin: 0 auto;
 
   padding: 0 0px 0px;
