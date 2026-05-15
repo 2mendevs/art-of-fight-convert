@@ -530,13 +530,11 @@ body { background: #0a0a0a; }
 
 /* METHOD SECTION */
 .cp-method-bg { background: #0d0d0d; }
-..cp-method-grid {
+.cp-method-grid {
   display: flex;
   gap: 48px;
   align-items: flex-start;
   flex-wrap: wrap;
-
-  padding: 12px;
 }
 .cp-method-text { flex: 1; min-width: 260px; order: 1; }
 .cp-method-image { flex: 0 0 500px; max-width: 100%; order: 2; }
