@@ -578,84 +578,52 @@ body { background: #0a0a0a; }
 
 /* ── PROMISE SECTION ── */
 
+./* ── PROMISE SECTION ── */
 .cp-promise {
   max-width: 760px;
   margin: 70px auto 0;
-
   padding: 48px 40px;
-
   text-align: center;
-
   position: relative;
-
-  background: linear-gradient(
-    180deg,
-    rgba(255,255,255,0.03),
-    rgba(255,255,255,0.015)
-  );
-
+  background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.015));
   border: 1px solid rgba(255,255,255,0.06);
-
   border-radius: 24px;
-
   overflow: visible;
 }
-
 .cp-promise::before {
-  content: "“";
-
+  content: "\201C";
   position: absolute;
-
-top: -12px;
-left: 18px;
-
+  top: -12px;
+  left: 18px;
   font-size: 120px;
-
   line-height: 1;
-
   color: rgba(7,180,186,0.12);
-
   font-family: serif;
-
   pointer-events: none;
 }
-
 .cp-promise h4 {
   font-family: 'Bebas Neue', sans-serif;
-
   color: #07b4ba;
-
   font-size: 28px;
-
   letter-spacing: 2px;
-
   margin-bottom: 24px;
-
   line-height: 1.1;
-
   position: relative;
   z-index: 2;
 }
-
 .cp-promise-text {
   font-family: 'Barlow', sans-serif;
-
   color: rgba(255,255,255,0.74);
-
   font-size: 17px;
-
   line-height: 1.95;
-
   font-style: italic;
-
   max-width: 640px;
-
   margin: 0 auto;
-  top: -12px;
-left: 18px;
-
   position: relative;
   z-index: 2;
+}
+.cp-promise-text::before {
+  display: none;
 }
 
 /* REMOVE OLD INLINE QUOTE */
