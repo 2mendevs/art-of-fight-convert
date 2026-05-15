@@ -536,7 +536,7 @@ body { background: #0a0a0a; }
   align-items: flex-start;
   flex-wrap: wrap;
 
-  padding: 0 24px;
+  padding: 12px;
 }
 .cp-method-text { flex: 1; min-width: 260px; order: 1; }
 .cp-method-image { flex: 0 0 500px; max-width: 100%; order: 2; }
