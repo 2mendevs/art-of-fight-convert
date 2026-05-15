@@ -578,7 +578,7 @@ body { background: #0a0a0a; }
 
 /* OUR PROMISE */
 .cp-promise {
-  max-width: 760px;
+  max-width: 850x;
   margin: 70px auto 0;
 
   text-align: center;
