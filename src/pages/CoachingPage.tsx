@@ -565,7 +565,7 @@ body { background: #0a0a0a; }
 .cp-what-cards { display: flex; gap: 45px; flex-wrap: wrap; justify-content: center; }
 .cp-what-card {
   width: 175px; min-height: 255px; padding: 11px 6px;
-  border-radius: 18px; background: #1a1a1a; border: 2px solid #07b4ba;
+  border-radius: 18px; background: #101318; border: 2px solid #101318;
   text-align: center; display: flex; flex-direction: column;
   align-items: center; justify-content: center; gap: 18px;
 }
@@ -675,10 +675,10 @@ body { background: #0a0a0a; }
 .cp-testi-main { display: flex; gap: 48px; align-items: center; margin-bottom: 40px; flex-wrap: wrap; }
 .cp-testi-img { flex: 0 0 460px; max-width: 100%; }
 .cp-testi-img img { width: 100%; border-radius: 10px; object-fit: cover; }
-.cp-feedback-cards { display: flex; gap: 16px; flex-wrap: wrap; }
+.cp-feedback-s { display: flex; gap: 16px; flex-wrap: wrap; }
 .cp-feedback-card {
   flex: 1; min-width: 240px; border-radius: 14px;
-  background: #161616; border: 1px solid rgba(255,255,255,0.08); padding: 24px;
+  background: #101318; border: 1px solid rgba(255,255,255,0.08); padding: 24px;
 }
 .cp-feedback-card p {
   font-family: 'Barlow', sans-serif; color: rgba(255,255,255,0.65);
