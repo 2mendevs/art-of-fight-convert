@@ -645,6 +645,34 @@ body { background: #0a0a0a; }
 
   margin: 0 auto;
 }
+.cp-new-promise-title {
+  font-family: 'Bebas Neue', sans-serif;
+
+  font-size: 30px;
+
+  letter-spacing: 2px;
+
+  color: #fff;
+
+  margin-bottom: 12px;
+
+  text-align: center;
+}
+
+.cp-quote-mark {
+  color: #07b4ba;
+
+  font-size: 42px;
+
+  line-height: 0;
+
+  margin-right: 6px;
+
+  font-family: serif;
+
+  position: relative;
+  top: 10px;
+}
 
 /* MOBILE */
 @media (max-width: 768px) {
@@ -653,6 +681,7 @@ body { background: #0a0a0a; }
     padding: 26px 22px;
     border-radius: 16px;
   }
+  
 
   .cp-new-promise-text {
     font-size: 15px;
@@ -1814,16 +1843,22 @@ export default function CoachingPage() {
               </div>
             </Reveal>
             {/* ── NEW PROMISE SECTION ── */}
+{/* ── NEW PROMISE SECTION ── */}
 <Reveal style={{ marginTop: 50 }}>
   <div className="cp-new-promise">
+
+    <p className="cp-new-promise-title">
+      Our Promise
+    </p>
 
     <div className="cp-new-promise-line" />
 
     <p className="cp-new-promise-text">
-      “Most fighters train hard. Very few train correctly.
+      <span className="cp-quote-mark">“</span>
+      Most fighters train hard. Very few train correctly.
       AOF exists to close that gap — with structure,
       accountability, and coaching that actually evolves
-      with you.”
+      with you.
     </p>
 
   </div>
