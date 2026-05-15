@@ -598,7 +598,7 @@ body { background: #0a0a0a; }
 
   border-radius: 24px;
 
-  overflow: hidden;
+  overflow: visible;
 }
 
 .cp-promise::before {
@@ -606,8 +606,8 @@ body { background: #0a0a0a; }
 
   position: absolute;
 
-  top: 12px;
-  left: 28px;
+top: -12px;
+left: 18px;
 
   font-size: 120px;
 
@@ -651,6 +651,8 @@ body { background: #0a0a0a; }
   max-width: 640px;
 
   margin: 0 auto;
+  top: -12px;
+left: 18px;
 
   position: relative;
   z-index: 2;
