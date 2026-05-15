@@ -578,8 +578,8 @@ body { background: #0a0a0a; }
 
 /* OUR  */
 .cp-promise {
-  max-width: 950x;
-  margin: 90px auto 0;
+  max-width: 750x;
+  margin: 80px auto 0;
 
   text-align: center;
 
