@@ -751,10 +751,10 @@ body { background: #0a0a0a; }
 
 //* ── NEW FOOTER ── */
 .cp-footer {
-  background: #101318;
-  border-top: 7px solid rgba(255,255,255,0.06);
+  background: #0f1115;
+  border-top: 1px solid rgba(255,255,255,0.06);
 
-  padding: 140px 40px 40px;
+  padding: 95px 40px 40px;
 
   margin-top: 70px;
 }
@@ -773,6 +773,8 @@ body { background: #0a0a0a; }
   font-size: 24px;
   letter-spacing: 1px;
   color: #fff;
+
+  padding-top: 20px;
 
   margin-bottom: 24px;
 }
