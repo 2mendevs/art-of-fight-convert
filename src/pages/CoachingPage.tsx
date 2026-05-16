@@ -565,7 +565,7 @@ body { background: #0a0a0a; }
 .cp-what-cards { display: flex; gap: 45px; flex-wrap: wrap; justify-content: center; }
 .cp-what-card {
   width: 175px; min-height: 255px; padding: 11px 6px;
-  border-radius: 18px; background: #101318; border: 2px solid #101318;
+  border-radius: 18px; background: #0f1115; border: 2px solid #0f1115;
   text-align: center; display: flex; flex-direction: column;
   align-items: center; justify-content: center; gap: 18px;
 }
@@ -661,7 +661,7 @@ body { background: #0a0a0a; }
 
 
 /* COACH */
-.cp-coach-bg { background: #101318; }
+.cp-coach-bg { background: #0f1115; }
 .cp-book-strip { background: #07b4ba; padding: 0; display: flex; align-items: center; justify-content: center; }
 .cp-book-strip button {
   width: 100%; padding: 14px; background: none; border: none;
@@ -678,7 +678,7 @@ body { background: #0a0a0a; }
 .cp-feedback-s { display: flex; gap: 16px; flex-wrap: wrap; }
 .cp-feedback-card {
   flex: 1; min-width: 240px; border-radius: 14px;
-  background: #101318; border: 1px solid rgba(255,255,255,0.08); padding: 24px;
+  background: #0f1115; border: 1px solid rgba(255,255,255,0.08); padding: 24px;
 }
 .cp-feedback-card p {
   font-family: 'Barlow', sans-serif; color: rgba(255,255,255,0.65);
@@ -688,7 +688,7 @@ body { background: #0a0a0a; }
 
 /* APPLY */
 .cp-apply-bg { background: #0a0a0a; }
-.cp-form-box { background: #101318; border: 1px solid rgba(255,255,255,0.1); border-radius: 16px; padding: 40px; }
+.cp-form-box { background: #0f1115; border: 1px solid rgba(255,255,255,0.1); border-radius: 16px; padding: 40px; }
 .cp-form-box h3 { color: #07b4ba; font-family: 'Barlow', sans-serif; font-weight: 700; font-size: 15px; margin-bottom: 6px; }
 .cp-form-stage-label {
   color: rgba(255,255,255,0.35); font-family: 'Barlow', sans-serif;
@@ -751,7 +751,7 @@ body { background: #0a0a0a; }
 
 //* ── NEW FOOTER ── */
 .cp-footer {
-  background: #101318;
+  background: #0f1115;
   border-top: 1px solid rgba(255,255,255,0.06);
 
   padding: 95px 40px 40px;
@@ -870,7 +870,7 @@ body { background: #0a0a0a; }
 .cp-feedback-card-new {
   /* calc: (100% / 3) - gap proportional. Done via flex: 0 0 calc(33.333% - 16px) in inline style */
   border-radius: 18px;
-  background: #101318;
+  background: #1a1d23;
   border: 1px solid rgba(255,255,255,0.05);
   padding: 28px 24px;
   flex-shrink: 0;
@@ -1699,7 +1699,7 @@ export default function CoachingPage() {
         </section>
 
         {/* ── SOUNDS FAMILIAR ── */}
-        <div style={{ background: "#101318" }}>
+        <div style={{ background: "#0f1115" }}>
           <div className="cp-section">
             <Reveal>
               <div className="cp-pain-grid">
