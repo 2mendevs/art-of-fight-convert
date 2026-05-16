@@ -752,7 +752,7 @@ body { background: #0a0a0a; }
 //* ── NEW FOOTER ── */
 .cp-footer {
   background: #101318;
-  border-top: 1px solid rgba(255,255,255,0.06);
+  border-top: 7px solid rgba(255,255,255,0.06);
 
   padding: 140px 40px 40px;
 
