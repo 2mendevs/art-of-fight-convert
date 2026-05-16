@@ -751,10 +751,10 @@ body { background: #0a0a0a; }
 
 //* ── NEW FOOTER ── */
 .cp-footer {
-  background: #0f1115;
+  background: #101318;
   border-top: 1px solid rgba(255,255,255,0.06);
 
-  padding: 95px 40px 40px;
+  padding: 140px 40px 40px;
 
   margin-top: 70px;
 }
