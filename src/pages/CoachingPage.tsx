@@ -1255,10 +1255,44 @@ body { background: #0a0a0a; }
 }
 
 .cp-coach-stats > div {
+
   width: 100% !important;
-  height: 120px !important;
+
+  min-height: 120px !important;
+
+  height: auto !important;
+
+  padding: 18px 10px !important;
+
+  display: flex !important;
+
+  flex-direction: column !important;
+
+  justify-content: center !important;
+
+  align-items: center !important;
+
+  overflow: hidden;
+}
+.cp-coach-stats h3,
+.cp-coach-stats p,
+.cp-coach-stats span {
+
+  word-break: break-word;
+
+  text-align: center;
+
+  line-height: 1.2;
 }
 
+.cp-coach-stats p {
+
+  font-size: 11px !important;
+
+  letter-spacing: 2px !important;
+
+  padding: 0 4px;
+}
   .cp-pain-grid { flex-direction: column; gap: 35px; }
   .cp-pain-media { flex: unset; width: 100%; }
   .cp-method-grid { flex-direction: column; gap: 35px; }
