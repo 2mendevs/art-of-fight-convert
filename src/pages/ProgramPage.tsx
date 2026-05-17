@@ -189,18 +189,186 @@ const css = `
   body { background: #0a0a0a; overflow-x: hidden; }
   .pp { font-family: 'Barlow', sans-serif; color: #fff; background: #0a0a0a; overflow-x: hidden; }
 
-  /* NAVBAR */
+  /* ───────── NAVBAR ───────── */
+
+.pp-nav {
+
+  position: fixed;
+
+  top: 0;
+
+  left: 0;
+
+  right: 0;
+
+  z-index: 1000;
+
+  height: 92px;
+
+  padding: 0 56px;
+
+  background: rgba(0,0,0,0.92);
+
+  backdrop-filter: blur(10px);
+
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+}
+
+/* LEFT */
+
+.pp-nav-left {
+
+  display: flex;
+
+  align-items: center;
+}
+
+.pp-nav-logo {
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 10px;
+
+  font-family: 'Bebas Neue', sans-serif;
+
+  font-size: 52px;
+
+  letter-spacing: 6px;
+
+  line-height: 1;
+
+  margin: 0;
+}
+
+/* A + F */
+
+.pp-nav-logo span:nth-child(1),
+.pp-nav-logo span:nth-child(3) {
+
+  color: #07b4ba;
+}
+
+/* O */
+
+.pp-nav-logo span:nth-child(2) {
+
+  color: #ffffff;
+}
+
+/* RIGHT */
+
+.pp-nav-right {
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 30px;
+}
+
+.pp-nav-home {
+
+  background: none;
+
+  border: none;
+
+  color: rgba(255,255,255,0.65);
+
+  font-family: 'Barlow', sans-serif;
+
+  font-size: 15px;
+
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition: 0.2s;
+}
+
+.pp-nav-home:hover {
+
+  color: #ffffff;
+}
+
+.pp-nav-call {
+
+  height: 68px;
+
+  padding: 0 42px;
+
+  border-radius: 10px;
+
+  border: none;
+
+  background: #07b4ba;
+
+  color: #ffffff;
+
+  font-family: 'Bebas Neue', sans-serif;
+
+  font-size: 28px;
+
+  letter-spacing: 3px;
+
+  cursor: pointer;
+
+  transition: 0.25s;
+}
+
+.pp-nav-call:hover {
+
+  background: #059ca1;
+
+  transform: translateY(-2px);
+}
+
+/* MOBILE */
+
+@media (max-width: 768px) {
+
   .pp-nav {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    background: #000; display: flex; align-items: center; justify-content: center;
-    padding: 14px 40px; gap: 20px;
-    border-bottom: 2px solid #07b4ba;
+
+    height: 78px;
+
+    padding: 0 18px;
   }
-  .pp-nav-logo-circle { width: 36px; height: 36px; border-radius: 50%; background: #fff; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-  .pp-nav-logo-circle span { font-family: 'Bebas Neue', sans-serif; color: #000; font-size: 13px; letter-spacing: 1px; }
-  .pp-nav-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(20px, 3vw, 28px); letter-spacing: 3px; color: #fff; }
-  .pp-nav-back { position: absolute; left: 20px; background: none; border: none; color: rgba(255,255,255,0.5); font-family: 'Barlow', sans-serif; font-size: 13px; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 6px; transition: color 0.2s; }
-  .pp-nav-back:hover { color: #07b4ba; }
+
+  .pp-nav-logo {
+
+    font-size: 34px;
+
+    letter-spacing: 3px;
+  }
+
+  .pp-nav-right {
+
+    gap: 12px;
+  }
+
+  .pp-nav-home {
+
+    font-size: 12px;
+  }
+
+  .pp-nav-call {
+
+    height: 46px;
+
+    padding: 0 18px;
+
+    font-size: 18px;
+
+    letter-spacing: 1.5px;
+  }
+}
 
   /* HERO */
   .pp-hero { position: relative; min-height: 88vh; display: flex; align-items: center; justify-content: center; overflow: hidden; padding: 140px 24px 90px; background: radial-gradient(circle at top, rgba(7,180,186,0.12), transparent 45%), #06080c; }
@@ -215,15 +383,15 @@ const css = `
   .pp-join-btn:hover { background: #059a9f; transform: translateY(-2px); box-shadow: 0 14px 40px rgba(7,180,186,0.38); }
   .pp-scarcity { margin-top: 18px; color: rgba(255,255,255,0.4); font-family: 'Barlow', sans-serif; font-size: 13px; letter-spacing: 1px; font-style: italic; }
 
-  /* ───────── TRUST STRIP ───────── */
+/* ───────── TRUST STRIP ───────── */
 
 .pp-trust-strip {
 
   width: 100%;
 
-  background: #07b4ba;
-
   min-height: 84px;
+
+  background: #07b4ba;
 
   display: flex;
 
@@ -231,7 +399,7 @@ const css = `
 
   justify-content: center;
 
-  gap: 120px;
+  gap: 140px;
 
   padding: 0 40px;
 }
@@ -247,26 +415,37 @@ const css = `
 
 .pp-trust-icon {
 
-  font-size: 34px;
+  width: 34px;
 
-  color: #fff;
+  height: 34px;
 
   display: flex;
 
   align-items: center;
 
   justify-content: center;
+
+  color: rgba(255,255,255,0.95);
+
+  flex-shrink: 0;
+}
+
+.pp-trust-icon svg {
+
+  width: 100%;
+
+  height: 100%;
 }
 
 .pp-trust-item p {
 
   font-family: 'Bebas Neue', sans-serif;
 
-  font-size: 24px;
+  font-size: 28px;
 
   letter-spacing: 2px;
 
-  color: #fff;
+  color: #ffffff;
 }
 
 /* MOBILE */
@@ -275,7 +454,9 @@ const css = `
 
   .pp-trust-strip {
 
-    gap: 26px;
+    min-height: auto;
+
+    gap: 24px;
 
     padding: 16px 14px;
 
@@ -291,7 +472,9 @@ const css = `
 
   .pp-trust-icon {
 
-    font-size: 22px;
+    width: 22px;
+
+    height: 22px;
   }
 
   .pp-trust-item p {
@@ -503,12 +686,41 @@ export default function ProgramPage() {
       <style>{css}</style>
       <div className="pp">
 
-        {/* ── NAVBAR ── */}
-        <nav className="pp-nav">
-          <button className="pp-nav-back" onClick={() => navigate("/")}>← Home</button>
-          <div className="pp-nav-logo-circle"><span>AOF</span></div>
-          <span className="pp-nav-title">ART OF FIGHTING</span>
-        </nav>
+{/* ───────── TOP NAVBAR ───────── */}
+
+<nav className="pp-nav">
+
+  {/* LEFT */}
+  <div className="pp-nav-left">
+
+    <h1 className="pp-nav-logo">
+      <span>A</span>
+      <span>O</span>
+      <span>F</span>
+    </h1>
+
+  </div>
+
+  {/* RIGHT */}
+  <div className="pp-nav-right">
+
+    <button
+      className="pp-nav-home"
+      onClick={() => navigate("/")}
+    >
+      ← Back To Home
+    </button>
+
+    <button
+      className="pp-nav-call"
+      onClick={scrollToFooter}
+    >
+      BOOK A CALL
+    </button>
+
+  </div>
+
+</nav>
 
         {/* ── HERO (image 1) ── */}
         <section className="pp-hero">
@@ -529,22 +741,82 @@ export default function ProgramPage() {
         </section>
 
   
-        {/* ── TRUST STRIP ── */}
+        /* ───────── TRUST STRIP ───────── */
+
 <div className="pp-trust-strip">
 
+  {/* ITEM 1 */}
   <div className="pp-trust-item">
-    <span className="pp-trust-icon">🛡️</span>
+
+    <span className="pp-trust-icon">
+
+      <svg
+        width="30"
+        height="30"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.8"
+      >
+        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+        <path d="M9 12l2 2 4-4"/>
+      </svg>
+
+    </span>
+
     <p>PROVEN SYSTEM</p>
+
   </div>
 
+  {/* ITEM 2 */}
   <div className="pp-trust-item">
-    <span className="pp-trust-icon">👥</span>
+
+    <span className="pp-trust-icon">
+
+      <svg
+        width="30"
+        height="30"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.8"
+      >
+        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+        <circle cx="9" cy="7" r="4"/>
+        <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+        <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+      </svg>
+
+    </span>
+
     <p>TAMIL TEAM</p>
+
   </div>
 
+  {/* ITEM 3 */}
   <div className="pp-trust-item">
-    <span className="pp-trust-icon">🏆</span>
+
+    <span className="pp-trust-icon">
+
+      <svg
+        width="30"
+        height="30"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.8"
+      >
+        <path d="M8 21h8"/>
+        <path d="M12 17v4"/>
+        <path d="M7 4h10v5a5 5 0 0 1-10 0V4z"/>
+        <path d="M5 4H3v2a4 4 0 0 0 4 4"/>
+        <path d="M19 4h2v2a4 4 0 0 1-4 4"/>
+      </svg>
+
+    </span>
+
     <p>REAL RESULTS</p>
+
   </div>
 
 </div>
