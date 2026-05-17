@@ -741,7 +741,6 @@ export default function ProgramPage() {
         </section>
 
   
-        /* ───────── TRUST STRIP ───────── */
 
 <div className="pp-trust-strip">
 
