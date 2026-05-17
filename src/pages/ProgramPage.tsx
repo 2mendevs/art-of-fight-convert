@@ -21,226 +21,201 @@ function Reveal({ children, style = {}, delay = 0 }: { children: ReactNode; styl
   );
 }
 
+/* ── FEEDBACK SLIDER ── */
+const feedbackCards = [
+  { text: "In 8 weeks my footwork completely changed. My coach saw things I couldn't see myself and fixed them immediately.", author: "Jordan K." },
+  { text: "I was plateau'd for over a year. AOF broke that within the first month. The personalised approach is unlike anything else.", author: "Priya S." },
+  { text: "Best investment I've made in my fight career. The plan, the feedback, the accountability — it's all dialled in perfectly.", author: "Carlos R." },
+  { text: "The coaches actually care. I've gained real skill in just a few months of training with AOF.", author: "Seity M." },
+  { text: "Best decision I made this year. The structure and support is unlike any gym I've trained at before.", author: "Rolen A." },
+  { text: "From complete beginner to ring-ready in just a few months. AOF's system truly works.", author: "Karthik V." },
+  { text: "My performance improved drastically. The personalised game plan made all the difference in my last fight.", author: "Rahul P." },
+];
+
+function InfiniteFeedbackSlider() {
+  const sliderRef = useRef<HTMLDivElement>(null);
+  const trackRef = useRef<HTMLDivElement>(null);
+  const animFrameRef = useRef<number>(0);
+  const isPausedRef = useRef(false);
+  const posRef = useRef(0);
+  const [mobilePage, setMobilePage] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
+
+  const CARDS_PER_PAGE = 3;
+  const totalPages = Math.ceil(feedbackCards.length / CARDS_PER_PAGE);
+  const allCards = [...feedbackCards, ...feedbackCards];
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth <= 768);
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
+  useEffect(() => {
+    if (isMobile) return;
+    const slider = sliderRef.current;
+    const track = trackRef.current;
+    if (!slider || !track) return;
+    const speed = 0.55;
+    const getHalfWidth = () => track.scrollWidth / 2;
+    const animate = () => {
+      if (!isPausedRef.current) {
+        posRef.current += speed;
+        if (posRef.current >= getHalfWidth()) posRef.current -= getHalfWidth();
+        track.style.transform = `translateX(-${posRef.current}px)`;
+      }
+      animFrameRef.current = requestAnimationFrame(animate);
+    };
+    animFrameRef.current = requestAnimationFrame(animate);
+    const pause = () => { isPausedRef.current = true; };
+    const resume = () => { setTimeout(() => { isPausedRef.current = false; }, 600); };
+    slider.addEventListener("mouseenter", pause);
+    slider.addEventListener("mouseleave", resume);
+    return () => {
+      cancelAnimationFrame(animFrameRef.current);
+      slider.removeEventListener("mouseenter", pause);
+      slider.removeEventListener("mouseleave", resume);
+    };
+  }, [isMobile]);
+
+  const pageCards = feedbackCards.slice(mobilePage * CARDS_PER_PAGE, mobilePage * CARDS_PER_PAGE + CARDS_PER_PAGE);
+
+  if (isMobile) {
+    return (
+      <div style={{ width: "100%" }}>
+        <div style={{ display: "flex", gap: 10, width: "100%" }}>
+          {pageCards.map((card, i) => (
+            <div key={i} style={{ flex: "1 1 0", minWidth: 0, borderRadius: 14, background: "#1a1d23", border: "1px solid rgba(255,255,255,0.05)", padding: "14px 12px", display: "flex", flexDirection: "column", gap: 10 }}>
+              <div style={{ display: "flex", gap: 2, color: "#07b4ba", fontSize: 11 }}>
+                <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+              </div>
+              <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 11, lineHeight: 1.55, color: "rgba(255,255,255,0.72)", fontStyle: "italic", flex: 1, display: "-webkit-box", WebkitLineClamp: 3, WebkitBoxOrient: "vertical", overflow: "hidden", marginBottom: 10 }}>
+                "{card.text}"
+              </p>
+              <div style={{ display: "flex", alignItems: "center", gap: 7 }}>
+                <div style={{ width: 28, height: 28, borderRadius: "50%", background: "#202533", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 13, flexShrink: 0 }}>👤</div>
+                <div>
+                  <p style={{ fontFamily: "'Barlow', sans-serif", fontWeight: 700, color: "#fff", fontSize: 11 }}>{card.author}</p>
+                  <span style={{ fontFamily: "'Barlow', sans-serif", color: "rgba(255,255,255,0.4)", fontSize: 10 }}>Member</span>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 16, marginTop: 20 }}>
+          <button onClick={() => setMobilePage(p => Math.max(0, p - 1))} disabled={mobilePage === 0} style={{ width: 40, height: 40, borderRadius: "50%", border: "1px solid rgba(255,255,255,0.18)", background: mobilePage === 0 ? "transparent" : "#15181d", color: mobilePage === 0 ? "rgba(255,255,255,0.2)" : "#fff", fontSize: 20, cursor: mobilePage === 0 ? "default" : "pointer", display: "flex", alignItems: "center", justifyContent: "center", transition: "all 0.2s" }}>‹</button>
+          <div style={{ display: "flex", gap: 6 }}>
+            {Array.from({ length: totalPages }).map((_, i) => (
+              <div key={i} onClick={() => setMobilePage(i)} style={{ width: i === mobilePage ? 18 : 6, height: 6, borderRadius: 999, background: i === mobilePage ? "#07b4ba" : "rgba(255,255,255,0.2)", cursor: "pointer", transition: "all 0.3s" }} />
+            ))}
+          </div>
+          <button onClick={() => setMobilePage(p => Math.min(totalPages - 1, p + 1))} disabled={mobilePage === totalPages - 1} style={{ width: 40, height: 40, borderRadius: "50%", border: "1px solid rgba(255,255,255,0.18)", background: mobilePage === totalPages - 1 ? "transparent" : "#15181d", color: mobilePage === totalPages - 1 ? "rgba(255,255,255,0.2)" : "#fff", fontSize: 20, cursor: mobilePage === totalPages - 1 ? "default" : "pointer", display: "flex", alignItems: "center", justifyContent: "center", transition: "all 0.2s" }}>›</button>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div ref={sliderRef} style={{ overflow: "hidden", width: "100%", position: "relative" }}>
+      <div ref={trackRef} style={{ display: "flex", gap: 24, width: "max-content", willChange: "transform" }}>
+        {allCards.map((card, i) => (
+          <div key={i} style={{ width: 340, flexShrink: 0, borderRadius: 18, background: "#1a1d23", border: "1px solid rgba(255,255,255,0.05)", padding: "28px 24px" }}>
+            <div style={{ display: "flex", gap: 4, marginBottom: 16, color: "#07b4ba", fontSize: 16 }}>
+              <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+            </div>
+            <p style={{ fontFamily: "'Barlow', sans-serif", fontWeight: 400, color: "rgba(255,255,255,0.72)", fontSize: 15, lineHeight: 1.65, fontStyle: "italic", marginBottom: 20 }}>"{card.text}"</p>
+            <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+              <div style={{ width: 44, height: 44, borderRadius: "50%", background: "#202533", display: "flex", alignItems: "center", justifyContent: "center", color: "#8d96a8", fontSize: 20, flexShrink: 0 }}>👤</div>
+              <div>
+                <p style={{ fontFamily: "'Barlow', sans-serif", fontWeight: 700, color: "#fff", fontSize: 15, marginBottom: 2 }}>{card.author}</p>
+                <span style={{ fontFamily: "'Barlow', sans-serif", fontWeight: 400, color: "rgba(255,255,255,0.4)", fontSize: 13 }}>Member</span>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+/* ── FAQ ── */
+const faqItems = [
+  { question: "Who is AOF 1-on-1 coaching for?", answer: "AOF coaching is designed for serious fighters and committed beginners alike — anyone who is tired of training without direction. Whether you're a competitive MMA athlete looking to peak for your next bout, or someone starting from scratch who wants to build real skill fast, our personalised system is built around your specific goals, body type, and schedule." },
+  { question: "How does the remote coaching work?", answer: "After your strategy call, your coach builds a fully customised training plan and delivers it digitally. You'll have direct WhatsApp access to your coach for questions, feedback, and check-ins. You submit session videos for review, and your coach adjusts the plan in real time based on what they see." },
+  { question: "How quickly will I see results?", answer: "Most athletes report noticeable improvements in technique and conditioning within the first 3–4 weeks. Significant transformation typically takes 6–8 weeks of consistent training under the AOF method." },
+  { question: "What if I'm a complete beginner?", answer: "Beginners are welcome and thrive in the AOF system. In fact, starting with proper 1-on-1 coaching before picking up bad habits is the fastest route to becoming a skilled fighter." },
+  { question: "Is there a contract or long-term commitment?", answer: "No long-term contracts. You can cancel anytime. We also back that up with a results guarantee — if you don't see measurable progress, we'll extend your coaching for free until you do." },
+  { question: "How many sessions should I train per week?", answer: "Most athletes train between 3–6 sessions per week depending on their goals, recovery capacity, and schedule. Your coach will create the optimal structure for you." },
+];
+
+function FAQSection() {
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
+  return (
+    <div id="faq" style={{ position: "relative", overflow: "hidden", backgroundColor: "#0b0b0b", backgroundImage: "linear-gradient(rgba(7,180,186,0.05) 1px, transparent 0.4px), linear-gradient(90deg, rgba(7,180,186,0.05) 1px, transparent 0.4px)", backgroundSize: "40px 40px" }}>
+      <div style={{ maxWidth: 1180, margin: "0 auto", padding: "64px 40px", textAlign: "center", position: "relative", zIndex: 1 }}>
+        <Reveal>
+          <p style={{ fontFamily: "'Barlow', sans-serif", fontWeight: 700, fontSize: 12, letterSpacing: 3, textTransform: "uppercase" as const, color: "#07b4ba", marginBottom: 10 }}>Got Questions?</p>
+          <h2 style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: "clamp(40px, 5.5vw, 60px)", letterSpacing: 2, color: "#fff", lineHeight: 1, marginBottom: 10 }}>
+            Frequently Asked <span style={{ color: "#07b4ba" }}>Questions</span>
+          </h2>
+          <div style={{ width: 56, height: 2, background: "#07b4ba", margin: "16px auto 48px", borderRadius: 2 }} />
+        </Reveal>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(480px, 1fr))", gap: 18, textAlign: "left" }}>
+          {faqItems.map((item, i) => (
+            <Reveal key={i}>
+              <div style={{ border: `1px solid ${openIndex === i ? "rgba(7,180,186,0.45)" : "rgba(255,255,255,0.08)"}`, borderRadius: 12, background: "#141414", overflow: "hidden", transition: "border-color 0.25s" }}>
+                <button onClick={() => setOpenIndex(openIndex === i ? null : i)} style={{ width: "100%", background: "none", border: "none", display: "flex", alignItems: "center", justifyContent: "space-between", padding: "22px 26px", cursor: "pointer", textAlign: "left" as const, gap: 16 }}>
+                  <span style={{ fontFamily: "'Barlow', sans-serif", fontWeight: 700, fontSize: 18, color: openIndex === i ? "#07b4ba" : "#fff", lineHeight: 1.3, flex: 1 }}>{item.question}</span>
+                  <span style={{ width: 28, height: 28, borderRadius: "50%", border: `1.5px solid ${openIndex === i ? "#07b4ba" : "rgba(255,255,255,0.2)"}`, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, color: openIndex === i ? "#07b4ba" : "rgba(255,255,255,0.6)", fontSize: 18, transform: openIndex === i ? "rotate(45deg)" : "none", transition: "all 0.35s", background: openIndex === i ? "rgba(7,180,186,0.12)" : "none" }}>+</span>
+                </button>
+                <div style={{ maxHeight: openIndex === i ? 400 : 0, overflow: "hidden", transition: "max-height 0.4s ease, padding 0.3s ease", padding: openIndex === i ? "0 26px 24px" : "0 26px" }}>
+                  <p style={{ fontFamily: "'Barlow', sans-serif", fontWeight: 400, fontSize: 15, color: "rgba(255,255,255,0.58)", lineHeight: 1.75 }}>{item.answer}</p>
+                </div>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 /* ── STYLES ── */
 const css = `
   @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;500;600;700;800;900&display=swap');
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
   body { background: #0a0a0a; overflow-x: hidden; }
-
   .pp { font-family: 'Barlow', sans-serif; color: #fff; background: #0a0a0a; overflow-x: hidden; }
 
-  /* ── NAVBAR ── */
+  /* NAVBAR */
   .pp-nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
     background: #000; display: flex; align-items: center; justify-content: center;
     padding: 14px 40px; gap: 20px;
     border-bottom: 2px solid #07b4ba;
   }
-  .pp-nav-logo-circle {
-    width: 36px; height: 36px; border-radius: 50%;
-    background: #fff; display: flex; align-items: center; justify-content: center;
-    flex-shrink: 0;
-  }
+  .pp-nav-logo-circle { width: 36px; height: 36px; border-radius: 50%; background: #fff; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
   .pp-nav-logo-circle span { font-family: 'Bebas Neue', sans-serif; color: #000; font-size: 13px; letter-spacing: 1px; }
   .pp-nav-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(20px, 3vw, 28px); letter-spacing: 3px; color: #fff; }
-  .pp-nav-back {
-    position: absolute; left: 20px;
-    background: none; border: none; color: rgba(255,255,255,0.5);
-    font-family: 'Barlow', sans-serif; font-size: 13px; font-weight: 600;
-    cursor: pointer; display: flex; align-items: center; gap: 6px;
-    transition: color 0.2s;
-  }
+  .pp-nav-back { position: absolute; left: 20px; background: none; border: none; color: rgba(255,255,255,0.5); font-family: 'Barlow', sans-serif; font-size: 13px; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 6px; transition: color 0.2s; }
   .pp-nav-back:hover { color: #07b4ba; }
 
-  /* ── HERO ── */
-  .pp-hero {
-
-  position: relative;
-
-  min-height: 88vh;
-
-  display: flex;
-
-  align-items: center;
-
-  justify-content: center;
-
-  overflow: hidden;
-
-  padding: 140px 24px 90px;
-
-  background:
-    radial-gradient(circle at top, rgba(7,180,186,0.12), transparent 45%),
-    #06080c;
-}
-
-.pp-hero-bg {
-
-  position: absolute;
-
-  inset: 0;
-
-  z-index: 0;
-
-  background:
-    linear-gradient(
-      to bottom,
-      rgba(6,8,12,0.65),
-      rgba(6,8,12,0.92)
-    ),
-    url('https://images.unsplash.com/photo-1549476464-37392f717541?w=1400&q=80')
-    center/cover no-repeat;
-
-  opacity: 0.42;
-}
-
-.pp-hero-overlay {
-
-  position: absolute;
-
-  inset: 0;
-
-  z-index: 1;
-
-  background:
-    linear-gradient(
-      180deg,
-      rgba(6,8,12,0.55) 0%,
-      rgba(6,8,12,0.78) 55%,
-      #06080c 100%
-    );
-}
-
-.pp-hero-content {
-
-  position: relative;
-
-  z-index: 2;
-
-  width: 100%;
-
-  max-width: 1180px;
-
-  display: flex;
-
-  flex-direction: column;
-
-  align-items: flex-start;
-
-  justify-content: center;
-
-  text-align: left;
-}
-
-.pp-hero-h1 {
-
-  font-family: 'Bebas Neue', sans-serif;
-
-  font-size: clamp(56px, 8vw, 118px);
-
-  line-height: 0.92;
-
-  letter-spacing: 3px;
-
-  color: #fff;
-
-  margin-bottom: 14px;
-
-  max-width: 820px;
-}
-
-.pp-hero-h2 {
-
-  font-family: 'Bebas Neue', sans-serif;
-
-  font-size: clamp(26px,4vw,54px);
-
-  letter-spacing: 2px;
-
-  color: #07b4ba;
-
-  margin-bottom: 24px;
-}
-
-.pp-hero-desc {
-
-  font-family: 'Barlow', sans-serif;
-
-  font-size: clamp(15px,1.5vw,19px);
-
-  color: rgba(255,255,255,0.72);
-
-  line-height: 1.8;
-
-  max-width: 620px;
-
-  margin: 0 0 34px;
-}
-
-.pp-hero-desc strong {
-
-  color: #07b4ba;
-}
-
-.pp-join-btn {
-
-  display: inline-flex;
-
-  align-items: center;
-
-  justify-content: center;
-
-  padding: 18px 52px;
-
-  border-radius: 14px;
-
-  background: #07b4ba;
-
-  color: #fff;
-
-  font-family: 'Bebas Neue', sans-serif;
-
-  font-size: 24px;
-
-  letter-spacing: 2px;
-
-  border: none;
-
-  cursor: pointer;
-
-  transition: all 0.25s ease;
-
-  box-shadow:
-    0 10px 35px rgba(7,180,186,0.28);
-}
-
-.pp-join-btn:hover {
-
-  background: #059a9f;
-
-  transform: translateY(-2px);
-
-  box-shadow:
-    0 14px 40px rgba(7,180,186,0.38);
-}
-
-.pp-scarcity {
-
-  margin-top: 18px;
-
-  color: rgba(255,255,255,0.4);
-
-  font-family: 'Barlow', sans-serif;
-
-  font-size: 13px;
-
-  letter-spacing: 1px;
-
-  font-style: italic;
-}
-
-  /* ── STATS BAND ── */
+  /* HERO */
+  .pp-hero { position: relative; min-height: 88vh; display: flex; align-items: center; justify-content: center; overflow: hidden; padding: 140px 24px 90px; background: radial-gradient(circle at top, rgba(7,180,186,0.12), transparent 45%), #06080c; }
+  .pp-hero-bg { position: absolute; inset: 0; z-index: 0; background: linear-gradient(to bottom, rgba(6,8,12,0.65), rgba(6,8,12,0.92)), url('https://images.unsplash.com/photo-1549476464-37392f717541?w=1400&q=80') center/cover no-repeat; opacity: 0.42; }
+  .pp-hero-overlay { position: absolute; inset: 0; z-index: 1; background: linear-gradient(180deg, rgba(6,8,12,0.55) 0%, rgba(6,8,12,0.78) 55%, #06080c 100%); }
+  .pp-hero-content { position: relative; z-index: 2; width: 100%; max-width: 1180px; display: flex; flex-direction: column; align-items: flex-start; justify-content: center; text-align: left; }
+  .pp-hero-h1 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(56px, 8vw, 118px); line-height: 0.92; letter-spacing: 3px; color: #fff; margin-bottom: 14px; max-width: 820px; }
+  .pp-hero-h2 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(26px,4vw,54px); letter-spacing: 2px; color: #07b4ba; margin-bottom: 24px; }
+  .pp-hero-desc { font-family: 'Barlow', sans-serif; font-size: clamp(15px,1.5vw,19px); color: rgba(255,255,255,0.72); line-height: 1.8; max-width: 620px; margin: 0 0 34px; }
+  .pp-hero-desc strong { color: #07b4ba; }
+  .pp-join-btn { display: inline-flex; align-items: center; justify-content: center; padding: 18px 52px; border-radius: 14px; background: #07b4ba; color: #fff; font-family: 'Bebas Neue', sans-serif; font-size: 24px; letter-spacing: 2px; border: none; cursor: pointer; transition: all 0.25s ease; box-shadow: 0 10px 35px rgba(7,180,186,0.28); }
+  .pp-join-btn:hover { background: #059a9f; transform: translateY(-2px); box-shadow: 0 14px 40px rgba(7,180,186,0.38); }
+  .pp-scarcity { margin-top: 18px; color: rgba(255,255,255,0.4); font-family: 'Barlow', sans-serif; font-size: 13px; letter-spacing: 1px; font-style: italic; }
+
+  /* STATS BAND */
   .pp-stats { background: #07b4ba; padding: 0 40px; display: flex; align-items: center; gap: 0; flex-wrap: wrap; min-height: 110px; }
   .pp-stats-coach { flex-shrink: 0; width: 90px; height: 90px; border-radius: 50%; border: 3px solid #000; overflow: hidden; background: #1a1a1a; margin: 10px 32px 10px 0; display: flex; align-items: center; justify-content: center; }
   .pp-stats-coach img { width: 100%; height: 100%; object-fit: cover; }
@@ -250,96 +225,50 @@ const css = `
   .pp-stat h3 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(28px,4vw,42px); color: #000; letter-spacing: 2px; line-height: 1; }
   .pp-stat p { font-family: 'Barlow', sans-serif; font-size: 13px; color: rgba(0,0,0,0.65); font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-top: 4px; }
 
-  /* ── PROBLEM ── */
-  .pp-problem { background: #0a0a0a; }
+  /* SECTION */
   .pp-section { max-width: 1100px; margin: 0 auto; padding: 72px 40px; }
+
+  /* PAIN */
+  .pp-problem { background: #0f1115; }
   .pp-problem-grid { display: flex; gap: 56px; align-items: center; flex-wrap: wrap; }
   .pp-problem-left { flex: 1; min-width: 260px; }
   .pp-problem-h { font-family: 'Bebas Neue', sans-serif; font-size: clamp(32px,4vw,48px); letter-spacing: 2px; color: #07b4ba; margin-bottom: 16px; }
   .pp-problem-intro { color: rgba(255,255,255,0.6); font-family: 'Barlow', sans-serif; font-size: 15px; line-height: 1.7; margin-bottom: 28px; }
   .pp-pain-item { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 14px; }
-  .pp-pain-tag {
-    background: #07b4ba; color: #000;
-    font-family: 'Bebas Neue', sans-serif; font-size: 13px; letter-spacing: 1px;
-    padding: 2px 8px; border-radius: 3px; flex-shrink: 0; margin-top: 2px;
-  }
+  .pp-pain-bar { width: 3px; height: 18px; background: #ff2d2d; border-radius: 2px; flex-shrink: 0; margin-top: 3px; box-shadow: 0 0 6px rgba(255,45,45,0.9), 0 0 16px rgba(255,45,45,0.6); }
   .pp-pain-item p { color: rgba(255,255,255,0.8); font-family: 'Barlow', sans-serif; font-size: 15px; line-height: 1.55; font-weight: 600; }
   .pp-problem-right { flex: 0 0 460px; max-width: 100%; }
-  .pp-video-card {
-    border-radius: 16px; overflow: hidden;
-    border: 2px solid #07b4ba;
-    box-shadow: 0 0 40px rgba(7,180,186,0.15);
-    background: #111;
-    aspect-ratio: 16/9;
-    display: flex; flex-direction: column; align-items: center; justify-content: center;
-    position: relative;
-  }
-  .pp-video-card-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(18px,2.5vw,26px); letter-spacing: 2px; color: #fff; text-align: center; padding: 0 20px; margin-bottom: 6px; }
-  .pp-video-card-sub { font-family: 'Barlow', sans-serif; font-size: 13px; color: #07b4ba; font-weight: 600; text-align: center; padding: 0 20px; margin-bottom: 20px; }
-  .pp-play-btn {
-    width: 56px; height: 56px; border-radius: 50%;
-    border: 2px solid rgba(255,255,255,0.3);
-    background: rgba(255,255,255,0.1);
-    display: flex; align-items: center; justify-content: center;
-    cursor: pointer;
-  }
-  .pp-play-icon { width: 0; height: 0; border-top: 10px solid transparent; border-bottom: 10px solid transparent; border-left: 18px solid #fff; margin-left: 4px; }
+  .pp-problem-right img { width: 100%; border-radius: 14px; border: 1px solid rgba(255,255,255,0.1); display: block; aspect-ratio: 16/9; object-fit: cover; }
 
-  /* ── FEATURES ── */
-  .pp-features { background: #0d0d0d; position: relative; overflow: hidden; }
-  .pp-features-bg {
-    position: absolute; inset: 0;
-    background: url('https://images.unsplash.com/photo-1598971861713-54ad16a7e72e?w=1400&q=80') center/cover no-repeat;
-    opacity: 0.08;
-  }
+  /* FEATURES */
+  .pp-features { background: #0d0d0d; position: relative; overflow: hidden; background-image: linear-gradient(rgba(7,180,186,0.07) 1px, transparent 0.4px), linear-gradient(90deg, rgba(7,180,186,0.07) 1px, transparent 0.4px); background-size: 30px 30px; }
   .pp-features-grid { position: relative; z-index: 2; display: flex; gap: 48px; align-items: stretch; flex-wrap: wrap; }
   .pp-features-left { flex: 1; min-width: 260px; }
   .pp-features-h { font-family: 'Bebas Neue', sans-serif; font-size: clamp(28px,4vw,44px); letter-spacing: 2px; color: #fff; margin-bottom: 32px; }
   .pp-feature-item { margin-bottom: 20px; }
-  .pp-feature-tag {
-    display: inline-block;
-    background: #07b4ba; color: #000;
-    font-family: 'Bebas Neue', sans-serif; font-size: 13px; letter-spacing: 1px;
-    padding: 3px 10px; border-radius: 3px; margin-bottom: 4px;
-  }
+  .pp-feature-tag { display: inline-block; background: #07b4ba; color: #000; font-family: 'Bebas Neue', sans-serif; font-size: 13px; letter-spacing: 1px; padding: 3px 10px; border-radius: 3px; margin-bottom: 4px; }
   .pp-feature-item p { color: rgba(255,255,255,0.6); font-family: 'Barlow', sans-serif; font-size: 14px; line-height: 1.5; padding-left: 4px; }
   .pp-features-right { flex: 0 0 340px; max-width: 100%; display: flex; align-items: center; justify-content: center; }
-  .pp-features-img-frame {
-    width: 100%; border-radius: 14px; overflow: hidden;
-    border: 2px solid rgba(7,180,186,0.3);
-    box-shadow: 0 0 40px rgba(7,180,186,0.1);
-    aspect-ratio: 3/4; background: #111;
-    display: flex; align-items: center; justify-content: center;
-  }
+  .pp-features-img-frame { width: 100%; border-radius: 14px; overflow: hidden; border: 2px solid rgba(7,180,186,0.3); box-shadow: 0 0 40px rgba(7,180,186,0.1); aspect-ratio: 3/4; background: #111; display: flex; align-items: center; justify-content: center; }
   .pp-features-img-frame img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
 
-  /* ── CURRICULUM ── */
+  /* CURRICULUM */
   .pp-curriculum { background: #0a0a0a; }
   .pp-curriculum-grid { display: flex; gap: 56px; flex-wrap: wrap; }
   .pp-curriculum-left { flex: 1; min-width: 260px; }
   .pp-curriculum-right { flex: 1; min-width: 260px; }
   .pp-section-label { font-family: 'Bebas Neue', sans-serif; font-size: clamp(22px,3vw,32px); letter-spacing: 2px; color: #07b4ba; margin-bottom: 28px; }
-
-  /* Week cards */
   .pp-week { margin-bottom: 24px; border-left: 3px solid #07b4ba; padding-left: 18px; }
   .pp-week h4 { font-family: 'Barlow', sans-serif; font-weight: 800; font-size: 15px; color: #fff; margin-bottom: 8px; }
   .pp-week ul { list-style: none; }
   .pp-week ul li { font-family: 'Barlow', sans-serif; font-size: 13px; color: rgba(255,255,255,0.55); line-height: 1.7; }
   .pp-week ul li::before { content: "— "; color: #07b4ba; }
-
-  /* Founder benefits */
   .pp-founders-h { font-family: 'Bebas Neue', sans-serif; font-size: clamp(22px,3vw,30px); letter-spacing: 2px; color: #fff; margin-bottom: 6px; }
   .pp-founders-sub { font-family: 'Bebas Neue', sans-serif; font-size: 16px; letter-spacing: 1px; color: #07b4ba; margin-bottom: 16px; }
   .pp-founders-desc { font-family: 'Barlow', sans-serif; font-size: 14px; color: rgba(255,255,255,0.55); line-height: 1.7; margin-bottom: 20px; }
-  .pp-benefit-item {
-    display: flex; align-items: flex-start; gap: 10px;
-    margin-bottom: 12px; padding: 12px 14px; border-radius: 8px;
-    background: rgba(7,180,186,0.05); border: 1px solid rgba(7,180,186,0.2);
-  }
+  .pp-benefit-item { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 12px; padding: 12px 14px; border-radius: 8px; background: rgba(7,180,186,0.05); border: 1px solid rgba(7,180,186,0.2); }
   .pp-benefit-tag { background: #07b4ba; color: #000; font-family: 'Bebas Neue', sans-serif; font-size: 11px; letter-spacing: 1px; padding: 2px 7px; border-radius: 3px; flex-shrink: 0; margin-top: 2px; }
   .pp-benefit-item p { font-family: 'Barlow', sans-serif; font-size: 14px; color: rgba(255,255,255,0.75); line-height: 1.5; }
-
-  /* Bonuses */
   .pp-bonuses-h { font-family: 'Bebas Neue', sans-serif; font-size: clamp(22px,3vw,30px); letter-spacing: 2px; color: #07b4ba; margin: 32px 0 16px; }
   .pp-bonus-item { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
   .pp-bonus-tag { background: #07b4ba; color: #000; font-family: 'Bebas Neue', sans-serif; font-size: 12px; letter-spacing: 1px; padding: 3px 10px; border-radius: 3px; flex-shrink: 0; }
@@ -347,13 +276,23 @@ const css = `
   .pp-bonus-free { font-family: 'Bebas Neue', sans-serif; font-size: 14px; color: #07b4ba; letter-spacing: 1px; margin-left: 4px; }
   .pp-bonus-strike { text-decoration: line-through; color: rgba(255,255,255,0.35); }
 
-  /* ── FOOTER CTA ── */
+  /* COACH */
+  .pp-coach-bg { background: #0f1115; }
+  .pp-book-strip { background: #07b4ba; padding: 0; display: flex; align-items: center; justify-content: center; }
+  .pp-book-strip button { width: 100%; padding: 14px; background: none; border: none; cursor: pointer; color: #fff; font-family: 'Bebas Neue', sans-serif; font-size: 20px; letter-spacing: 3px; transition: background 0.2s; }
+  .pp-book-strip button:hover { background: rgba(0,0,0,0.08); }
+
+  /* TESTIMONIALS */
+  .pp-testi-bg { position: relative; overflow: hidden; background-color: #0b0b0b; background-image: repeating-linear-gradient(-45deg, rgba(7,180,186,0.05) 0px, rgba(7,180,186,0.05) 1px, transparent 1px, transparent 5px); }
+  .pp-testi-main { display: flex; gap: 48px; align-items: center; margin-bottom: 40px; flex-wrap: wrap; }
+  .pp-testi-img { flex: 0 0 460px; max-width: 100%; }
+  .pp-testi-img img { width: 100%; border-radius: 10px; object-fit: cover; }
+
+  /* FOOTER CTA */
   .pp-footer-cta { background: #080808; border-top: 1px solid rgba(255,255,255,0.06); }
   .pp-footer-grid { display: flex; gap: 56px; align-items: center; flex-wrap: wrap; }
   .pp-footer-left { flex: 1; min-width: 260px; }
   .pp-footer-right { flex: 0 0 360px; max-width: 100%; text-align: center; }
-
-  /* Timer */
   .pp-offer-label { font-family: 'Bebas Neue', sans-serif; font-size: 14px; letter-spacing: 3px; color: #07b4ba; margin-bottom: 8px; }
   .pp-offer-h { font-family: 'Bebas Neue', sans-serif; font-size: clamp(28px,4vw,42px); letter-spacing: 2px; color: #fff; line-height: 1.1; margin-bottom: 24px; }
   .pp-timer { display: flex; gap: 12px; margin-bottom: 8px; }
@@ -362,26 +301,34 @@ const css = `
   .pp-timer-block p { font-family: 'Barlow', sans-serif; font-size: 11px; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 1px; margin-top: 6px; }
   .pp-timer-sep { font-family: 'Bebas Neue', sans-serif; font-size: 40px; color: rgba(255,255,255,0.3); align-self: flex-start; padding-top: 10px; }
   .pp-last-day { font-family: 'Barlow', sans-serif; font-size: 13px; color: rgba(255,255,255,0.35); letter-spacing: 1px; font-style: italic; }
-
-  /* Pricing */
   .pp-price-box { background: #111; border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; padding: 36px 32px; }
   .pp-price-old { font-family: 'Barlow', sans-serif; font-size: 22px; color: rgba(255,255,255,0.35); text-decoration: line-through; margin-bottom: 4px; }
   .pp-price-new { font-family: 'Bebas Neue', sans-serif; font-size: clamp(52px,7vw,80px); letter-spacing: 2px; color: #07b4ba; line-height: 1; margin-bottom: 4px; }
   .pp-price-tag { font-family: 'Barlow', sans-serif; font-size: 13px; color: rgba(255,255,255,0.4); margin-bottom: 24px; }
-  .pp-cta-btn {
-    width: 100%; padding: 18px; border-radius: 10px;
-    background: #07b4ba; color: #000;
-    font-family: 'Bebas Neue', sans-serif; font-size: 24px; letter-spacing: 2px;
-    border: none; cursor: pointer; transition: all 0.2s;
-    box-shadow: 0 0 24px rgba(7,180,186,0.35);
-  }
+  .pp-cta-btn { width: 100%; padding: 18px; border-radius: 10px; background: #07b4ba; color: #000; font-family: 'Bebas Neue', sans-serif; font-size: 24px; letter-spacing: 2px; border: none; cursor: pointer; transition: all 0.2s; box-shadow: 0 0 24px rgba(7,180,186,0.35); }
   .pp-cta-btn:hover { background: #059a9f; box-shadow: 0 0 40px rgba(7,180,186,0.5); transform: translateY(-2px); }
   .pp-cta-note { font-family: 'Barlow', sans-serif; font-size: 12px; color: rgba(255,255,255,0.3); margin-top: 12px; }
 
-  /* Bottom bar */
+  /* FOOTER */
+  .pp-footer { background: #0f1115; padding: 26px 40px 8px; margin-top: 20px; }
+  .pp-footer-inner { max-width: 1180px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 40px; }
+  .pp-footer-title { font-family: 'Bebas Neue', sans-serif; font-size: 24px; letter-spacing: 1px; color: #fff; padding-top: 20px; margin-bottom: 14px; }
+  .pp-footer-links { display: flex; flex-direction: column; gap: 10px; }
+  .pp-footer-links a, .pp-footer-contact p, .pp-footer-about p { font-family: 'Barlow', sans-serif; font-size: 17px; color: rgba(255,255,255,0.52); text-decoration: none; transition: 0.2s; }
+  .pp-footer-links a:hover { color: #07b4ba; }
+  .pp-footer-contact { display: flex; flex-direction: column; gap: 18px; }
+  .pp-footer-about p { line-height: 1.8; max-width: 320px; }
+  .pp-footer-bottom { margin-top: 24px; padding-top: 12px; border-top: 1px solid rgba(255,255,255,0.06); text-align: center; font-family: 'Barlow', sans-serif; font-size: 13px; color: rgba(255,255,255,0.3); }
+
+  /* CHECKLIST */
+  .pp-checklist-item { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 14px; }
+  .pp-checklist-item .check { color: #07b4ba; font-size: 16px; flex-shrink: 0; margin-top: 2px; }
+  .pp-checklist-item p { color: rgba(255,255,255,0.65); font-family: 'Barlow', sans-serif; font-size: 14px; line-height: 1.55; }
+
+  /* BOTTOM BAR */
   .pp-bottom-bar { background: #000; padding: 16px 40px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; border-top: 1px solid rgba(255,255,255,0.05); }
   .pp-bottom-bar span { font-family: 'Barlow', sans-serif; font-size: 12px; color: rgba(255,255,255,0.25); }
-  .pp-bottom-logo { font-family: 'Bebas Neue', sans-serif; font-size: 18px; color: #07b4ba; letter-spacing: 3px; }
+  .pp-bottom-logo { font-family: 'Bebas Neue', sans-serif; font-size: 18px; letter-spacing: 3px; }
 
   /* RESPONSIVE */
   @media (max-width: 768px) {
@@ -401,43 +348,21 @@ const css = `
     .pp-footer-right { flex: unset; width: 100%; }
     .pp-timer { justify-content: center; }
     .pp-bottom-bar { flex-direction: column; text-align: center; }
-    .pp-hero {
-
-  min-height: 82vh;
-
-  padding: 120px 20px 70px;
-}
-
-.pp-hero-content {
-
-  align-items: flex-start;
-
-  text-align: left;
-}
-
-.pp-hero-h1 {
-
-  font-size: 64px;
-
-  line-height: 0.95;
-}
-
-.pp-hero-h2 {
-
-  font-size: 28px;
-}
-
-.pp-hero-desc {
-
-  font-size: 14px;
-
-  line-height: 1.7;
-}
-
-.pp-join-btn {
-
-  width: 100%;
-}
+    .pp-hero { min-height: 82vh; padding: 120px 20px 70px; }
+    .pp-hero-content { align-items: flex-start; text-align: left; }
+    .pp-hero-h1 { font-size: 64px; line-height: 0.95; }
+    .pp-hero-h2 { font-size: 28px; }
+    .pp-hero-desc { font-size: 14px; line-height: 1.7; }
+    .pp-join-btn { width: 100%; }
+    .pp-testi-main { flex-direction: column; }
+    .pp-testi-img { flex: unset; width: 100%; }
+    .pp-footer-inner { grid-template-columns: 1fr; gap: 40px; }
+    .pp-footer { padding: 50px 20px 24px; }
+    .pp-footer-bottom { margin-top: 40px; }
+    .pp-coach-stats { display: grid !important; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .pp-coach-stats > div { width: 100% !important; min-height: 120px !important; height: auto !important; padding: 18px 10px !important; display: flex !important; flex-direction: column !important; justify-content: center !important; align-items: center !important; }
+    .pp-coach-stats > div p:first-child { font-size: 34px !important; letter-spacing: 1px !important; margin-bottom: 6px !important; }
+    .pp-coach-stats > div p:last-child { font-size: 11px !important; letter-spacing: 2px !important; padding: 0 4px; }
   }
 `;
 
@@ -472,11 +397,24 @@ const bonuses = [
 ];
 
 const painPoints = [
-  "Don't know where to begin",
-  "Have no access to an MMA gym",
-  "Don't have a structure to follow",
-  "Have a busy schedule",
-  "Lack proper guidance",
+  "You train 4-5 days a week but your technique isn't improving",
+  "Your sparring partners are getting better — you feel stuck",
+  "You have no structured plan, just random gym sessions",
+  "Coaches at your gym don't give you personal attention",
+  "You don't know what to fix or where to even start",
+];
+
+const coachCredentials = [
+  "Former Professional MMA Fighter — 12+ Years Ring Experience",
+  "Trained athletes who compete at national and international level",
+  "Specialist in striking, grappling transitions and mental conditioning",
+];
+
+const stats = [
+  { val: "1,000+", label: "Athletes Coached" },
+  { val: "10+", label: "Years Experience" },
+  { val: "50+", label: "Champions Trained" },
+  { val: "3", label: "Continents" },
 ];
 
 export default function ProgramPage() {
@@ -491,14 +429,12 @@ export default function ProgramPage() {
 
         {/* ── NAVBAR ── */}
         <nav className="pp-nav">
-          <button className="pp-nav-back" onClick={() => navigate("/")}>
-            ← Home
-          </button>
+          <button className="pp-nav-back" onClick={() => navigate("/")}>← Home</button>
           <div className="pp-nav-logo-circle"><span>AOF</span></div>
           <span className="pp-nav-title">ART OF FIGHTING</span>
         </nav>
 
-        {/* ── SECTION 2: HERO ── */}
+        {/* ── HERO (image 1) ── */}
         <section className="pp-hero">
           <div className="pp-hero-bg" />
           <div className="pp-hero-overlay" />
@@ -516,71 +452,52 @@ export default function ProgramPage() {
           </div>
         </section>
 
-        {/* ── SECTION 1: STATS BAND ── */}
+        {/* ── STATS BAND ── */}
         <div className="pp-stats">
-          <div className="pp-stats-coach">
-            <span className="pp-stats-coach-placeholder">👤</span>
-          </div>
+          <div className="pp-stats-coach"><span className="pp-stats-coach-placeholder">👤</span></div>
           <div className="pp-stats-divider" />
-          <div className="pp-stat">
-            <h3>5+</h3>
-            <p>Years Experience</p>
-          </div>
+          <div className="pp-stat"><h3>5+</h3><p>Years Experience</p></div>
           <div className="pp-stats-divider" />
-          <div className="pp-stat">
-            <h3>500+</h3>
-            <p>Clients Trained</p>
-          </div>
+          <div className="pp-stat"><h3>500+</h3><p>Clients Trained</p></div>
           <div className="pp-stats-divider" />
-          <div className="pp-stat">
-            <h3>5K+</h3>
-            <p>Audience Reached</p>
-          </div>
+          <div className="pp-stat"><h3>5K+</h3><p>Audience Reached</p></div>
           <div className="pp-stats-divider" />
-          <div className="pp-stat">
-            <h3>30</h3>
-            <p>Days Program</p>
-          </div>
+          <div className="pp-stat"><h3>30</h3><p>Days Program</p></div>
         </div>
 
-        {/* ── SECTION 3: THE PROBLEM ── */}
+        {/* ── PAIN SECTION (image 7) ── */}
         <div className="pp-problem">
           <div className="pp-section">
-            <div className="pp-problem-grid">
-              <div className="pp-problem-left">
-                <Reveal>
-                  <h2 className="pp-problem-h">The Problem</h2>
-                  <p className="pp-problem-intro">
-                    Most people who want to learn MMA never start because they:
-                  </p>
+            <Reveal>
+              <div className="pp-problem-grid">
+                <div className="pp-problem-left">
+                  <p style={{ color: "#07b4ba", fontFamily: "'Barlow', sans-serif", fontWeight: 700, fontSize: 14, marginBottom: 8 }}>Sounds Familiar?</p>
+                  <h2 style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: "clamp(28px,4vw,42px)", letterSpacing: 2, color: "#fff", marginBottom: 16, lineHeight: 1.1 }}>
+                    You're Training Hard...<br />But Still Not Improving
+                  </h2>
+                  <div style={{ width: 80, height: 3, background: "#e53e3e", borderRadius: 2, marginBottom: 24, boxShadow: "0 0 10px rgba(229,62,62,0.7)" }} />
                   {painPoints.map((p, i) => (
                     <Reveal key={i} delay={i * 80}>
                       <div className="pp-pain-item">
-                        <span className="pp-pain-tag">#</span>
+                        <div className="pp-pain-bar" />
                         <p>{p}</p>
                       </div>
                     </Reveal>
                   ))}
-                </Reveal>
+                </div>
+                <div className="pp-problem-right">
+                  <img
+                    src="https://images.unsplash.com/photo-1549060279-7e168fcee0c2?w=900&q=80"
+                    alt="MMA Training"
+                  />
+                </div>
               </div>
-              <div className="pp-problem-right">
-                <Reveal delay={100}>
-                  <div className="pp-video-card">
-                    <p className="pp-video-card-title">AOF MMA Striking Program</p>
-                    <p className="pp-video-card-sub">Build real MMA striking fundamentals — without a gym</p>
-                    <div className="pp-play-btn">
-                      <div className="pp-play-icon" />
-                    </div>
-                  </div>
-                </Reveal>
-              </div>
-            </div>
+            </Reveal>
           </div>
         </div>
 
-        {/* ── SECTION 4: PROGRAM FEATURES ── */}
+        {/* ── FEATURES ── */}
         <div className="pp-features">
-          <div className="pp-features-bg" />
           <div className="pp-section">
             <div className="pp-features-grid">
               <div className="pp-features-left">
@@ -599,10 +516,7 @@ export default function ProgramPage() {
               <div className="pp-features-right">
                 <Reveal delay={150}>
                   <div className="pp-features-img-frame">
-                    <img
-                      src="https://images.unsplash.com/photo-1594737625785-a6cbdabd333c?w=600&q=80"
-                      alt="MMA Fighter"
-                    />
+                    <img src="https://images.unsplash.com/photo-1594737625785-a6cbdabd333c?w=600&q=80" alt="MMA Fighter" />
                   </div>
                 </Reveal>
               </div>
@@ -610,12 +524,10 @@ export default function ProgramPage() {
           </div>
         </div>
 
-        {/* ── SECTION 5: CURRICULUM + FOUNDERS ── */}
+        {/* ── CURRICULUM ── */}
         <div className="pp-curriculum">
           <div className="pp-section">
             <div className="pp-curriculum-grid">
-
-              {/* LEFT — What You'll Learn */}
               <div className="pp-curriculum-left">
                 <Reveal>
                   <p className="pp-section-label">What You'll Learn</p>
@@ -623,25 +535,17 @@ export default function ProgramPage() {
                     <Reveal key={i} delay={i * 60}>
                       <div className="pp-week">
                         <h4>{w.title}</h4>
-                        <ul>
-                          {w.items.map((item, j) => (
-                            <li key={j}>{item}</li>
-                          ))}
-                        </ul>
+                        <ul>{w.items.map((item, j) => <li key={j}>{item}</li>)}</ul>
                       </div>
                     </Reveal>
                   ))}
                 </Reveal>
               </div>
-
-              {/* RIGHT — Founders + Bonuses */}
               <div className="pp-curriculum-right">
                 <Reveal>
                   <p className="pp-founders-h">Founder's Batch Benefits</p>
                   <p className="pp-founders-sub">(Jan 05 — Feb 03)</p>
-                  <p className="pp-founders-desc">
-                    Since this is the first-ever launch of the AOF 30-Day MMA Striking Program, we're opening a special Founder's Batch with added support and access.
-                  </p>
+                  <p className="pp-founders-desc">Since this is the first-ever launch of the AOF 30-Day MMA Striking Program, we're opening a special Founder's Batch with added support and access.</p>
                   {benefits.map((b, i) => (
                     <Reveal key={i} delay={i * 60}>
                       <div className="pp-benefit-item">
@@ -651,7 +555,6 @@ export default function ProgramPage() {
                     </Reveal>
                   ))}
                 </Reveal>
-
                 <Reveal delay={100}>
                   <p className="pp-bonuses-h">Added Bonuses</p>
                   {bonuses.map((b, i) => (
@@ -667,51 +570,121 @@ export default function ProgramPage() {
           </div>
         </div>
 
-        {/* ── SECTION 6: FOOTER CTA ── */}
+        {/* ── COACH SECTION (image 2) ── */}
+        <div className="pp-coach-bg">
+          <div className="pp-book-strip">
+            <button onClick={scrollToFooter}>Join Now</button>
+          </div>
+          <div className="pp-section" style={{ paddingBottom: 40 }}>
+            <Reveal>
+              <p style={{ fontFamily: "'Barlow', sans-serif", fontSize: 17, color: "#07b4ba", fontWeight: 700, marginBottom: 24, letterSpacing: 2, textTransform: "uppercase" }}>
+                LED BY
+              </p>
+              <div style={{ display: "flex", gap: 56, alignItems: "flex-start", flexWrap: "wrap" }}>
+                <img
+                  src="https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?w=400&q=80"
+                  alt="Head Coach"
+                  style={{ width: 240, height: 300, objectFit: "cover", objectPosition: "top", borderRadius: 12, border: "1px solid rgba(255,255,255,0.1)", flexShrink: 0 }}
+                />
+                <div style={{ flex: 1, minWidth: 280 }}>
+                  <h2 style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: 48, letterSpacing: 2, color: "#fff", marginBottom: 4 }}>Head Coach</h2>
+                  <p style={{ color: "#07b4ba", fontFamily: "'Barlow', sans-serif", fontWeight: 700, fontSize: 14, marginBottom: 20 }}>
+                    AOF Academy — Lead Trainer &amp; Founder
+                  </p>
+                  <div style={{ marginBottom: 24 }}>
+                    {coachCredentials.map((cred, i) => (
+                      <div key={i} className="pp-checklist-item">
+                        <span className="check">✓</span>
+                        <p>{cred}</p>
+                      </div>
+                    ))}
+                  </div>
+                  <div className="pp-coach-stats" style={{ display: "flex", gap: 22, flexWrap: "wrap", marginTop: 26 }}>
+                    {stats.map((stat, i) => (
+                      <div key={i} style={{ background: "linear-gradient(180deg,#181818 0%, #121212 100%)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 14, width: 160, height: 140, padding: "18px 16px", textAlign: "center", boxShadow: "0 0 14px rgba(0,0,0,0.18)" }}>
+                        <p style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: 42, color: "#07b4ba", letterSpacing: 1, marginBottom: 10 }}>{stat.val}</p>
+                        <p style={{ fontFamily: "'Barlow', sans-serif", color: "rgba(255,255,255,0.45)", fontSize: 12, letterSpacing: 2, textTransform: "uppercase" }}>{stat.label}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </Reveal>
+          </div>
+        </div>
+
+        {/* ── TESTIMONIALS (image 3 & 4) ── */}
+        <div className="pp-testi-bg">
+          <div className="pp-section" style={{ paddingTop: 48 }}>
+            <Reveal>
+              <div style={{ textAlign: "center", marginBottom: 44 }}>
+                <p style={{ fontFamily: "'Barlow', sans-serif", color: "#07b4ba", fontWeight: 700, fontSize: 12, letterSpacing: 3, textTransform: "uppercase" }}>
+                  Real People, Real Results
+                </p>
+                <h2 style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: "clamp(34px,5vw,56px)", letterSpacing: 2, color: "#fff", marginTop: 8, lineHeight: 1 }}>
+                  Trusted By Fighters,{" "}
+                  <span style={{ color: "#07b4ba" }}>Proven Results</span>
+                </h2>
+                <p style={{ fontFamily: "'Barlow', sans-serif", color: "rgba(255,255,255,0.42)", marginTop: 8, fontSize: 14 }}>
+                  Here's What Athletes Say About Their Transformation With AOF
+                </p>
+              </div>
+            </Reveal>
+            <Reveal>
+              <div className="pp-testi-main">
+                <div className="pp-testi-img">
+                  <img src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?w=900&q=80" alt="Athlete" />
+                </div>
+                <div style={{ flex: 1, minWidth: 260 }}>
+                  <h3 style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: "clamp(28px,3vw,42px)", letterSpacing: 1.5, lineHeight: 1.1, marginBottom: 16, color: "#fff" }}>
+                    AOF Changed The Way{" "}
+                    <span style={{ color: "#07b4ba" }}>I Train And Perform.</span>
+                  </h3>
+                  <p style={{ fontFamily: "'Barlow', sans-serif", color: "rgba(255,255,255,0.65)", fontSize: 15, lineHeight: 1.75 }}>
+                    The structure, the attention to detail, and the accountability took me to a level I never thought possible. I'm stronger, faster, and fight with more confidence than ever.
+                  </p>
+                  <p style={{ fontFamily: "'Barlow', sans-serif", marginTop: 14, color: "#07b4ba", fontWeight: 700, fontSize: 14 }}>
+                    — Alex M., Amateur MMA Fighter
+                  </p>
+                </div>
+              </div>
+            </Reveal>
+            <Reveal>
+              <InfiniteFeedbackSlider />
+            </Reveal>
+          </div>
+        </div>
+
+        {/* ── FAQ (image 5) ── */}
+        <FAQSection />
+
+        {/* ── FOOTER CTA ── */}
         <div className="pp-footer-cta" ref={footerRef}>
           <div className="pp-section">
             <div className="pp-footer-grid">
-
-              {/* LEFT — Timer */}
               <div className="pp-footer-left">
                 <Reveal>
                   <p className="pp-offer-label">New Year Extended Offer</p>
                   <h2 className="pp-offer-h">Last Day<br />To Join</h2>
                   <div className="pp-timer">
-                    <div className="pp-timer-block">
-                      <h3>02</h3>
-                      <p>Days</p>
-                    </div>
+                    <div className="pp-timer-block"><h3>02</h3><p>Days</p></div>
                     <span className="pp-timer-sep">:</span>
-                    <div className="pp-timer-block">
-                      <h3>14</h3>
-                      <p>Hours</p>
-                    </div>
+                    <div className="pp-timer-block"><h3>14</h3><p>Hours</p></div>
                     <span className="pp-timer-sep">:</span>
-                    <div className="pp-timer-block">
-                      <h3>37</h3>
-                      <p>Mins</p>
-                    </div>
+                    <div className="pp-timer-block"><h3>37</h3><p>Mins</p></div>
                     <span className="pp-timer-sep">:</span>
-                    <div className="pp-timer-block">
-                      <h3>59</h3>
-                      <p>Secs</p>
-                    </div>
+                    <div className="pp-timer-block"><h3>59</h3><p>Secs</p></div>
                   </div>
                   <p className="pp-last-day">— Offer ends at midnight —</p>
                 </Reveal>
               </div>
-
-              {/* RIGHT — Price + CTA */}
               <div className="pp-footer-right">
                 <Reveal delay={100}>
                   <div className="pp-price-box">
                     <p className="pp-price-old">₹2,999</p>
                     <p className="pp-price-new">₹999</p>
                     <p className="pp-price-tag">One-time payment · Lifetime access</p>
-                    <button className="pp-cta-btn" onClick={scrollToFooter}>
-                      Join Now — ₹999
-                    </button>
+                    <button className="pp-cta-btn" onClick={scrollToFooter}>Join Now — ₹999</button>
                     <p className="pp-cta-note">Only 20 spots available · Secure checkout</p>
                   </div>
                 </Reveal>
@@ -720,12 +693,40 @@ export default function ProgramPage() {
           </div>
         </div>
 
-        {/* BOTTOM BAR */}
-        <div className="pp-bottom-bar">
-          <span className="pp-bottom-logo">AOF</span>
-          <span>© {new Date().getFullYear()} Art of Fight Academy. All rights reserved.</span>
-          <span>Chennai, Tamil Nadu, India</span>
-        </div>
+        {/* ── FOOTER (image 6) ── */}
+        <footer className="pp-footer">
+          <div className="pp-footer-inner">
+            <div>
+              <h3 className="pp-footer-title">CONTACT</h3>
+              <div className="pp-footer-contact">
+                <p>+91 00000 00000</p>
+                <p>info@aofacademy.com</p>
+                <p>Chennai, Tamil Nadu, India</p>
+              </div>
+            </div>
+            <div>
+              <h3 className="pp-footer-title">NAVIGATION</h3>
+              <div className="pp-footer-links">
+                <a href="#home">Home</a>
+                <a href="#method">AOF Method</a>
+                <a href="#testimonials">Testimonials</a>
+                <a href="#faq">FAQ</a>
+                <a href="#contact">Apply Now</a>
+              </div>
+            </div>
+            <div>
+              <h3 className="pp-footer-title">
+                <span style={{ color: "#07b4ba" }}>A</span>
+                <span style={{ color: "#fff" }}>O</span>
+                <span style={{ color: "#07b4ba" }}>F</span>
+              </h3>
+              <div className="pp-footer-about">
+                <p>Art of Fighting Academy — building champions through proven systems and disciplined training.</p>
+              </div>
+            </div>
+          </div>
+          <div className="pp-footer-bottom">© 2026 AOF Academy. All rights reserved.</div>
+        </footer>
 
       </div>
     </>
