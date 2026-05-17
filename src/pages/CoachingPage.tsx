@@ -858,96 +858,79 @@ body { background: #0a0a0a; }
 /* ── CHANGE 3: NEW FEEDBACK SLIDER — 3-card infinite horizontal scroll ── */
 /* ───────── PREMIUM MOBILE TESTIMONIAL UI ───────── */
 
+/* ───────── MOBILE TESTIMONIAL UI ───────── */
+
 .cp-feedback-slider-new {
+
   overflow: hidden;
   width: 100%;
   position: relative;
-  padding-bottom: 70px;
+
+  padding-bottom: 72px;
 }
 
 .cp-feedback-track-new {
+
   display: flex;
-  transition: transform 0.55s ease;
+
+  transition: transform 0.45s cubic-bezier(.22,.61,.36,1);
 }
 
-/* PAGE */
+/* EACH MOBILE PAGE */
 .cp-feedback-page-mobile {
+
   min-width: 100%;
+
   display: flex;
+
   flex-direction: column;
+
   gap: 14px;
 
-  padding: 0 16px;
+  padding: 0 14px;
 }
 
 /* CARD */
 .cp-feedback-card-new {
 
-  width: 92% !important;
-
-  margin: 0 auto;
-
-  min-height: 120px;
-
-  border-radius: 18px;
+  width: 100% !important;
 
   background: #15181d;
 
   border: 1px solid rgba(255,255,255,0.05);
 
-  padding: 16px 16px;
+  border-radius: 16px;
 
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  padding: 16px;
+
+  min-height: 132px;
 
   box-shadow:
-    0 10px 30px rgba(0,0,0,0.35);
+    0 8px 24px rgba(0,0,0,0.28);
 
-  transform: translateX(0);
-
-  animation: mobileCardFloat 0.45s ease;
+  animation: mobileFade 0.45s ease;
 }
 
-/* FLOAT ANIMATION */
-@keyframes mobileCardFloat {
+/* REMOVE DESKTOP ROTATION */
+.cp-feedback-page-mobile .cp-feedback-card-new:nth-child(1),
+.cp-feedback-page-mobile .cp-feedback-card-new:nth-child(2),
+.cp-feedback-page-mobile .cp-feedback-card-new:nth-child(3) {
+
+  transform: none;
+}
+
+/* ANIMATION */
+@keyframes mobileFade {
 
   from {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(18px);
   }
 
   to {
     opacity: 1;
     transform: translateY(0);
   }
-}
-
-/* STAGGER EFFECT */
-.cp-feedback-page-mobile .cp-feedback-card-new:nth-child(1) {
-  transform: rotate(-2deg);
-}
-
-.cp-feedback-page-mobile .cp-feedback-card-new:nth-child(2) {
-  transform: rotate(1deg);
-}
-
-.cp-feedback-page-mobile .cp-feedback-card-new:nth-child(3) {
-  transform: rotate(-1deg);
-}
-
-/* TEXT */
-.cp-feedback-card-new p {
-
-  font-size: 12px;
-
-  line-height: 1.6;
-
-  margin-bottom: 12px;
-
-  color: rgba(255,255,255,0.72);
-
-  font-style: italic;
 }
 
 /* STARS */
@@ -962,16 +945,38 @@ body { background: #0a0a0a; }
   font-size: 11px;
 }
 
+/* TEXT */
+.cp-feedback-card-new p {
+
+  font-size: 12px;
+
+  line-height: 1.65;
+
+  color: rgba(255,255,255,0.72);
+
+  margin-bottom: 14px;
+
+  font-style: italic;
+}
+
 /* AUTHOR */
 .cp-feedback-card-new .author-name {
+
   font-size: 12px;
+
+  font-weight: 600;
+
+  color: #fff;
 }
 
 .cp-feedback-card-new .author-role {
+
   font-size: 10px;
+
+  color: rgba(255,255,255,0.45);
 }
 
-/* NAV BUTTONS */
+/* NAV */
 .cp-feedback-mobile-nav {
 
   position: absolute;
@@ -1003,9 +1008,7 @@ body { background: #0a0a0a; }
 
   font-size: 18px;
 
-  cursor: pointer;
-
-  transition: all 0.25s ease;
+  transition: 0.25s ease;
 }
 
 .cp-feedback-mobile-nav button:hover {
@@ -1013,8 +1016,6 @@ body { background: #0a0a0a; }
   border-color: #07b4ba;
 
   color: #07b4ba;
-
-  transform: scale(1.08);
 }
 /* ── CHANGE 4: FAQ SECTION ── */
 .cp-faq-bg {
