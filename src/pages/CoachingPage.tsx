@@ -1298,8 +1298,7 @@ body { background: #0a0a0a; }
   transition: transform 0.45s ease;
 }
 
-/* EACH PAGE */
-.cp-feedback-page-mobile {
+/* EACH PAGE */.cp-feedback-page-mobile {
 
   min-width: 100%;
 
@@ -1307,15 +1306,15 @@ body { background: #0a0a0a; }
 
   flex-direction: column;
 
-  gap: 12px;
+  gap: 14px;
 
-  padding: 0 18px;
+  padding: 0 4px;
 }
 
 /* FEEDBACK CARD */
 .cp-feedback-card-new {
 
-  width: 92% !important;  margin: 0 auto;
+  width: 50% !important;  margin: 0 auto;
 
   min-height: 110px;
 
