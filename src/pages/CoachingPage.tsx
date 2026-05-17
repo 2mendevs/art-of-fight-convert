@@ -1284,7 +1284,12 @@ body { background: #0a0a0a; }
 
   line-height: 1.2;
 }
+.cp-coach-stats h3 {
 
+  font-size: 52px !important;
+
+  line-height: 1 !important;
+}
 .cp-coach-stats p {
 
   font-size: 11px !important;
