@@ -856,57 +856,166 @@ body { background: #0a0a0a; }
 }
 
 /* ── CHANGE 3: NEW FEEDBACK SLIDER — 3-card infinite horizontal scroll ── */
+/* ───────── PREMIUM MOBILE TESTIMONIAL UI ───────── */
+
 .cp-feedback-slider-new {
   overflow: hidden;
   width: 100%;
   position: relative;
+  padding-bottom: 70px;
 }
+
 .cp-feedback-track-new {
   display: flex;
-  gap: 24px;
-  /* width is set inline to fit duplicated cards */
-  will-change: transform;
+  transition: transform 0.55s ease;
 }
-/* Each card occupies exactly 1/3 of the slider width minus gap compensation */
+
+/* PAGE */
+.cp-feedback-page-mobile {
+  min-width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+
+  padding: 0 16px;
+}
+
+/* CARD */
 .cp-feedback-card-new {
-  /* calc: (100% / 3) - gap proportional. Done via flex: 0 0 calc(33.333% - 16px) in inline style */
+
+  width: 92% !important;
+
+  margin: 0 auto;
+
+  min-height: 120px;
+
   border-radius: 18px;
-  background: #1a1d23;
+
+  background: #15181d;
+
   border: 1px solid rgba(255,255,255,0.05);
-  padding: 28px 24px;
-  flex-shrink: 0;
-  position: relative;
-  overflow: hidden;
+
+  padding: 16px 16px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  box-shadow:
+    0 10px 30px rgba(0,0,0,0.35);
+
+  transform: translateX(0);
+
+  animation: mobileCardFloat 0.45s ease;
 }
 
-/* CHANGE 3: Inherit font family and weight from Home Page Feedback form */
+/* FLOAT ANIMATION */
+@keyframes mobileCardFloat {
+
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* STAGGER EFFECT */
+.cp-feedback-page-mobile .cp-feedback-card-new:nth-child(1) {
+  transform: rotate(-2deg);
+}
+
+.cp-feedback-page-mobile .cp-feedback-card-new:nth-child(2) {
+  transform: rotate(1deg);
+}
+
+.cp-feedback-page-mobile .cp-feedback-card-new:nth-child(3) {
+  transform: rotate(-1deg);
+}
+
+/* TEXT */
 .cp-feedback-card-new p {
-  font-family: 'Barlow', sans-serif;
-  font-weight: 400;
+
+  font-size: 12px;
+
+  line-height: 1.6;
+
+  margin-bottom: 12px;
+
   color: rgba(255,255,255,0.72);
-  font-size: 15px;
-  line-height: 1.65;
+
   font-style: italic;
-  margin-bottom: 20px;
-}
-.cp-feedback-card-new .author-name {
-  font-family: 'Barlow', sans-serif;
-  font-weight: 700;
-  color: #fff;
-  font-size: 15px;
-  margin-bottom: 2px;
-}
-.cp-feedback-card-new .author-role {
-  font-family: 'Barlow', sans-serif;
-  font-weight: 400;
-  color: rgba(255,255,255,0.4);
-  font-size: 13px;
-}
-.cp-feedback-stars {
-  display: flex; gap: 4px; margin-bottom: 16px;
-  color: #07b4ba; font-size: 16px;
 }
 
+/* STARS */
+.cp-feedback-stars {
+
+  display: flex;
+
+  gap: 2px;
+
+  margin-bottom: 10px;
+
+  font-size: 11px;
+}
+
+/* AUTHOR */
+.cp-feedback-card-new .author-name {
+  font-size: 12px;
+}
+
+.cp-feedback-card-new .author-role {
+  font-size: 10px;
+}
+
+/* NAV BUTTONS */
+.cp-feedback-mobile-nav {
+
+  position: absolute;
+
+  bottom: 0;
+
+  left: 50%;
+
+  transform: translateX(-50%);
+
+  display: flex;
+
+  gap: 14px;
+}
+
+.cp-feedback-mobile-nav button {
+
+  width: 42px;
+
+  height: 42px;
+
+  border-radius: 50%;
+
+  border: 1px solid rgba(255,255,255,0.12);
+
+  background: #15181d;
+
+  color: #fff;
+
+  font-size: 18px;
+
+  cursor: pointer;
+
+  transition: all 0.25s ease;
+}
+
+.cp-feedback-mobile-nav button:hover {
+
+  border-color: #07b4ba;
+
+  color: #07b4ba;
+
+  transform: scale(1.08);
+}
 /* ── CHANGE 4: FAQ SECTION ── */
 .cp-faq-bg {
   position: relative;
@@ -1666,10 +1775,9 @@ function InfiniteFeedbackSlider() {
 
         style={{
           width: "max-content",
-
-          transform:
-            window.innerWidth <= 768
-              ? `translateX(-${mobileIndex * 34}%)`
+transform:
+  window.innerWidth <= 768
+    ? `translateX(-${mobileIndex * 100}%)`
               : undefined,
         }}
       >
