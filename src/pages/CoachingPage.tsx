@@ -1403,39 +1403,46 @@ body { background: #0a0a0a; }
   font-size: 10px;
 }
 
-/* NAVIGATION */
+/* ───────── FEEDBACK NAVIGATION ───────── */
+
 .cp-feedback-mobile-nav {
-
-  position: absolute;
-
-  bottom: 0;
-
-  left: 50%;
-
-  transform: translateX(-50%);
 
   display: flex;
 
-  gap: 16px;
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 14px;
+
+  margin-top: 30px;
 }
 
 .cp-feedback-mobile-nav button {
 
-  width: 42px;
+  width: 54px;
 
-  height: 42px;
+  height: 54px;
 
   border-radius: 50%;
 
-  border: 1px solid rgba(255,255,255,0.14);
+  border: 1px solid rgba(255,255,255,0.12);
 
   background: #15181d;
 
-  color: #fff;
+  color: #ffffff;
 
-  font-size: 20px;
+  font-size: 24px;
 
   cursor: pointer;
+
+  transition: 0.25s;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
 }
 
 .cp-feedback-mobile-nav button:hover {
@@ -1443,7 +1450,27 @@ body { background: #0a0a0a; }
   border-color: #07b4ba;
 
   color: #07b4ba;
+
+  transform: translateY(-2px);
 }
+
+/* MOBILE */
+
+@media (max-width: 768px) {
+
+  .cp-feedback-mobile-nav {
+
+    margin-top: 22px;
+  }
+
+  .cp-feedback-mobile-nav button {
+
+    width: 42px;
+
+    height: 42px;
+
+    font-size: 18px;
+  }
 }
 `;
 
@@ -1588,11 +1615,25 @@ function CalendarPicker({ onConfirm }: { onConfirm: (date: string, time: string)
 
       {selectedDay && selectedTime && (
         <button
-          className="cp-submit"
-          onClick={() => onConfirm(`${months[month]} ${selectedDay}, ${year}`, selectedTime!)}
-        >
-          Confirm Booking
-        </button>
+  className="cp-submit"
+  disabled={isSubmitting}
+  style={{
+    opacity: isSubmitting ? 0.7 : 1,
+    cursor: isSubmitting
+      ? "not-allowed"
+      : "pointer",
+  }}
+  onClick={() =>
+    onConfirm(
+      `${months[month]} ${selectedDay}, ${year}`,
+      selectedTime!
+    )
+  }
+>
+  {isSubmitting
+    ? "Submitting..."
+    : "Confirm Booking"}
+</button>
       )}
     </div>
   );
@@ -1938,40 +1979,85 @@ export default function CoachingPage() {
   const navigate = useNavigate();
   const formRef = useRef<HTMLDivElement>(null);
 
-  const [lead, setLead] = useState({ name: "", phone: "", goal: "" });
-  const [stage, setStage] = useState<1 | 2 | 3>(1);
+ const [lead, setLead] = useState({
+  name: "",
+  phone: "",
+  goal: "",
+});
 
-  const scrollToForm = () => formRef.current?.scrollIntoView({ behavior: "smooth" });
+const [stage, setStage] =
+  useState<1 | 2 | 3>(1);
 
-  const SHEET_URL =
-    "https://script.google.com/macros/s/AKfycbyLWY5cbUx7OC1t6SSy-Z8wTj9FLPdZuzOzSRhJ8-1JvlPxYk1210TelUjKuaSyYvVl/exec";
+/* NEW */
+const [isSubmitting, setIsSubmitting] =
+  useState(false);
 
-  const handleLeadSubmit = async () => {
-    if (!lead.name.trim() || !lead.phone.trim()) return;
-    setStage(2);
-  };
+const scrollToForm = () =>
+  formRef.current?.scrollIntoView({
+    behavior: "smooth",
+  });
 
-  const handleBookingConfirm = async (date: string, time: string) => {
-    try {
-      const params = new URLSearchParams({
-        name: lead.name.trim(),
-        phone: lead.phone.trim(),
-        goal: lead.goal || "Not specified",
-        date,
-        time,
-      });
-      await fetch(SHEET_URL, {
-        method: "POST",
-        mode: "no-cors",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: params.toString(),
-      });
-    } catch (err) {
-      console.error("Sheet error:", err);
-    }
+const SHEET_URL =
+  "https://script.google.com/macros/s/AKfycbyLWY5cbUx7OC1t6SSy-Z8wTj9FLPdZuzOzSRhJ8-1JvlPxYk1210TelUjKuaSyYvVl/exec";
+
+const handleLeadSubmit = async () => {
+
+  if (
+    !lead.name.trim() ||
+    !lead.phone.trim()
+  )
+    return;
+
+  setStage(2);
+};
+
+const handleBookingConfirm = async (
+  date: string,
+  time: string
+) => {
+
+  // STOP MULTIPLE CLICKS
+  if (isSubmitting) return;
+
+  setIsSubmitting(true);
+
+  try {
+
+    const params = new URLSearchParams({
+      name: lead.name.trim(),
+      phone: lead.phone.trim(),
+      goal: lead.goal || "Not specified",
+      date,
+      time,
+    });
+
+    // SEND TO SHEETS
+    fetch(SHEET_URL, {
+      method: "POST",
+      mode: "no-cors",
+      headers: {
+        "Content-Type":
+          "application/x-www-form-urlencoded",
+      },
+      body: params.toString(),
+    });
+
+    // SHOW SUCCESS INSTANTLY
     setStage(3);
-  };
 
+  } catch (err) {
+
+    console.error("Sheet error:", err);
+
+  } finally {
+
+    setTimeout(() => {
+
+      setIsSubmitting(false);
+
+    }, 2000);
+  }
+};
   const painPoints = [
     "You train 4-5 days a week but your technique isn't improving",
     "Your sparring partners are getting better — you feel stuck",
