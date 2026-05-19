@@ -484,7 +484,7 @@ const css = `
     letter-spacing: 1px;
   }
 }
-.pp-section { max-width: 1100px; margin: 0 auto; padding: 52px 30px; }
+.pp-section { max-width: 1100px; margin: 0 auto; padding: 45px 25px; }
 
 
 
@@ -623,7 +623,28 @@ const css = `
     .pp-coach-stats > div { width: 100% !important; min-height: 120px !important; height: auto !important; padding: 18px 10px !important; display: flex !important; flex-direction: column !important; justify-content: center !important; align-items: center !important; }
     .pp-coach-stats > div p:first-child { font-size: 34px !important; letter-spacing: 1px !important; margin-bottom: 6px !important; }
     .pp-coach-stats > div p:last-child { font-size: 11px !important; letter-spacing: 2px !important; padding: 0 4px; }
+    .roadmap-card {
+
+    min-width: 90vw !important;
+
+    max-width: 90vw !important;
   }
+
+  .roadmap-card > div:first-child {
+
+    grid-template-columns: 1fr !important;
+  }
+
+  .roadmap-card img {
+
+    height: 260px !important;
+  }
+
+  .roadmap-card h3 {
+
+    font-size: 52px !important;
+  }
+}
 `;
 
 const features = [
@@ -1031,6 +1052,407 @@ export default function ProgramPage() {
             </div>
           </div>
         </div>
+  {/* ───────── ROADMAP SECTION ───────── */}
+
+<div
+  style={{
+    background: "#06080c",
+    position: "relative",
+    overflow: "hidden",
+    backgroundImage:
+      "repeating-linear-gradient(-45deg, rgba(7,180,186,0.04) 0px, rgba(7,180,186,0.04) 1px, transparent 1px, transparent 6px)",
+  }}
+>
+  <div
+    style={{
+      maxWidth: 1400,
+      margin: "0 auto",
+      padding: "90px 0",
+    }}
+  >
+    {/* TOP */}
+    <div style={{ textAlign: "center", marginBottom: 60 }}>
+
+      <p
+        style={{
+          color: "#07b4ba",
+          fontFamily: "'Barlow', sans-serif",
+          fontWeight: 700,
+          fontSize: 14,
+          letterSpacing: 4,
+          textTransform: "uppercase",
+          marginBottom: 14,
+        }}
+      >
+        30 DAYS TRANSFORMATION JOURNEY
+      </p>
+
+      <h2
+        style={{
+          fontFamily: "'Bebas Neue', sans-serif",
+          fontSize: "clamp(60px,8vw,120px)",
+          lineHeight: 0.95,
+          letterSpacing: 3,
+          color: "#fff",
+        }}
+      >
+        YOUR <span style={{ color: "#07b4ba" }}>5 WEEK</span> ROADMAP
+      </h2>
+
+      <p
+        style={{
+          marginTop: 18,
+          color: "rgba(255,255,255,0.6)",
+          fontFamily: "'Barlow', sans-serif",
+          fontSize: 18,
+        }}
+      >
+        A structured path. Weekly focus. Real results.
+      </p>
+
+    </div>
+
+    {/* PROGRESS */}
+    <div
+      style={{
+        maxWidth: 1150,
+        margin: "0 auto 60px",
+        padding: "0 24px",
+      }}
+    >
+
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          position: "relative",
+        }}
+      >
+
+        <div
+          style={{
+            position: "absolute",
+            top: 15,
+            left: 0,
+            right: 0,
+            height: 2,
+            background: "rgba(255,255,255,0.15)",
+          }}
+        />
+
+        {["1ST WEEK", "2ND WEEK", "3RD WEEK", "4TH WEEK", "5TH WEEK"].map(
+          (week, i) => (
+            <div
+              key={i}
+              style={{
+                position: "relative",
+                zIndex: 2,
+                textAlign: "center",
+              }}
+            >
+              <p
+                style={{
+                  color: "#fff",
+                  fontFamily: "'Bebas Neue', sans-serif",
+                  letterSpacing: 1,
+                  fontSize: 24,
+                  marginBottom: 14,
+                }}
+              >
+                {week}
+              </p>
+
+              <div
+                style={{
+                  width: 32,
+                  height: 32,
+                  borderRadius: "50%",
+                  border: "3px solid #07b4ba",
+                  background: "#06080c",
+                  margin: "0 auto",
+                  boxShadow:
+                    i === 0
+                      ? "0 0 20px rgba(7,180,186,0.7)"
+                      : "none",
+                }}
+              />
+            </div>
+          )
+        )}
+      </div>
+    </div>
+
+    {/* CARDS */}
+    <div
+      style={{
+        overflowX: "auto",
+        overflowY: "hidden",
+        paddingLeft: 40,
+        paddingBottom: 10,
+        scrollSnapType: "x mandatory",
+      }}
+    >
+      <div
+        style={{
+          display: "flex",
+          gap: 28,
+          width: "max-content",
+        }}
+      >
+
+        {[
+          {
+            title: "1ST WEEK",
+            days: "DAYS 1 - 6",
+            image:
+              "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=1200",
+            points: [
+              "Fundamentals",
+              "Basic Techniques",
+              "Conditioning",
+              "Mindset Building",
+            ],
+          },
+
+          {
+            title: "2ND WEEK",
+            days: "DAYS 7 - 12",
+            image:
+              "https://images.unsplash.com/photo-1549719386-74dfcbf7dbed?q=80&w=1200",
+            points: [
+              "Skill Development",
+              "Strength & Power",
+              "Drills & Combos",
+              "Recovery Focus",
+            ],
+          },
+
+          {
+            title: "3RD WEEK",
+            days: "DAYS 13 - 18",
+            image:
+              "https://images.unsplash.com/photo-1518611012118-696072aa579a?q=80&w=1200",
+            points: [
+              "Advanced Techniques",
+              "Sparring Practice",
+              "Endurance Boost",
+              "Mental Toughness",
+            ],
+          },
+
+          {
+            title: "4TH WEEK",
+            days: "DAYS 19 - 24",
+            image:
+              "https://images.unsplash.com/photo-1517838277536-f5f99be501cd?q=80&w=1200",
+            points: [
+              "Fight IQ",
+              "Combination Chains",
+              "Counter Attacks",
+              "Explosive Training",
+            ],
+          },
+
+          {
+            title: "5TH WEEK",
+            days: "DAYS 25 - 30",
+            image:
+              "https://images.unsplash.com/photo-1517438984742-1262db08379e?q=80&w=1200",
+            points: [
+              "Full Integration",
+              "Fight Simulation",
+              "Peak Conditioning",
+              "Program Completion",
+            ],
+          },
+        ].map((card, i) => (
+          <div
+            key={i}
+            style={{
+              minWidth: "44vw",
+              maxWidth: "44vw",
+              scrollSnapAlign: "start",
+              borderRadius: 26,
+              overflow: "hidden",
+              border: "1px solid rgba(255,255,255,0.08)",
+              background:
+                "linear-gradient(180deg,#10151d 0%, #0b0f14 100%)",
+              boxShadow: "0 0 30px rgba(0,0,0,0.35)",
+              position: "relative",
+            }}
+            className="roadmap-card"
+          >
+
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns: "1fr 1fr",
+                minHeight: 500,
+              }}
+            >
+
+              {/* IMAGE */}
+              <div
+                style={{
+                  position: "relative",
+                  overflow: "hidden",
+                }}
+              >
+                <img
+                  src={card.image}
+                  alt={card.title}
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "cover",
+                  }}
+                />
+
+                <div
+                  style={{
+                    position: "absolute",
+                    inset: 0,
+                    background:
+                      "linear-gradient(to right, transparent 20%, rgba(0,0,0,0.6))",
+                  }}
+                />
+              </div>
+
+              {/* CONTENT */}
+              <div
+                style={{
+                  padding: "60px 40px",
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "center",
+                }}
+              >
+
+                {i === 0 && (
+                  <p
+                    style={{
+                      color: "#07b4ba",
+                      fontFamily: "'Bebas Neue', sans-serif",
+                      fontSize: 28,
+                      letterSpacing: 1,
+                      marginBottom: 10,
+                    }}
+                  >
+                    YOU ARE HERE
+                  </p>
+                )}
+
+                <h3
+                  style={{
+                    fontFamily: "'Bebas Neue', sans-serif",
+                    fontSize: 72,
+                    lineHeight: 0.9,
+                    letterSpacing: 2,
+                    color: "#fff",
+                    marginBottom: 26,
+                  }}
+                >
+                  {card.title}
+                </h3>
+
+                <div
+                  style={{
+                    width: 90,
+                    height: 4,
+                    borderRadius: 999,
+                    background: "#07b4ba",
+                    marginBottom: 34,
+                  }}
+                />
+
+                <div
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: 22,
+                  }}
+                >
+                  {card.points.map((point, idx) => (
+                    <div
+                      key={idx}
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                        gap: 14,
+                      }}
+                    >
+                      <div
+                        style={{
+                          width: 28,
+                          height: 28,
+                          borderRadius: "50%",
+                          border: "2px solid #07b4ba",
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          color: "#07b4ba",
+                          fontSize: 14,
+                          flexShrink: 0,
+                        }}
+                      >
+                        ✓
+                      </div>
+
+                      <p
+                        style={{
+                          color: "rgba(255,255,255,0.82)",
+                          fontFamily: "'Barlow', sans-serif",
+                          fontSize: 22,
+                        }}
+                      >
+                        {point}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+
+              </div>
+
+            </div>
+
+            {/* FOOTER */}
+            <div
+              style={{
+                borderTop: "1px solid rgba(255,255,255,0.08)",
+                padding: "26px 34px",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                gap: 16,
+              }}
+            >
+              <span
+                style={{
+                  fontSize: 28,
+                }}
+              >
+                📅
+              </span>
+
+              <p
+                style={{
+                  fontFamily: "'Bebas Neue', sans-serif",
+                  fontSize: 34,
+                  letterSpacing: 1,
+                  color: "#07b4ba",
+                }}
+              >
+                {card.days}
+              </p>
+            </div>
+
+          </div>
+        ))}
+      </div>
+    </div>
+
+  </div>
+</div>
 
         {/* ── COACH SECTION (image 2) ── */}
         <div className="pp-coach-bg">
