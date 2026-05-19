@@ -1606,7 +1606,7 @@ const roadmapCards = [
     </div>
 
   </div>
-
+</div>
 </div>
         {/* ── COACH SECTION (image 2) ── */}
         <div className="pp-coach-bg">
