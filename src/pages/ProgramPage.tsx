@@ -488,9 +488,9 @@ const css = `
  <div
   className="pp-section"
   style={{
-    maxWidth: "1280px",
-    paddingLeft: "20px",
-    paddingRight: "20px",
+    maxWidth: "1380px",
+    paddingLeft: "35px",
+    paddingRight: "35px",
   }}
 >
 
