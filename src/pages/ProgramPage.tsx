@@ -850,142 +850,97 @@ export default function ProgramPage() {
           </div>
         </div>
 {/* ── AOF INTRO SECTION ── */}
-<div
-  style={{
-    background:
-      "linear-gradient(90deg, rgba(5,10,18,1) 0%, rgba(3,7,14,1) 100%)",
-    borderTop: "1px solid rgba(7,180,186,0.08)",
-    borderBottom: "1px solid rgba(7,180,186,0.08)",
-  }}
->
-  <div className="pp-section">
-    <div
-      style={{
-        display: "flex",
-        gap: 70,
-        alignItems: "center",
-        flexWrap: "wrap",
-      }}
-    >
+const IntroSection = () => (
+  <section
+    id="about"
+    className="pt-6 pb-6 md:pt-8 md:pb-8 bg-card/50"
+  >
+    <div className="container max-w-6xl">
 
-      {/* VIDEO LEFT */}
-      <div
-        style={{
-          flex: "1 1 480px",
-          minWidth: 320,
-        }}
-      >
-        <Reveal delay={100}>
-          <div
-            style={{
-              position: "relative",
-              width: "100%",
-              aspectRatio: "16/9",
-              borderRadius: 24,
-              overflow: "hidden",
-              background:
-                "linear-gradient(90deg, rgba(38,44,58,1) 0%, rgba(24,28,36,1) 100%)",
-              border: "1px solid rgba(255,255,255,0.05)",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          >
-            <button
-              style={{
-                width: 82,
-                height: 82,
-                borderRadius: "50%",
-                border: "none",
-                background: "#07b4ba",
-                color: "#fff",
-                fontSize: 28,
-                cursor: "pointer",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                boxShadow: "0 0 30px rgba(7,180,186,0.35)",
-              }}
-            >
-              ▶
-            </button>
+      <p className="text-primary text-xs font-semibold uppercase tracking-widest mb-6">
+        AOF Intro Section
+      </p>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+
+        {/* LEFT : VIDEO */}
+        <div className="relative aspect-video rounded-xl overflow-hidden bg-muted">
+
+          <div className="absolute inset-0 bg-gradient-to-br from-muted to-card" />
+
+          <div className="absolute inset-0 flex items-center justify-center z-10">
+
+            <div className="w-14 h-14 rounded-full bg-primary/90 flex items-center justify-center cursor-pointer hover:bg-primary transition-colors">
+
+              <div
+                className="w-0 h-0 border-t-[8px] border-b-[8px] border-t-transparent border-b-transparent ml-1"
+                style={{
+                  borderLeftWidth: "14px",
+                  borderLeftColor:
+                    "hsl(var(--primary-foreground))",
+                }}
+              />
+
+            </div>
+
           </div>
-        </Reveal>
-      </div>
 
-      {/* TEXT RIGHT */}
-      <div
-        style={{
-          flex: "1 1 480px",
-          minWidth: 320,
-        }}
-      >
-        <Reveal>
-          <p
-            style={{
-              fontFamily: "'Barlow', sans-serif",
-              fontWeight: 700,
-              fontSize: 14,
-              letterSpacing: 3,
-              textTransform: "uppercase",
-              color: "#07b4ba",
-              marginBottom: 26,
-            }}
-          >
-            AOF INTRO SECTION
-          </p>
+        </div>
 
-          <h2
-            style={{
-              fontFamily: "'Bebas Neue', sans-serif",
-              fontSize: "clamp(48px,6vw,78px)",
-              lineHeight: 0.95,
-              letterSpacing: 2,
-              color: "#ffffff",
-              marginBottom: 30,
-            }}
-          >
-            WELCOME TO THE{" "}
-            <span style={{ color: "#07b4ba" }}>
-              AOF FAMILY
+        {/* RIGHT : TEXT */}
+        <div className="space-y-4">
+
+          <h2 className="font-display text-3xl md:text-5xl text-foreground leading-tight">
+            Welcome to the{" "}
+            <span className="text-primary">
+              AOF Family
             </span>
           </h2>
 
-          <p
-            style={{
-              fontFamily: "'Barlow', sans-serif",
-              fontSize: 17,
-              lineHeight: 1.9,
-              color: "rgba(255,255,255,0.52)",
-              maxWidth: 620,
-            }}
-          >
-            At Art of Fight, we're more than just a gym — we're a
-            family built on discipline, respect, and relentless growth.
-            Our coaches bring years of real fight experience to every
-            session, guiding you through proven techniques that work
-            inside and outside the ring.
+          <p className="text-muted-foreground text-sm md:text-base leading-relaxed">
+
+            At Art of Fight, we're more than just a gym —
+            we're a family built on discipline, respect,
+            and relentless growth.
 
             <br />
             <br />
 
-            Whether you're a complete beginner or training for
-            competition, you'll find a system designed to push your
-            limits safely. We focus on building strong fundamentals,
-            sharp technique, and the mental toughness that defines a
-            true fighter.
+            Our coaches bring years of real fight experience
+            to every session, guiding you through proven
+            techniques that work inside and outside the ring.
 
             <br />
             <br />
 
-            Step in, train hard, and become part of a community that
-            wins together.
+            Whether you're a complete beginner or training
+            for competition, you'll find a system designed
+            to push your limits safely.
+
+            <br />
+            <br />
+
+            We focus on building strong fundamentals, sharp
+            technique, and the mental toughness that defines
+            a true fighter.
+
+            <br />
+            <br />
+
+            Step in, train hard, and become part of a
+            community that wins together.
+
           </p>
-        </Reveal>
+
+        </div>
+
       </div>
+
     </div>
-  </div>
-</div>
+  </section>
+);
+
+export default IntroSection;
 
         {/* ── FEATURES ── */}
         <div className="pp-features">
